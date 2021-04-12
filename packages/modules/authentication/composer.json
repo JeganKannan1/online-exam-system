@@ -1,0 +1,26 @@
+{
+    "name": "modules/authentication",
+    "description": "login form authentication in laravel",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Aravindan12",
+            "email": "aravindkumaranakr@gmaial.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Authentication\\AuthenticationServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Authentication\\": "src/"
+        }
+    }
+}
+

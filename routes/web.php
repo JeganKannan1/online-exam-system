@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('login', function () {
+//     echo 'hello';
+// });
+// Route::get('/login','AdminAuthController@login')->name('login');
+// Route::post('/login-admin','AdminAuthController@adminLogin')->name('login-admin');
+?>
