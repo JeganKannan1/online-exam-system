@@ -29,7 +29,7 @@ class AuthenticationServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'./routes/auth.php');
         // $this->loadMigrationsFrom(__DIR__.'./migrations/');
         // $this->loadViewsFrom(__DIR__.'./views/login.blade.php');
-        // $this->loadControllerFrom(__DIR__.'./controller/');
+      
        
     }
 }

@@ -4,9 +4,9 @@ namespace Modules\Authentication\controller;
 
 use Illuminate\Http\Request;
 
-// use App\Admin;
+use Modules\Authentication\Admin;
 
-class AdminAuthController extends Controller
+class AdminAuthController
 {
     public function __construct(Admin $user)
     {
@@ -17,7 +17,8 @@ class AdminAuthController extends Controller
         return view('auth::login');
     }
     public function adminLogin(Request $request){
+        
         $user = $this->userreg->where('username',$request->username)->where('password',$request->password)->first();
-        return view('admin.create');
+        return view('auth::create');
     }
 }

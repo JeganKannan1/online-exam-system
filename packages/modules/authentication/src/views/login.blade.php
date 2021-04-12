@@ -42,7 +42,7 @@
 <p class="account-subtitle">Access to our dashboard</p>
 
 <!-- Account Form -->
-<form action="" method = "POST">
+<form action="{{route('login-admin')}}" method = "POST">
     @csrf
 <div class="form-group">
 <label>User Name</label>
