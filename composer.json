@@ -1,3 +1,4 @@
+
 {
     "name": "laravel/laravel",
     "type": "project",
@@ -35,7 +36,9 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+                    "Devdojo\\Calculator\\": "packages/devdojo/calculator/src"
+
         },
         "classmap": [
             "database/seeds",

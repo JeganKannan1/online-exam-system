@@ -1,0 +1,13 @@
+{
+    "name": "devdojo/calculator",
+    "description": "just a calculator",
+    "type": "project",
+    "authors": [
+        {
+            "name": "JeganKannan1",
+            "email": "jegancs0215@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
