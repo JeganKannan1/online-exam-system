@@ -1,4 +1,5 @@
 
+      
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -13,24 +14,19 @@
     </head>
 	
     <body>
-      <div class="sidebar" id="sidebar">
-        <div class="sidebar-inner slimscroll">
-          <div id="sidebar-menu" class="sidebar-menu">
-            <ul>
-              <li class="menu-title"> 
-              <span>Main</span>
-              </li>
-              <li class="submenu">
-              <a href="/team"><i class="la la-dashboard"></i> <span> Team</span> <span class="menu-arrow"></span></a>
-              </li>
-            </li>
-            <li class="submenu">
-            <a href="#"><i class="la la-dashboard"></i> <span> Role</span> <span class="menu-arrow"></span></a>
-            </li>
-            </ul>
-          </div>
+      
+      <form action="{{route('update-team')}}" method = "POST">
+        @csrf
+        <div class="form-group">
+            <input type="hidden" value="{{$editTeams->id}}" name="id">
+            <div class="form-group">
+        
+        <div class="form-group">
+          <label>create new team</label>
+          <input type="text" class="form-control" id="team" name = "team_name" value="{{ $editTeams->team_name}}">
         </div>
-      </div>
-    
-</body>
-</html>
+        <button type="submit" class="btn btn-primary">update</button>
+   
+      </form>
+    </body>
+ </html>
