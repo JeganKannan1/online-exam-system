@@ -25,7 +25,10 @@
               </li>
             </li>
             <li class="submenu">
-            <a href="#"><i class="la la-dashboard"></i> <span> Role</span> <span class="menu-arrow"></span></a>
+            <a href="/role"><i class="la la-dashboard"></i> <span> Role</span> <span class="menu-arrow"></span></a>
+            </li>
+            <li class="submenu">
+            <a href="/user"><i class="la la-dashboard"></i> <span> user</span> <span class="menu-arrow"></span></a>
             </li>
             </ul>
           </div>
