@@ -1,8 +1,10 @@
 <?php
-namespace Modules\Authentication;
+use Illuminate\Support\Facades\DB;
+
 
 use Illuminate\Database\Seeder;
-class AdminSeeder extends Seeder
+
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +13,7 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
+        //
         DB::table('admin')->insert([
             'username' => 'aravindan',
             'password' => '123456',

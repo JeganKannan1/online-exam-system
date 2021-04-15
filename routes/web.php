@@ -18,4 +18,26 @@ use Illuminate\Support\Facades\Route;
 // });
 // Route::get('/login','AdminAuthController@login')->name('login');
 // Route::post('/login-admin','AdminAuthController@adminLogin')->name('login-admin');
+Route::get('/login','AdminAuthController@login')->name('login');
+Route::post('/login-admin','AdminAuthController@adminLogin')->name('login-admin');
+Route::get('/team','AdminAuthController@addTeam')->name('team');
+Route::post('/create-team','AdminAuthController@createTeam')->name('create-team');
+Route::get('/delete/{team}','AdminAuthController@delete')->name('delete');
+Route::get('/edit/{team}','AdminAuthController@edit')->name('edit');
+Route::post('/update-team','AdminAuthController@updateTeam')->name('update-team');
+Route::get('/user','AdminAuthController@addUser')->name('user');
+Route::get('/role','AdminAuthController@addRole')->name('role');
+Route::post('/add-role','AdminAuthController@createRole')->name('add-role');
+Route::get('/edit-role/{role}','AdminAuthController@editRole')->name('edit-role');
+Route::post('/update-role','AdminAuthController@updateRole')->name('update-role');
+Route::get('/delete-role/{role}','AdminAuthController@deleteRole')->name('delete-role');
+Route::post('/create-user','AdminAuthController@createUser')->name('create-user');
+Route::get('/edit-user/{user}','AdminAuthController@editUser')->name('edit-user');
+Route::post('/update-user','AdminAuthController@updateUser')->name('update-user');
+Route::get('/delete-user/{user}','AdminAuthController@deleteUser')->name('delete-user');
+
+
+
+
+
 ?>

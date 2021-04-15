@@ -1,6 +1,5 @@
 <?php
-namespace Modules\Authentication;
-
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
@@ -12,6 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(AdminSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Authentication;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,5 +8,5 @@ class Admin extends Model
 {
     //
     protected $table = "admin";
-    protected $fillable = ['username', 'password'];
+    protected $fillable = ['username', 'password','name','email','phone','team_id','role_id'];
 }

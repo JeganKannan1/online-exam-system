@@ -35,8 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Modules\\Authentication\\": "packages/modules/authentication/src/"
+            "App\\": "app/"
 
         },
         "classmap": [
