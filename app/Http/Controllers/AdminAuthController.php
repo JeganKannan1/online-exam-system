@@ -21,7 +21,9 @@ class AdminAuthController extends Controller
        $this->teamreg = $team;
        $this->rolereg = $role;
     }
-    
+    public function index(){
+        return view('admin.index');
+    }
     public function login(){
         return view('admin.login');
     }
@@ -43,8 +45,19 @@ class AdminAuthController extends Controller
 //     default:
 //     return view('admin.questions');
 //   }        
-        $user = $this->userreg->where('username',$request->username)->where('password',$request->password)->first();
-        return view('admin.create');
+        $user = $this->userreg->where('username',$request->username)->where('password',$request->password)->select('role_id')->first();
+        switch ($user->role_id) {
+    case "3":
+      return view('admin.index');
+      break;
+    case "4":
+        return view('admin.createquestions');
+      break;
+ 
+    default:
+    return view('admin.questions');
+  } 
+        
        
     }
     public function addTeam(){

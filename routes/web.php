@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('login', function () {
 //     echo 'hello';
 // });
-// Route::get('/login','AdminAuthController@login')->name('login');
+Route::get('/index','AdminAuthController@index')->name('index');
 // Route::post('/login-admin','AdminAuthController@adminLogin')->name('login-admin');
 Route::get('/login','AdminAuthController@login')->name('login');
 Route::post('/login-admin','AdminAuthController@adminLogin')->name('login-admin');

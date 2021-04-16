@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -21,14 +21,15 @@
 
 
 
-</head>
+</head> --}}
+@extends('layouts.app')
 <body class="account-page">
 
 <!-- Main Wrapper -->
 <div class="main-wrapper">
 <div class="account-content">
 <!-- <a href="job-list.html" class="btn btn-primary apply-btn">Apply Job</a> -->
-<div class="container">
+<div class="container-fluid" style="margin : 250px">
 
 <!-- Account Logo -->
 <div class="account-logo">
