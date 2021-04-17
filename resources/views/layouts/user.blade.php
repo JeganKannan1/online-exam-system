@@ -43,13 +43,13 @@
 			
 				<!-- Logo -->
                 <div class="header-left">
-                    <a href="index.html" class="logo" style="margin: 10px">
+                    <a href="index.html" class="logo">
 						<img src="{{asset('/assets/img/logo.png')}} " width="40" height="40" alt="">
 					</a>
                 </div>
 				<!-- /Logo -->
 				
-				<a id="toggle_btn" href="javascript:void(0);" style="margin: 20px">
+				<a id="toggle_btn" href="javascript:void(0);">
 					<span class="bar-icon">
 						<span></span>
 						<span></span>
@@ -59,7 +59,7 @@
 				
 				<!-- Header Title -->
                 <div class="page-title-box">
-					<h3>Sparkout Tech</h3>
+					<h3>Dreamguy's Technologies</h3>
                 </div>
 				<!-- /Header Title -->
 				
@@ -85,14 +85,14 @@
 					<!-- Flag -->
 					<li class="nav-item dropdown has-arrow flag-nav">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-							<img src="assets/img/flags/us.png" alt="" height="20"> <span>English</span>
+							<img src="{{asset(' /assets/img/flags/us.png')}}" alt="" height="20"> <span>English</span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right">
 							<a href="javascript:void(0);" class="dropdown-item">
-								<img src="assets/img/flags/us.png" alt="" height="16"> English
+								<img src="{{asset('/assets/img/flags/us.png')}} " alt="" height="16"> English
 							</a>
 							<a href="javascript:void(0);" class="dropdown-item">
-								<img src="assets/img/flags/fr.png" alt="" height="16"> French
+								<img src="{{asset('/assets/img/flags/fr.png')}} " alt="" height="16"> French
 							</a>
 							<a href="javascript:void(0);" class="dropdown-item">
 								<img src="{{asset('/assets/img/flags/es.png')}} " alt="" height="16"> Spanish
@@ -300,12 +300,12 @@
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<span class="user-img"><img src="{{asset('/assets/img/profiles/avatar-21.jpg')}} " alt="">
 							<span class="status online"></span></span>
-							<span>Admin</span>
+							<span>User</span>
 						</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="profile.html">My Profile</a>
 							<a class="dropdown-item" href="settings.html">Settings</a>
-							<a class="dropdown-item" href="/logout">Logout</a>
+							<a class="dropdown-item" href="/login">Logout</a>
 						</div>
 					</li>
 				</ul>
@@ -317,31 +317,33 @@
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="profile.html">My Profile</a>
 						<a class="dropdown-item" href="settings.html">Settings</a>
-						<a class="dropdown-item" href="/logout">Logout</a>
+						<a class="dropdown-item" href="login.html">Logout</a>
 					</div>
 				</div>
 				<!-- /Mobile Menu -->
 				
             </div>
             {{-- <div class="flex"> --}}
-                @include('sidebar.sidebar')
+                @include('sidebar.usersidebar')
     
                 @yield('content')
-            {{-- </div> --}}
-			{{-- <script src="assets/js/jquery-3.2.1.min.js"></script>
+          
+			 <script src="assets/js/jquery-3.2.1.min.js"></script>
 		
 		<!-- Bootstrap Core JS -->
-        <script src="asset/js/popper.min.js"></script>
-        <script src="asset/js/bootstrap.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
 		
 		<!-- Slimscroll JS -->
-		<script src="asset/js/jquery.slimscroll.min.js"></script>
+		<script src="assets/js/jquery.slimscroll.min.js"></script>
 		
 		<!-- Chart JS -->
-		<script src="asset/plugins/morris/morris.min.js"></script>
-		<script src="asset/plugins/raphael/raphael.min.js"></script>
-		<script src="asset/js/chart.js"></script>
-			<script src="asset/js/app.js"></script>  --}}
+		<script src="assets/plugins/morris/morris.min.js"></script>
+		<script src="assets/plugins/raphael/raphael.min.js"></script>
+		<script src="assets/js/chart.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="assets/js/app.js"></script> 
 
 			</body>
 			</html>

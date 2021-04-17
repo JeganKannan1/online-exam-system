@@ -1,31 +1,35 @@
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Document</title>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-
-<body>
-
-<form action="{{route('update-role')}}" method = "POST">
-@csrf
-<div class="form-group">
-<input type="hidden" value="{{$editRoles->id}}" name="id">
-<div class="form-group">
-
-<div class="form-group">
-<label>update role</label>
-<input type="text" class="form-control" id="team" name = "role_name" value="{{ $editRoles->role_name}}">
+<div class = "container-fluid">
+    <div class = "col-md-6" style="margin: 100px 220px">
+        <form action="{{route('update-role')}}" method = "POST">
+            @csrf
+            <div class="form-group">
+                <input type="hidden" value="{{$editRoles->id}}" name="id">
+            </div>
+            <div class="form-group">
+                <label>update role</label>
+                <input type="text" class="form-control" id="team" name = "role_name" value="{{ $editRoles->role_name}}">
+            </div>
+            <button type="submit" class="btn btn-primary">update</button>
+        </form>
+    </div>
 </div>
-<button type="submit" class="btn btn-primary">update</button>
-
-</form>
+{{-- <script src="assets/js/jquery-3.2.1.min.js"></script>
+		
+		<!-- Bootstrap Core JS -->
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+		
+		<!-- Slimscroll JS -->
+		<script src="assets/js/jquery.slimscroll.min.js"></script>
+		
+		<!-- Chart JS -->
+		<script src="assets/plugins/morris/morris.min.js"></script>
+		<script src="assets/plugins/raphael/raphael.min.js"></script>
+		<script src="assets/js/chart.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="assets/js/app.js"></script>  --}}
 </body>
 </html>

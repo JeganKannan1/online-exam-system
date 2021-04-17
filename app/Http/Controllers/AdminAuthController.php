@@ -9,6 +9,8 @@ use App\Team;
 use App\Role;
 use Mail;
 use DB;
+use Session;
+
 use App\Jobs\SendEmailJob;
 
 
@@ -28,24 +30,21 @@ class AdminAuthController extends Controller
         return view('admin.login');
     }
     public function adminLogin(Request $request){
-//        $check = DB::table('admin')
-// ->select('admin.username','admin.password','admin.team_id','admin.role_id')
-// ->join('teams','teams.id','=','admin.team_id')
-// ->join('roles','roles.id','=','admin.role_id')
-// ->where(['username' => $request->username, 'password' => $request->password])
-// ->get();
-// switch ($check->role_id) {
-//     case "3":
-//       return view('admin.create');
-//       break;
-//     case "4":
-//         return view('admin.createquestions');
-//       break;
- 
-//     default:
-//     return view('admin.questions');
-//   }        
+        $this->validate($request,[
+            'username'=>'required|min:8',
+            'password'=>'required|min:5'
+         ]);
+         if($request->username!='username'&& $request->password!='password'){
+            toastr()->error('Error Message');
+             return view('admin.login');
+             
+
+         }
+         else{
         $user = $this->userreg->where('username',$request->username)->where('password',$request->password)->select('role_id')->first();
+        Session::put('username',$request->username);
+        
+         
         switch ($user->role_id) {
     case "3":
       return view('admin.index');
@@ -57,7 +56,7 @@ class AdminAuthController extends Controller
     default:
     return view('admin.questions');
   } 
-        
+}
        
     }
     public function addTeam(){
@@ -82,7 +81,7 @@ class AdminAuthController extends Controller
     public function updateTeam(Request $request){
         
         $this->teamreg->where('id',$request->id)->update($request->except(['_token']));
-        return view('admin.create');
+        return view('admin.index');
     }
     
 
@@ -103,7 +102,7 @@ class AdminAuthController extends Controller
         public function updateRole(Request $request){
         
         $this->rolereg->where('id',$request->id)->update($request->except(['_token']));
-        return view('admin.create');
+        return view('admin.index');
         }
         public function deleteRole($id)
         {
@@ -133,12 +132,17 @@ class AdminAuthController extends Controller
         public function updateUser(Request $request){
         
             $this->userreg->where('id',$request->id)->update($request->except(['_token','password']));
-            return view('admin.create');
+            return view('admin.index');
         }
         public function deleteUser($id)
         {
         $this->userreg->where('id',$id)->delete();
         return back();
+        }
+        public function logout(){
+            Session::flush();
+
+            return redirect()->route('login');
         }
 
 }

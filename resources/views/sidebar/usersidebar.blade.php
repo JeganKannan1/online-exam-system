@@ -8,20 +8,18 @@
                 <li class="submenu">
                     <a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;" >
-                        <li><a class="active" href="/login">Admin Dashboard</a></li>
+                        <li><a class="active" href="#">employee Dashboard</a></li>
                         
                     </ul>
                 </li>
                 <li class="submenu">
                     <a href="#"><i class="la la-cube"></i> <span> Pages</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="/team">Teams</a></li>
-                        <li><a href="/role">Roles</a></li>
-                        <li><a href="/user">Users</a></li>
+                        <li><a href="#">Reports</a></li>
+                        <li><a href="#">Attendace</a></li>
                      </ul>
                         
                 </li>
-                
             </ul>
         </div>
     </div>
