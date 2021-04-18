@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@toastr_css
 
 			<!-- /Sidebar -->
 			
@@ -753,6 +754,8 @@
 		
 		<!-- Custom JS -->
 		<script src="assets/js/app.js"></script>
-		
+		@jquery
+@toastr_js
+@toastr_render
     </body>
 </html>

@@ -8,7 +8,7 @@
                 <li class="submenu">
                     <a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;" >
-                        <li><a class="active" href="#">employee Dashboard</a></li>
+                        <li><a class="active" href="/employee">employee Dashboard</a></li>
                         
                     </ul>
                 </li>

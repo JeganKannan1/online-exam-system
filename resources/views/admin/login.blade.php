@@ -26,6 +26,8 @@
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+		@toastr_css
+
     </head>
     <body class="account-page">
 	
@@ -96,6 +98,8 @@
 		
 		<!-- Custom JS -->
 		<script src="assets/js/app.js"></script>
-		
+		@jquery
+@toastr_js
+@toastr_render
     </body>
 </html>

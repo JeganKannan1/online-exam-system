@@ -37,6 +37,9 @@ Route::get('/edit-user/{user}','AdminAuthController@editUser')->name('edit-user'
 Route::post('/update-user','AdminAuthController@updateUser')->name('update-user');
 Route::get('/delete-user/{user}','AdminAuthController@deleteUser')->name('delete-user')->middleware('admin');
 Route::get('/logout','AdminAuthController@logout')->name('logout');
+Route::post('/add-question','AdminAuthController@addQuestion')->name('add-question');
+Route::get('/employee','AdminAuthController@employeeDashboard')->name('employee');
+
 
 
 

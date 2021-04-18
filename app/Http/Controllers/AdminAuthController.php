@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Admin;
 use App\Team;
 use App\Role;
+use App\Question;
 use Mail;
 use DB;
 use Session;
@@ -16,12 +17,14 @@ use App\Jobs\SendEmailJob;
 
 class AdminAuthController extends Controller
 {
-    public function __construct(Admin $user,Team $team,Role $role)
+    public function __construct(Admin $user,Team $team,Role $role,Question $question)
     {
 
        $this->userreg = $user;
        $this->teamreg = $team;
        $this->rolereg = $role;
+       $this->questionreg = $question;
+
     }
     public function index(){
         return view('admin.index');
@@ -31,32 +34,36 @@ class AdminAuthController extends Controller
     }
     public function adminLogin(Request $request){
         $this->validate($request,[
-            'username'=>'required|min:8',
+            'username'=>'required|min:5',
             'password'=>'required|min:5'
          ]);
-         if($request->username!='username'&& $request->password!='password'){
-            toastr()->error('Error Message');
-             return view('admin.login');
-             
-
-         }
-         else{
-        $user = $this->userreg->where('username',$request->username)->where('password',$request->password)->select('role_id')->first();
+            
+        $user = $this->userreg->where('username',$request->username)->where('password',$request->password)->first();
+        if(isset($user)){
         Session::put('username',$request->username);
-        
-         
+        Session::put('username',$request->username);
+        toastr()->success('successfully logged in');
         switch ($user->role_id) {
     case "3":
       return view('admin.index');
       break;
     case "4":
-        return view('admin.createquestions');
+    $getTeam = DB::table('admin')->where('team_id', $user->team_id)->first();
+    // dd($getTeam);
+            return view('admin.createquestions',compact('getTeam'));
       break;
  
     default:
-    return view('admin.questions');
-  } 
-}
+    $getTeam = DB::table('questions')->where('team_id', $user->team_id)->get();
+    // dd($getTeam);
+
+    return view('admin.questions',compact('getTeam'));
+    }
+        }else{
+            toastr()->error('username/password is incorrect');
+            return back();
+
+        }
        
     }
     public function addTeam(){
@@ -119,9 +126,9 @@ class AdminAuthController extends Controller
             $user = $this->userreg->create($request->all());
             
 
-            $details=new SendEmailJob($request->all());
+            // $details=new SendEmailJob($request->all());
   
-            dispatch($details);
+            // dispatch($details);
             return back();
         }
         public function editUser($id){
@@ -144,5 +151,16 @@ class AdminAuthController extends Controller
 
             return redirect()->route('login');
         }
+
+
+
+        public function addQuestion(Request $request){
+            $question = Question::create($request->all());
+           return redirect()->route('employee');
+        }
+        public function employeeDashboard(){
+            return view('employee.employee');
+        }
+        
 
 }
