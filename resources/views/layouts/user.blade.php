@@ -8,7 +8,8 @@
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
         <title>Dashboard - HRMS admin template</title>
-		
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{{asset('/assets/img/favicon.png')}}">
 		
