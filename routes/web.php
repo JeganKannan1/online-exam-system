@@ -39,7 +39,8 @@ Route::get('/delete-user/{user}','AdminAuthController@deleteUser')->name('delete
 Route::get('/logout','AdminAuthController@logout')->name('logout');
 Route::post('/add-question','AdminAuthController@addQuestion')->name('add-question');
 Route::get('/employee','AdminAuthController@employeeDashboard')->name('employee');
-
+Route::get('/take-test','AdminAuthController@takeTest')->name('take-test');
+Route::post('/check-answer','AdminAuthController@checkAnswer')->name('check-answer');
 
 
 

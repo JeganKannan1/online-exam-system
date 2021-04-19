@@ -44,20 +44,22 @@ class AdminAuthController extends Controller
         Session::put('username',$request->username);
         toastr()->success('successfully logged in');
         switch ($user->role_id) {
-    case "3":
+    case "1":
       return view('admin.index');
       break;
-    case "4":
+    case "2":
     $getTeam = DB::table('admin')->where('team_id', $user->team_id)->first();
+    
     // dd($getTeam);
             return view('admin.createquestions',compact('getTeam'));
       break;
  
     default:
+    Session::put('team_id',$user->team_id);
     $getTeam = DB::table('questions')->where('team_id', $user->team_id)->get();
     // dd($getTeam);
 
-    return view('admin.questions',compact('getTeam'));
+    return view('employee.employee',compact('getTeam'));
     }
         }else{
             toastr()->error('username/password is incorrect');
@@ -126,9 +128,9 @@ class AdminAuthController extends Controller
             $user = $this->userreg->create($request->all());
             
 
-            // $details=new SendEmailJob($request->all());
+            $details=new SendEmailJob($request->all());
   
-            // dispatch($details);
+            dispatch($details);
             return back();
         }
         public function editUser($id){
@@ -160,6 +162,17 @@ class AdminAuthController extends Controller
         }
         public function employeeDashboard(){
             return view('employee.employee');
+        }
+        public function takeTest(){
+            $session_id = Session::get('team_id');
+            $getTeam = DB::table('questions')->where('team_id', $session_id)->get();
+            // dd($getTeam);
+            
+            return view('admin.questions',compact('getTeam'));       
+         }
+         public function checkAnswer(Request $request){
+             dd($request);
+           return redirect()->route('employee');
         }
         
 

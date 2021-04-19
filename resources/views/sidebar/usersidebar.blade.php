@@ -15,7 +15,7 @@
                 <li class="submenu">
                     <a href="#"><i class="la la-cube"></i> <span> Pages</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="#">Reports</a></li>
+                        <li><a href="/take-test">take Test</a></li>
                         <li><a href="#">Attendace</a></li>
                      </ul>
                         
