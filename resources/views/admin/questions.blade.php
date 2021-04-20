@@ -51,34 +51,59 @@
     border-radius: 15px;
 }
 </style>
-<div class="container" style="margin: 100px 220px 100px 100px">
+
+<div class="container col-md-3" style="margin: 100px 400px">
+
     <div class="stepwizard">
+		@foreach ($getTeam as $question) 
         <div class="stepwizard-row setup-panel">
-            <div class="stepwizard-step col-xs-1"> 
-                <a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
+            <div class="stepwizard-step col-xs-1">
+                <a href="#step-{{ $loop->index + 1 }}" type="button" class="btn btn-success btn-circle">{{ $loop->index + 1 }}</a>	
             </div>
-            
         </div>
+		@endforeach
     </div>
     
     <form role="form">
-        <div class="panel panel-primary setup-content" id="step-1">
+		
+		@foreach ($getTeam as $question) 
+
+        <div class="panel panel-primary setup-content" id="step-{{ $loop->index + 1 }}">
             <div class="panel-heading">
-                 <h3 class="panel-title">Shipper</h3>
+                 <h3 class="panel-title">Questions</h3>
             </div>
             <div class="panel-body">
-                <div class="form-group">
-                    <label class="control-label">First Name</label>
-                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Last Name</label>
-                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
-                </div>
-                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-            </div>
+                <div class="panel-body">
+					<div class="form-group">
+						<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value={{$question->team_id}}>
+					  </div>
+					  <div class="form-group">
+						<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value={{$question->role_id}}>
+					  </div>
+					<div class="form-group">
+					  <label for="exampleInputEmail1">Questions</label>
+			          <p>{{$question->question}}</p>
+					</div>
+					<div class="form-group">
+					  <label for="exampleInputPassword1">Options</label><br>
+					  <input type="checkbox" id="vehicle1" name="option1" value="{{$question->option1}}">
+					  <label for="vehicle1"> {{$question->option1}}</label><br>
+					  <input type="checkbox" id="vehicle2" name="option2" value="{{$question->option2}}">
+					  <label for="vehicle2"> {{$question->option2}}</label><br>
+					  <input type="checkbox" id="vehicle3" name="option3" value="{{$question->option3}}">
+					  <label for="vehicle3"> {{$question->option3}}</label><br>
+					  <input type="checkbox" id="vehicle3" name="option4" value="{{$question->option4}}">
+					  <label for="vehicle3"> {{$question->option4}}</label><br>
+					  
+					</div>
+					<button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+				</div>
+			</div>
+					
         </div>
+		@endforeach
     </form>
+	
 </div>
 <script>
 	$(document).ready(function () {

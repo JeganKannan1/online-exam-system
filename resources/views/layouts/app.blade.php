@@ -85,14 +85,14 @@
 					<!-- Flag -->
 					<li class="nav-item dropdown has-arrow flag-nav">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-							<img src="assets/img/flags/us.png" alt="" height="20"> <span>English</span>
+							<img src="{{asset('assets/img/flags/us.png')}}" alt="" height="20"> <span>English</span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right">
 							<a href="javascript:void(0);" class="dropdown-item">
-								<img src="assets/img/flags/us.png" alt="" height="16"> English
+								<img src="{{asset('assets/img/flags/us.png')}}" alt="" height="16"> English
 							</a>
 							<a href="javascript:void(0);" class="dropdown-item">
-								<img src="assets/img/flags/fr.png" alt="" height="16"> French
+								<img src="{{asset('assets/img/flags/fr.png')}}" alt="" height="16"> French
 							</a>
 							<a href="javascript:void(0);" class="dropdown-item">
 								<img src="{{asset('/assets/img/flags/es.png')}} " alt="" height="16"> Spanish
@@ -328,20 +328,20 @@
     
                 @yield('content')
             {{-- </div> --}}
-			{{-- <script src="assets/js/jquery-3.2.1.min.js"></script>
+			<script src="{{asset('assets/js/jquery-3.2.1.min.js')}}"></script>
 		
-		<!-- Bootstrap Core JS -->
-        <script src="asset/js/popper.min.js"></script>
-        <script src="asset/js/bootstrap.min.js"></script>
-		
-		<!-- Slimscroll JS -->
-		<script src="asset/js/jquery.slimscroll.min.js"></script>
-		
-		<!-- Chart JS -->
-		<script src="asset/plugins/morris/morris.min.js"></script>
-		<script src="asset/plugins/raphael/raphael.min.js"></script>
-		<script src="asset/js/chart.js"></script>
-			<script src="asset/js/app.js"></script>  --}}
+				<!-- Bootstrap Core JS -->
+				<script src="{{asset('assets/js/popper.min.js')}}"></script>
+				<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+				
+				<!-- Slimscroll JS -->
+				<script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
+				
+				<!-- Chart JS -->
+				<script src="{{asset('assets/plugins/morris/morris.min.js')}}"></script>
+				<script src="{{asset('assets/plugins/raphael/raphael.min.js')}}"></script>
+				<script src="{{asset('assets/js/chart.js')}}"></script>
+			<script src="{{asset('assets/js/app.js')}}"></script>
 
 			</body>
 			</html>

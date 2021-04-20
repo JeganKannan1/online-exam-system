@@ -17,7 +17,9 @@ use App\Http\Controllers\AdminAuthController;
 // Route::get('login', function () {
 //     echo 'hello';
 // });
-Route::get('/index','AdminAuthController@index')->name('index')->middleware('admin');
+
+Route::get('/index',[AdminAuthController::class,'index'])->name('index')->middleware('admin');
+// Route::get('/index','AdminAuthController@index')->name('index')->middleware('admin');
 // Route::post('/login-admin','AdminAuthController@adminLogin')->name('login-admin');
 Route::get('/login','AdminAuthController@login')->name('login');
 Route::post('/login-admin','AdminAuthController@adminLogin')->name('login-admin');
