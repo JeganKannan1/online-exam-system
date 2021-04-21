@@ -35,8 +35,17 @@ class ExamController extends Controller
         return view('admin.questions',compact('getTeam'));       
      }
      public function checkAnswer(Request $request){
-         dd($request);
-       return redirect()->route('employee');
+        $session_id = Session::get('team_id');
+        $array = [];
+        foreach($request->name as $answer){
+            $getTeam =DB::table('questions')->where('team_id', $session_id)->where('answer', $answer)->first();
+            if( ($getTeam && $answer)== true ){
+                array_push($array,$answer);
+            }
+        }
+        $count = count($array);
+        dd($count);
+        return redirect()->route('employee');
     }
     
 }
