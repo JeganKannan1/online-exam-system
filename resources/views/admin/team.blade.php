@@ -48,6 +48,6 @@
   
 		
 		<!-- Custom JS -->
-,</body>
+</body>
 </html>
 
