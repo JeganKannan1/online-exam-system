@@ -35,8 +35,9 @@ class AdminAuthController extends Controller
     }
 
     public function createQuestion(){
-        $getTeam = DB::table('admin')->where('team_id', $user->team_id)->first();
-        return view('admin.createquestions',compact($getTeam));
+        $session_id = Session::get('team_id');
+        $getTeam = DB::table('admin')->where('team_id', $session_id)->first();
+        return view('admin.createquestions',compact('getTeam'));
     }
 
 
@@ -51,7 +52,8 @@ class AdminAuthController extends Controller
             if(isset($user))
             {
                 Session::put('username',$request->username);
-                Session::put('username',$user->role_id);
+                Session::put('role_id',$user->role_id);
+                Session::put('team_id',$user->team_id);
                 toastr()->info('successfully logged in');
                 // Base on role id user will navigate
                     switch ($user->role_id) 
@@ -59,14 +61,11 @@ class AdminAuthController extends Controller
                         case "1":
                              return redirect()->route('index');
                         break;
-                        case "2":
-                             $getTeam = DB::table('admin')->where('team_id', $user->team_id)->first();
-                             return redirect('/index');
+                        case "2":                             
+                            return redirect()->route('create-question');
                         break;
                         default:
-                            Session::put('team_id',$user->team_id);
-                            $getTeam = DB::table('questions')->where('team_id', $user->team_id)->get();
-                            return view('employee.employee',compact('getTeam'));
+                        return redirect()->route('dashboard');
                     }
                  } else{
                 toastr()->error('username/password is incorrect');

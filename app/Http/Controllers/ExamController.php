@@ -26,11 +26,14 @@ class ExamController extends Controller
         return view('employee.created');
     }
     public function empDashboard(){
-        
-        return view('employee.employee');
+        $session_id = Session::get('team_id');
+        $getTeam = DB::table('questions')->where('team_id', $session_id)->first();
+        return view('employee.employee',compact('getTeam'));
     }
     public function answerPage(){
-        return view('employee.answer');
+        $session_id = Session::get('team_id');
+        $user = DB::table('table_marks')->where('team_id', $session_id)->first();
+        return view('employee.answer',compact('user'));
     }
     public function addQuestion(Request $request){
         try{
@@ -80,7 +83,7 @@ class ExamController extends Controller
         
         $count = count($array);
         $total = count($total);
-        
+        dd($count);
         $skipped = $skip - $total;
         $user = new Answer([
             'score' => $count,
@@ -93,7 +96,7 @@ class ExamController extends Controller
         // dd($skipped);
         // dd($count);
         // dd($total);
-        return view('employee.answer',compact('user'));
+        return redirect()->route('answer');
     }
 
     public function monthlyReport(){
