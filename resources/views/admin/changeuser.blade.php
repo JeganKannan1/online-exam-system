@@ -5,9 +5,9 @@
     <div class = "col-md-6" style="margin: 100px 220px">
       <form action="{{route('update-user')}}" method = "POST">
         @csrf
-        <div class="form-group">
-          <input type="hidden" value="{{$editUsers->id}}" name="id">
-        </div>
+          <div class="form-group">
+            <input type="hidden" value="{{$editUsers->id}}" name="id">
+          </div>
         <div class="form-group col-md-6">
           <label for="inputEmail4">UserName</label>
           <input type="name" class="form-control" id="username" placeholder="Enter the Username" name="username" value="{{$editUsers->username}}">

@@ -34,6 +34,11 @@ class AdminAuthController extends Controller
         return view('admin.login');
     }
 
+    public function createQuestion(){
+        $getTeam = DB::table('admin')->where('team_id', $user->team_id)->first();
+        return view('admin.createquestions',compact($getTeam));
+    }
+
 
     public function adminLogin(Request $request){
         try{
@@ -46,24 +51,24 @@ class AdminAuthController extends Controller
             if(isset($user))
             {
                 Session::put('username',$request->username);
-                Session::put('username',$request->username);
+                Session::put('username',$user->role_id);
                 toastr()->info('successfully logged in');
                 // Base on role id user will navigate
                     switch ($user->role_id) 
                     {
                         case "1":
-                             return view('admin.index');
+                             return redirect()->route('index');
                         break;
                         case "2":
                              $getTeam = DB::table('admin')->where('team_id', $user->team_id)->first();
-                             return view('admin.createquestions',compact('getTeam'));
+                             return redirect('/index');
                         break;
                         default:
                             Session::put('team_id',$user->team_id);
                             $getTeam = DB::table('questions')->where('team_id', $user->team_id)->get();
                             return view('employee.employee',compact('getTeam'));
                     }
-            }else{
+                 } else{
                 toastr()->error('username/password is incorrect');
                 return back();
             }
@@ -76,7 +81,6 @@ class AdminAuthController extends Controller
 
     public function logout(){
         Session::flush();
-
         return redirect()->route('login');
     }
 }

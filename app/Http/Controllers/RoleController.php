@@ -38,7 +38,7 @@ class RoleController extends Controller
         public function updateRole(Request $request){
         
         $this->rolereg->where('id',$request->id)->update($request->except(['_token']));
-        return view('admin.index');
+        return redirect('/role');
         }
         public function deleteRole($id)
         {

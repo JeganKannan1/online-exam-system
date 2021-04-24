@@ -1,4 +1,3 @@
-@toastr_css
 @extends('layouts.user')
 <html>
 	<head>
@@ -57,54 +56,56 @@ body {
 	</head>
 	<body>
 <div class="container col-md-6" style="margin:220px">
-	
-		
+
+
     <div class="stepwizard">
-		
+
         <div class="stepwizard-row setup-panel">
 			@foreach ($getTeam as $question)
-            <div class="stepwizard-step col-xs-1"> 
-				
+            <div class="stepwizard-step col-xs-1">
+
                 <a href="#step-{{$loop->index+1}}" type="button" class="btn btn-success btn-circle">{{$loop->index+1}}</a>
-				
+
             </div>
 			@endforeach
         </div>
-		
+
     </div>
-	
+
     <form action="{{route('check-answer')}}" method="POST">
 		@foreach ($getTeam as $question)
 		@csrf
-		
         <div class="panel panel-primary setup-content" id="step-{{$loop->index+1}}">
             <div class="panel-heading">
                  <h3 class="panel-title">{{$question->question}}</h3>
             </div>
             <div class="panel-body">
+               
                 <div class="form-group">
-					<input type="checkbox" id="vehicle1" name="name[]" value="{{$question->option1}}">
-					<label for="vehicle1"> {{$question->option1}}</label><br>
-					<input type="checkbox" id="vehicle2" name="name[]" value="{{$question->option2}}">
-					<label for="vehicle2"> {{$question->option2}}</label><br>
-					<input type="checkbox" id="vehicle3" name="name[]" value="{{$question->option3}}">
-					<label for="vehicle3"> {{$question->option3}}</label><br>
-					<input type="checkbox" id="vehicle3" name="name[]" value="{{$question->option4}}">
-					<label for="vehicle3"> {{$question->option4}}</label><br>
+                    <input type="hidden" value="{{($loop->count)}}" name="id">
+                    <input type="hidden" value="{{($question->role_id)}}" name="role_id">
+                    <label for="vehicle{{$loop->index+1}}">
+					<input type="checkbox" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="{{$question->option1}}">{{$question->option1}}</label><br>
+					<input type="checkbox" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="{{$question->option2}}">
+					<label for="vehicle{{$loop->index+1}}"> {{$question->option2}}</label><br>
+					<input type="checkbox" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="{{$question->option3}}">
+					<label for="vehicle{{$loop->index+1}}"> {{$question->option3}}</label><br>
+					<input type="checkbox" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="{{$question->option4}}">
+					<label for="vehicle{{$loop->index+1}}"> {{$question->option4}}</label><br>
                 </div>
-				
-				@if ($loop->index == 1)
+
+				@if ($loop->index == ($loop->count)-1 )
 				<button class="btn btn-success pull-right" type="submit">Finish!</button>
 				@else
-				
+
                 <button class="btn btn-primary nextBtn pull-right" id="{{$loop->index+1}}" type="button">Next</button>
 				@endif
             </div>
         </div>
-		
+
 		@endforeach
     </form>
-    
+
 </div>
 <script>
 	$(document).ready(function () {
@@ -143,17 +144,29 @@ console.log(nextStepWizard)
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
             }
         }
-
         if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
 });
 
 $('div.setup-panel div a.btn-success').trigger('click');
 });
 
-var total=$(this).find('input[name=name[]]').serialize();
-
+$("input:checkbox").on('click', function() {
+  // in the handler, 'this' refers to the box clicked on
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    // the name of the box is retrieved using the .attr() method
+    // as it is assumed and expected to be immutable
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    // the checked state of the group/box on the other hand will change
+    // and the current value is retrieved using .prop() method
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } else {
+    $box.prop("checked", false);
+  }
+});
 </script>
-    
+
 		@jquery
 @toastr_js
 @toastr_render

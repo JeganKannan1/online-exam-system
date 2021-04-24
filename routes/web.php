@@ -28,6 +28,9 @@ use App\Http\Controllers\ExamController;
 Route::get('/index',[AdminAuthController::class,'index'])->name('index')->middleware('admin');
 Route::get('/login',[AdminAuthController::class,'login'])->name('login');
 Route::post('/login-admin',[AdminAuthController::class,'AdminLogin'])->name('login-admin');
+Route::get('/created',[ExamController::class,'newQuestion'])->name('created')->middleware('admin');
+Route::get('/dashboard',[ExamController::class,'empDashboard'])->name('dashboard')->middleware('admin');
+Route::get('/create-question',[AdminAuthController::class,'createQuestion'])->name('create-question')->middleware('admin');
 Route::get('/team',[TeamController::class,'addTeam'])->name('team')->middleware('admin');
 Route::post('/create-team',[TeamController::class,'createTeam'])->name('create-team');
 Route::get('/delete/{team}',[TeamController::class,'delete'])->name('delete')->middleware('admin');
@@ -45,9 +48,12 @@ Route::post('/update-user',[UserController::class,'updateUser'])->name('update-u
 Route::get('/delete-user/{user}',[UserController::class,'deleteUser'])->name('delete-user')->middleware('admin');
 Route::get('/logout',[AdminAuthController::class,'logout'])->name('logout');
 Route::post('/add-question',[ExamController::class,'addQuestion'])->name('add-question');
-Route::get('/employee',[ExamController::class,'employeeDashboard'])->name('employee');
 Route::get('/take-test',[ExamController::class,'takeTest'])->name('take-test');
 Route::post('/check-answer',[ExamController::class,'checkAnswer'])->name('check-answer');
+Route::get('/answer',[ExamController::class,'answerPage'])->name('answer');
+Route::get('/report',[ExamController::class,'monthlyReport'])->name('report');
+
+
 
 
 

@@ -49,6 +49,6 @@ class TeamController extends Controller
     public function updateTeam(Request $request){
         
         $this->teamreg->where('id',$request->id)->update($request->except(['_token']));
-        return view('admin.index');
+        return redirect('/team');
     }
 }

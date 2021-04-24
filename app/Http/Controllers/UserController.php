@@ -48,7 +48,7 @@ class UserController extends Controller
     public function updateUser(Request $request){
     
         $this->userreg->where('id',$request->id)->update($request->except(['_token','password']));
-        return view('admin.index');
+        return redirect('/user');
     }
     public function deleteUser($id)
     {

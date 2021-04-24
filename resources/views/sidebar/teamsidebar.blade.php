@@ -9,14 +9,14 @@
                 <li class="submenu">
                     <a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;" >
-                        <li><a class="active" href="/dashboard">employee Dashboard</a></li>
+                        <li><a class="active" href="/dashboard">Team Lead Dashboard</a></li>
                         
                     </ul>
                 </li>
                 <li class="submenu">
                     <a href="#"><i class="la la-cube"></i> <span> Pages</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a href="/take-test">take Test</a></li>
+                        <li><a href="/take-test">create Test</a></li>
                         <li><a href="/report">Report</a></li>
                      </ul>
                         
