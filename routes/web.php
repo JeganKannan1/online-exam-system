@@ -21,9 +21,9 @@ use App\Http\Controllers\ExamController;
 |
 */
 
-// Route::get('login', function () {
-//     echo 'hello';
-// });
+Route::get('/', function () {
+  return view('welcome');
+});
 
 Route::get('/index',[AdminAuthController::class,'index'])->name('index')->middleware('admin');
 Route::get('/login',[AdminAuthController::class,'login'])->name('login');
