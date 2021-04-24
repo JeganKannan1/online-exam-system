@@ -23,7 +23,9 @@ class ExamController extends Controller
     }
 
     public function newQuestion(){
-        return view('employee.created');
+        $session_id = Session::get('team_id');
+        $getTeams = $this->questionreg->where('team_id', $session_id)->get();
+        return view('employee.created',compact('getTeams'));
     }
     public function empDashboard(){
         $session_id = Session::get('team_id');
@@ -32,7 +34,8 @@ class ExamController extends Controller
     }
     public function answerPage(){
         $session_id = Session::get('team_id');
-        $user = DB::table('table_marks')->where('team_id', $session_id)->first();
+        $session_userid = Session::get('id');
+        $user = DB::table('table_marks')->where('team_id', $session_id)->where('user_id', $session_userid)->orderBy('id', 'DESC')->first();
         return view('employee.answer',compact('user'));
     }
     public function addQuestion(Request $request){
@@ -69,6 +72,8 @@ class ExamController extends Controller
      }
      public function checkAnswer(Request $request){
         $session_id = Session::get('team_id');
+        $session_userid = Session::get('id');
+        $session_username = Session::get('username');
         $array = [];
         $total = [];
         $skip = $request->id;
@@ -80,12 +85,12 @@ class ExamController extends Controller
             }
            
         }
-        
+    
         $count = count($array);
         $total = count($total);
-        dd($count);
         $skipped = $skip - $total;
         $user = new Answer([
+            'user_id' => $session_userid,
             'score' => $count,
             'total' => $skip,
             'skiped' => $skipped,
@@ -93,7 +98,6 @@ class ExamController extends Controller
             'role_id' => 3
         ]);
         $user->save();
-        // dd($skipped);
         // dd($count);
         // dd($total);
         return redirect()->route('answer');
@@ -101,9 +105,24 @@ class ExamController extends Controller
 
     public function monthlyReport(){
         $session_id = Session::get('team_id');
-        
-        $getTeam = DB::table('table_marks')->where('team_id', $session_id)->get();
+        $session_userid = Session::get('id');
+        $getTeam = DB::table('table_marks')->where('team_id', $session_id)->where('user_id', $session_userid)->get();
         return view('employee.report',compact('getTeam'));
      }
+     public function deleteQuestion($id)
+    {
+        $this->questionreg->where('id',$id)->delete();
+        return back();
+    }
+    public function editQuestion($id){
+        
+        $editTeams = $this->questionreg->where('id',$id)->first();
+        return view('teamlead.changequestion',compact('editTeams'));
+    }
+    public function updateQuestion(Request $request){
+        
+        $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
+        return redirect('/created');
+    }
 
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Admin;
+use App\Models\Team;
+use App\Models\Answer;
 
 use Mail;
 use DB;
@@ -16,9 +18,12 @@ use App\Jobs\SendEmailJob;
 
 class AdminAuthController extends Controller
 {
-    public function __construct(Admin $user)
+    public function __construct(Admin $user,Team $team,Answer $answer)
     {
        $this->userreg = $user;
+       $this->team = $team;
+       $this->answer = $answer;
+
     }
 
     /**
@@ -52,6 +57,7 @@ class AdminAuthController extends Controller
             if(isset($user))
             {
                 Session::put('username',$request->username);
+                Session::put('id',$user->id);
                 Session::put('role_id',$user->role_id);
                 Session::put('team_id',$user->team_id);
                 toastr()->info('successfully logged in');
@@ -81,5 +87,19 @@ class AdminAuthController extends Controller
     public function logout(){
         Session::flush();
         return redirect()->route('login');
+    }
+
+    public function monthlyReport(){
+        $session_roleid = Session::get('role_id');
+        $getTeam = $this->team->get();
+        return view('admin.reports',compact('getTeam'));
+    }
+    public function teamReport($id){
+        $getTeam = $this->userreg->where('team_id',$id)->where('role_id','3')->get();
+        return view('teamlead.userdetail',compact('getTeam'));
+    }
+    public function teamScore($id){
+        $getTeam = $this->answer->where('user_id',$id)->get();
+        return view('admin.userscore',compact('getTeam'));
     }
 }

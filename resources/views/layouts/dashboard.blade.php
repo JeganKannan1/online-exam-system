@@ -300,7 +300,7 @@
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<span class="user-img"><img src="{{asset('/assets/img/profiles/avatar-21.jpg')}} " alt="">
 							<span class="status online"></span></span>
-							<span>Admin</span>
+							<span>TeamLead</span>
 						</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="profile.html">My Profile</a>

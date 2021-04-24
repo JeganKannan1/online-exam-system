@@ -52,11 +52,16 @@ Route::get('/take-test',[ExamController::class,'takeTest'])->name('take-test');
 Route::post('/check-answer',[ExamController::class,'checkAnswer'])->name('check-answer');
 Route::get('/answer',[ExamController::class,'answerPage'])->name('answer');
 Route::get('/report',[ExamController::class,'monthlyReport'])->name('report');
-
-
-
-
-
+Route::get('/tl-dashboard',[TeamController::class,'tlDashboard'])->name('tl-dashboard');
+Route::get('/team-report',[TeamController::class,'teamReport'])->name('team-report');
+Route::get('/user-report/{id}',[TeamController::class,'userReport'])->name('user-report');
+Route::get('/monthly-reports',[AdminAuthController::class,'monthlyReport'])->name('monthly-reports');
+Route::get('/domain-report/{id}',[AdminAuthController::class,'teamReport'])->name('domain-report');
+Route::get('/user-detail',[AdminAuthController::class,'userScore'])->name('user-detail');
+Route::get('/user-score/{id}',[AdminAuthController::class,'teamScore'])->name('user-score');
+Route::get('/delete-question/{team}',[ExamController::class,'deleteQuestion'])->name('delete-question')->middleware('admin');
+Route::get('/edit-question/{team}',[ExamController::class,'editQuestion'])->name('edit-question')->middleware('admin');
+Route::post('/update-question',[ExamController::class,'updateQuestion'])->name('update-question');
 
 
 

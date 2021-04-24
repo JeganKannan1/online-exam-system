@@ -8,7 +8,7 @@
                 <li class="submenu">
                     <a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;" >
-                        <li><a class="active" href="/login">Admin Dashboard</a></li>
+                        <li><a class="active" href="/index">Admin Dashboard</a></li>
                         
                     </ul>
                 </li>
@@ -18,6 +18,8 @@
                         <li><a href="/team">Teams</a></li>
                         <li><a href="/role">Roles</a></li>
                         <li><a href="/user">Users</a></li>
+                        <li><a href="/monthly-reports">Reports</a></li>
+                        <li><a href="/create-question">Create Questions</a></li>
                      </ul>
                         
                 </li>
