@@ -71,7 +71,7 @@ class AdminAuthController extends Controller
                              return redirect()->route('index');
                         break;
                         case "2":                             
-                            return redirect()->route('create-question');
+                            return redirect()->route('tl-dashboard');
                         break;
                         default:
                         return redirect()->route('dashboard');
