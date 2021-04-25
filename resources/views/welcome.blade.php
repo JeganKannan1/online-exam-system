@@ -97,7 +97,7 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
-                <img src="assets/img/sparkout.png">
+                <img src="assets/img/sparklogo.png">
                     <br>
                         <div class="title m-b-md">
                             Welcome To

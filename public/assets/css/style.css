@@ -144,7 +144,7 @@ html {
 body {
 	font-family: 'CircularStd', sans-serif;
 	font-size: .9375rem;
-	color: #1f1f1f;
+	/* color: #EBEEEF; */
 	background-color: #f7f7f7;
 	min-height: 100%;
 	overflow-x: hidden;
@@ -1125,7 +1125,7 @@ table.dataTable thead > tr > td.sorting {
 	background: -moz-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
 	background: -webkit-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
 	background: -ms-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
-	background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
+	background: linear-gradient(to right, #ffd494 0%, #eb995b 100%);
 	border-bottom: 1px solid transparent;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
 	height: 60px;
@@ -1269,8 +1269,8 @@ table.dataTable thead > tr > td.sorting {
 	background-color: #263238;
 	border-radius: 50%;
 	display: inline-block;
-	height: 10px;
-	width: 10px;
+	height: 15px;
+	width: 15px;
 }
 .status.online {
 	background-color: #55ce63;
@@ -1322,7 +1322,7 @@ table.dataTable thead > tr > td.sorting {
 	position: relative;
 }
 .sidebar-menu li a {
-	color: #b7c0cd;
+	color: #bbb;
 	display: block;
 	font-size: 15px;
 	height: auto;
@@ -1520,8 +1520,8 @@ table.dataTable thead > tr > td.sorting {
 }
 .sidebar-menu ul li a i {
 	display: inline-block;
-	font-size: 24px;
-	line-height: 24px;
+	font-size: 20px;
+	line-height: 34px;
 	text-align: left;
 	vertical-align: middle;
 	width: 20px;
@@ -1645,6 +1645,7 @@ table.dataTable thead > tr > td.sorting {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+	
 }
 .account-content {
 	padding: 20px 0;
@@ -1696,7 +1697,7 @@ table.dataTable thead > tr > td.sorting {
 .account-box .account-btn:hover,
 .account-box .account-btn:focus {
 	border: 0;
-	opacity: 0.8;
+	opacity: 0.8;	
 }
 .account-box .form-control {
     background-color: #fbfbfb;
@@ -1710,9 +1711,9 @@ table.dataTable thead > tr > td.sorting {
 	font-weight: normal;
     margin-bottom: 5px;
 }
-.account-logo img {
-	width: 100px;
-}
+/* .account-logo img {
+	/* width: 100px; */
+*/
 .account-footer {
     text-align: center;
 }
@@ -4678,6 +4679,7 @@ html.menu-opened body {
 .dataTables_wrapper.container-fluid {
 	padding-left: 0;
 	padding-right: 0;
+	margin: 100px 220px;
 }
 
 /*-----------------
@@ -7544,16 +7546,18 @@ ul.comment-list li ul.children {
 		padding: 0 10px;
 	}
 	.mini-sidebar .header-left .logo img {
-		height: auto;
 		max-height: 30px;
-		width: auto;
+		width : 160; 
+		height : 50;
+		margin: 10px;
 	}
 	.mini-sidebar .header .header-left {
 		padding: 0 5px;
-		width: 60px;
-	}
-	.mini-sidebar .sidebar {
-		width: 60px;
+		max-height: 30px;
+		width : 160; 
+		height : 50;
+		margin: 10px;	}
+
 	}
 	.mini-sidebar.expand-menu .sidebar {
 		width: 230px;
