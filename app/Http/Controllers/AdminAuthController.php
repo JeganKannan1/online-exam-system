@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Team;
 use App\Models\Answer;
+use App\Models\Question;
 
 use Mail;
 use DB;
@@ -18,11 +19,13 @@ use App\Jobs\SendEmailJob;
 
 class AdminAuthController extends Controller
 {
-    public function __construct(Admin $user,Team $team,Answer $answer)
+    public function __construct(Admin $user,Team $team,Answer $answer,Question $question)
     {
        $this->userreg = $user;
        $this->team = $team;
        $this->answer = $answer;
+       $this->questionreg = $question;
+
 
     }
 
@@ -107,6 +110,19 @@ class AdminAuthController extends Controller
         $getTeam = DB::table('admin')->where('team_id', $session_id)->first();
         return view('admin.adminquestions',compact('getTeam'));
     }
+   
+    
+    public function listTeam(){
+        $session_roleid = Session::get('role_id');
+        $getTeam = $this->team->get();
+        return view('admin.listTeam',compact('getTeam'));
+    }
+    public function makeQuestion($id){
+        $session_teamid = Session::get('team_id');
+        $session_roleid = Session::get('role_id');
+        $getTeam = $this->questionreg->where('team_id',$id)->first();
+        return view('admin.display',compact('session_roleid','session_teamid'));
+    }
     public function setQuestion(Request $request){
         try{
         $this->validate($request,[
@@ -115,16 +131,22 @@ class AdminAuthController extends Controller
             'option2'=>'required',
             'option3'=>'required',
             'option4'=>'required',
-            'answer'=>'required'
+            'answer'=>'required',
          ]);
+         $getTeam = $this->questionreg->where('question',$request->question)->first();
+         if(empty($getTeam)){
          if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4){
 
         $question = Question::create($request->all());
         return redirect('/display-questions');
          }else{
-            toastr()->error('question already exist.please enter a new question');
+            toastr()->error('please enter an answer from one of the given option');
             return back();
 
+         }
+        }else{
+            toastr()->error('the entered question is already exist please enter a new question');
+            return back();
          }
         }catch(Throwable $exception){
             return redirect()->route('index')
@@ -135,11 +157,37 @@ class AdminAuthController extends Controller
     public function displayQuestion(){
         $session_id = Session::get('team_id');
         $getTeams = $this->questionreg->where('team_id', $session_id)->get();
-        return view('admin.display',compact('getTeams'));
+        return view('admin.showQuestion',compact('getTeams'));
     }
-    public function listTeam(){
-        $session_roleid = Session::get('role_id');
-        $getTeam = $this->team->get();
-        return view('admin.listTeam',compact('getTeam'));
+    public function changeQuestion($id){
+        
+        $editTeams = $this->questionreg->where('id',$id)->first();
+        return view('admin.changequestion',compact('editTeams'));
     }
+    public function rewriteQuestion(Request $request){
+        try{
+            $this->validate($request,[
+                'question'=>'required',
+                'option1'=>'required',
+                'option2'=>'required',
+                'option3'=>'required',
+                'option4'=>'required',
+                'answer'=>'required'
+             ]);
+             
+             if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4)
+                {
+                    $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
+                    return redirect('/display-questions');
+                }else{
+                    toastr()->error('please enter an answer from one of the given option');
+                    return back();
+                }
+            }catch(Throwable $exception){
+            return redirect()->route('dashboard')
+            ->with('error',$exception->getMessages());
+            Log::info('admin login',$exception->getMessages());
+            }
+    }
+    
 }

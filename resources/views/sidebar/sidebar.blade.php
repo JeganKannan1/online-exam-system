@@ -9,7 +9,7 @@
                         <li><a href="/role"><i class="la la-cube">Roles</i></a></li>
                         <li><a href="/user"><i class="la la-cube">Users</i></a></li>
                         <li><a href="/monthly-reports">Reports</a></li>
-                        <li><a href="/create-question">Create Questions</a></li>
+                        <li><a href="/list-team">Create Questions</a></li>
  
             </ul>
         </div>

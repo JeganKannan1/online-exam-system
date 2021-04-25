@@ -26,9 +26,23 @@ class RoleController extends Controller
         return view('admin.role',compact('getRoles'));
         }
         public function createRole(Request $request){
-        
-        $role = $this->rolereg->create($request->all());
-        return back();
+            try{
+                $this->validate($request,[
+                    'role_name'=>'required'
+                 ]);
+                 $getTeam = $this->rolereg->where('role_name',$request->role_name)->first();
+                 if(empty($getTeam)){
+                    $role = $this->rolereg->create($request->all());
+                    return back();
+                 }else{
+                    toastr()->error('entered role already exists');
+                    return back();
+                 }
+                }catch(Throwable $exception){
+                    return redirect()->route('dashboard')
+                    ->with('error',$exception->getMessages());
+                    Log::info('admin login',$exception->getMessages());
+                }
         }
         public function editRole($id){
         

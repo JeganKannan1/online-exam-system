@@ -48,14 +48,20 @@ class ExamController extends Controller
             'option4'=>'required',
             'answer'=>'required'
          ]);
-         if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4){
+         $getTeam = $this->questionreg->where('question',$request->question)->first();
+         if(empty($getTeam)){
+         if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4)
+            {
 
-        $question = Question::create($request->all());
-        return redirect('/created');
+            $question = Question::create($request->all());
+            return redirect('/created');
+            }else{
+                toastr()->error('please enter an answer from one of the given option');
+                return back();
+         }
          }else{
-            toastr()->error('question already exist.please enter a new question');
+            toastr()->error('the entered question is already exist please enter a new question');
             return back();
-
          }
         }catch(Throwable $exception){
             return redirect()->route('dashboard')
@@ -120,9 +126,29 @@ class ExamController extends Controller
         return view('teamlead.changequestion',compact('editTeams'));
     }
     public function updateQuestion(Request $request){
-        
-        $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
-        return redirect('/created');
+        try{
+            $this->validate($request,[
+                'question'=>'required',
+                'option1'=>'required',
+                'option2'=>'required',
+                'option3'=>'required',
+                'option4'=>'required',
+                'answer'=>'required'
+             ]);
+             
+             if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4)
+                {
+                    $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
+                    return redirect('/created');
+                }else{
+                    toastr()->error('please enter an answer from one of the given option');
+                    return back();
+             }
+            }catch(Throwable $exception){
+                return redirect()->route('dashboard')
+                ->with('error',$exception->getMessages());
+                Log::info('admin login',$exception->getMessages());
+            }
     }
 
 }
