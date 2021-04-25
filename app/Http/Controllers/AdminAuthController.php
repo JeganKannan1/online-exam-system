@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Admin;
+use App\Models\Team;
+use App\Models\Answer;
 
 use Mail;
 use DB;
@@ -16,9 +18,12 @@ use App\Jobs\SendEmailJob;
 
 class AdminAuthController extends Controller
 {
-    public function __construct(Admin $user)
+    public function __construct(Admin $user,Team $team,Answer $answer)
     {
        $this->userreg = $user;
+       $this->team = $team;
+       $this->answer = $answer;
+
     }
 
     /**
@@ -35,8 +40,9 @@ class AdminAuthController extends Controller
     }
 
     public function createQuestion(){
-        $getTeam = DB::table('admin')->where('team_id', $user->team_id)->first();
-        return view('admin.createquestions',compact($getTeam));
+        $session_id = Session::get('team_id');
+        $getTeam = DB::table('admin')->where('team_id', $session_id)->first();
+        return view('admin.createquestions',compact('getTeam'));
     }
 
 
@@ -51,7 +57,9 @@ class AdminAuthController extends Controller
             if(isset($user))
             {
                 Session::put('username',$request->username);
-                Session::put('username',$user->role_id);
+                Session::put('id',$user->id);
+                Session::put('role_id',$user->role_id);
+                Session::put('team_id',$user->team_id);
                 toastr()->info('successfully logged in');
                 // Base on role id user will navigate
                     switch ($user->role_id) 
@@ -59,14 +67,11 @@ class AdminAuthController extends Controller
                         case "1":
                              return redirect()->route('index');
                         break;
-                        case "2":
-                             $getTeam = DB::table('admin')->where('team_id', $user->team_id)->first();
-                             return redirect('/index');
+                        case "2":                             
+                            return redirect()->route('create-question');
                         break;
                         default:
-                            Session::put('team_id',$user->team_id);
-                            $getTeam = DB::table('questions')->where('team_id', $user->team_id)->get();
-                            return view('employee.employee',compact('getTeam'));
+                        return redirect()->route('dashboard');
                     }
                  } else{
                 toastr()->error('username/password is incorrect');
@@ -82,5 +87,19 @@ class AdminAuthController extends Controller
     public function logout(){
         Session::flush();
         return redirect()->route('login');
+    }
+
+    public function monthlyReport(){
+        $session_roleid = Session::get('role_id');
+        $getTeam = $this->team->get();
+        return view('admin.reports',compact('getTeam'));
+    }
+    public function teamReport($id){
+        $getTeam = $this->userreg->where('team_id',$id)->where('role_id','3')->get();
+        return view('teamlead.userdetail',compact('getTeam'));
+    }
+    public function teamScore($id){
+        $getTeam = $this->answer->where('user_id',$id)->get();
+        return view('admin.userscore',compact('getTeam'));
     }
 }

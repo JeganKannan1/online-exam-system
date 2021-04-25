@@ -8,5 +8,5 @@ class Answer extends Model
 {
     //
     protected $table = "table_marks";
-    protected $fillable = ['score', 'total','skiped','team_id','role_id'];
+    protected $fillable = ['user_id','score', 'total','skiped','team_id','role_id'];
 }
