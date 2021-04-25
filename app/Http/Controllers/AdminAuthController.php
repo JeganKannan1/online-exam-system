@@ -102,4 +102,44 @@ class AdminAuthController extends Controller
         $getTeam = $this->answer->where('user_id',$id)->get();
         return view('admin.userscore',compact('getTeam'));
     }
+    public function adminQuestion(){
+        $session_id = Session::get('team_id');
+        $getTeam = DB::table('admin')->where('team_id', $session_id)->first();
+        return view('admin.adminquestions',compact('getTeam'));
+    }
+    public function setQuestion(Request $request){
+        try{
+        $this->validate($request,[
+            'question'=>'required',
+            'option1'=>'required',
+            'option2'=>'required',
+            'option3'=>'required',
+            'option4'=>'required',
+            'answer'=>'required'
+         ]);
+         if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4){
+
+        $question = Question::create($request->all());
+        return redirect('/display-questions');
+         }else{
+            toastr()->error('question already exist.please enter a new question');
+            return back();
+
+         }
+        }catch(Throwable $exception){
+            return redirect()->route('index')
+            ->with('error',$exception->getMessages());
+            Log::info('admin login',$exception->getMessages());
+        }
+    }
+    public function displayQuestion(){
+        $session_id = Session::get('team_id');
+        $getTeams = $this->questionreg->where('team_id', $session_id)->get();
+        return view('admin.display',compact('getTeams'));
+    }
+    public function listTeam(){
+        $session_roleid = Session::get('role_id');
+        $getTeam = $this->team->get();
+        return view('admin.listTeam',compact('getTeam'));
+    }
 }
