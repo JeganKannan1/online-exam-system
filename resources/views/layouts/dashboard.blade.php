@@ -43,19 +43,19 @@
 			
 				<!-- Logo -->
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="#" class="logo">
 						<img src="{{asset('/assets/img/sparkout.png')}}" alt="">
 					</a>
                 </div>
 				<!-- /Logo -->
 				
-				<!-- <a id="toggle_btn" href="javascript:void(0);" style="margin: 20px">
-					<span class="bar-icon">
+				 <a id="toggle_btn" href="javascript:void(0);" style="margin: 20px">
+					<!-- <span class="bar-icon">
 						<span></span>
 						<span></span>
 						<span></span>
-					</span>
-				</a> -->
+					</span> -->
+				</a> 
 				
 				<!-- Header Title -->
                 <!-- <div class="page-title-box">
@@ -66,9 +66,8 @@
 				<a id="mobile_btn" class="mobile_btn" href="#sidebar/teamsidebar"><i class="fa fa-bars"></i></a>
 				
 				<!-- Header Menu -->
-				<!-- <ul class="nav user-menu">
+			 <ul class="nav user-menu">
 				
-					Search -->
 					<!-- <li class="nav-item">
 						<div class="top-nav-search">
 							<a href="javascript:void(0);" class="responsive-search">
@@ -295,7 +294,6 @@
 						</div>
 					</li>  -->
 					 <!-- /Message Notifications -->
-z
 					<li class="nav-item dropdown has-arrow main-drop">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<span class="user-img"><img src="{{asset('/assets/img/profiles/avatar-21.jpg')}} " alt="">
@@ -303,8 +301,8 @@ z
 							<span>TeamLead</span>
 						</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="profile.html">My Profile</a>
-							<a class="dropdown-item" href="settings.html">Settings</a>
+							<a class="dropdown-item" href="#">My Profile</a>
+							<!-- <a class="dropdown-item" href="#">Settings</a> -->
 							<a class="dropdown-item" href="/logout">Logout</a>
 						</div>
 					</li>
