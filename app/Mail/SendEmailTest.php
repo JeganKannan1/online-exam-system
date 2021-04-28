@@ -16,9 +16,10 @@ class SendEmailTest extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
         //
+        $this->details = $details;
     }
 
     /**
@@ -28,6 +29,6 @@ class SendEmailTest extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.mail');
+        return $this->view('admin.mail')->with("details",$this->details);
     }
 }

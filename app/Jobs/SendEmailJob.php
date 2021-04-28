@@ -34,7 +34,8 @@ class SendEmailJob implements ShouldQueue
     public function handle()
     {
         $user_data1 = $this->details;  
-        $user1=array('username' => $user_data1['username'],'password' => $user_data1['password']);
-        Mail::to($user_data1['email'])->send(new RegistrationEmail($user1)); 
+        // $user1=array('username' => $user_data1['username'],'password' => $user_data1['password']);
+        $mail = Mail::to($user_data1['email'])->send(new SendEmailTest($user_data1)); 
+        // dd($mail);
     }
 }

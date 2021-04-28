@@ -50,10 +50,18 @@ class RoleController extends Controller
         return view('admin.changerole',compact('editRoles'));
         }
         public function updateRole(Request $request){
-        
+            try{
+                $this->validate($request,[
+                    'role_name'=>'required'
+                 ]);
         $this->rolereg->where('id',$request->id)->update($request->except(['_token']));
         return redirect('/role');
+        }catch(Throwable $exception){
+            return redirect()->route('dashboard')
+            ->with('error',$exception->getMessages());
+            Log::info('admin login',$exception->getMessages());
         }
+    }
         public function deleteRole($id)
         {
         $this->rolereg->where('id',$id)->delete();

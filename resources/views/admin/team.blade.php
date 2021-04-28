@@ -1,6 +1,17 @@
 @extends('layouts.app')
-
-    <div class = "container-fluid">
+@toastr_css
+    <div class = "container-fluid" style="margin: 100px 100px">
+      <div class="container"style="margin: 100px 100px">
+      @if (count($errors) > 0)
+         <div class = "alert alert-danger">
+            <ul>
+               @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+               @endforeach
+            </ul>
+         </div>
+      @endif
+      </div>
       <div class = "col-md-6" style="margin: 100px 220px">
       <form action="{{route('create-team')}}" method = "POST">
         @csrf
@@ -46,7 +57,9 @@
       </div>
     </div>
   
-		
+		@jquery
+@toastr_js
+@toastr_render
 		<!-- Custom JS -->
 </body>
 </html>

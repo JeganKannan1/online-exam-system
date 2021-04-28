@@ -34,8 +34,23 @@ class TeamController extends Controller
 
     public function createTeam(Request $request)
     {
-        $user = $this->teamreg->create($request->all());
-       return back();
+        try{
+        $this->validate($request,[
+            'team_name'=>'required',
+         ]);
+         $getTeam = $this->teamreg->where('team_name',$request->team_name)->first();
+                if(empty($getTeam)){
+                $user = $this->teamreg->create($request->all());
+                return back();
+                 }else{
+                    toastr()->error('entered team already exists');
+                    return back();
+                 }
+        }catch(Throwable $exception){
+                    return redirect()->route('dashboard')
+                    ->with('error',$exception->getMessages());
+                    Log::info('admin login',$exception->getMessages());
+        }
     }
 
 
@@ -52,9 +67,17 @@ class TeamController extends Controller
         return view('admin.changeteam',compact('editTeams'));
     }
     public function updateTeam(Request $request){
-        
+        try{
+            $this->validate($request,[
+                'team_name'=>'required',
+             ]);
         $this->teamreg->where('id',$request->id)->update($request->except(['_token']));
         return redirect('/team');
+        }catch(Throwable $exception){
+            return redirect()->route('dashboard')
+            ->with('error',$exception->getMessages());
+            Log::info('admin login',$exception->getMessages());
+        }
     }
     public function tlDashboard(){
         return view('teamlead.dashboard');

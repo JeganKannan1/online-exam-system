@@ -77,6 +77,10 @@ class ExamController extends Controller
         return view('employee.questions',compact('getTeam'));
      }
      public function checkAnswer(Request $request){
+        try{
+            $this->validate($request,[
+                'name'=>'required',
+                ]);
         $session_id = Session::get('team_id');
         $session_userid = Session::get('id');
         $session_username = Session::get('username');
@@ -107,6 +111,11 @@ class ExamController extends Controller
         // dd($count);
         // dd($total);
         return redirect()->route('answer');
+        }catch(Throwable $exception){
+            return back()
+            ->with('error',$exception->getMessages());
+            Log::info('admin login',$exception->getMessages());
+    }
     }
 
     public function monthlyReport(){

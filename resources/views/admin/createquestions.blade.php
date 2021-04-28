@@ -7,6 +7,17 @@
 	Create Questions
   </button>
 		</div>
+		<div class="container"style="margin: 100px 220px">
+			@if (count($errors) > 0)
+			   <div class = "alert alert-danger">
+				  <ul>
+					 @foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					 @endforeach
+				  </ul>
+			   </div>
+			@endif
+			</div>
 	</div>
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -18,6 +29,7 @@
 			<span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
+		
 		<div class="modal-body">
 			<form action="{{route('add-question')}}" method = "POST">
 				@csrf

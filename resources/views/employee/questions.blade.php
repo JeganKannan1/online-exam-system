@@ -56,7 +56,17 @@ body {
 	</head>
 	<body>
 <div class="container col-md-6" style="margin:220px">
-
+    <div class="container">
+        @if (count($errors) > 0)
+           <div class = "alert alert-danger">
+              <ul>
+                 @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                 @endforeach
+              </ul>
+           </div>
+        @endif
+        </div>
 
     <div class="stepwizard">
 
