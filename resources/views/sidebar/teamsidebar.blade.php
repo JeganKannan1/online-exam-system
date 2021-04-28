@@ -3,12 +3,12 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li><a class="active" href="/tl-dashboard"><i class="la la-cube">Team Lead Dashboard</i></a></li>
+                <li><a class="active" href="/tl-dashboard">Team Lead Dashboard</a></li>
                         
                    
                 </li>
-                        <li><a href="/create-question"><i class="la la-cube">create Test</i></a></li>
-                        <li><a href="/team-report"><i class="la la-cube">Report</i></a></li>
+                        <li><a href="/create-question">create Test</a></li>
+                        <li><a href="/team-report">Report</a></li>
 
                      </ul>
                         

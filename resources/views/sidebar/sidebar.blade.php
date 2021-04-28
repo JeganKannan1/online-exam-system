@@ -4,10 +4,10 @@
             <ul>
             
                   
-                        <li><a href="#"><i class="la la-cube">Admin Dashboard</i></a></li>
-                        <li><a href="/team"><i class="la la-cube">Teams</i></a></li>
-                        <li><a href="/role"><i class="la la-cube">Roles</i></a></li>
-                        <li><a href="/user"><i class="la la-cube">Users</i></a></li>
+                        <li><a href="index">Admin Dashboard</a></li>
+                        <li><a href="/team">Teams</a></li>
+                        <li><a href="/role">Roles</a></li>
+                        <li><a href="/user">Users   </a></li>
                         <li><a href="/monthly-reports">Reports</a></li>
                         <li><a href="/list-team">Create Questions</a></li>
  

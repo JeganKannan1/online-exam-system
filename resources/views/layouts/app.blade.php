@@ -43,27 +43,27 @@
 			
 				<!-- Logo -->
                 <div class="header-left">
-                    <a href="#" class="logo">
+                    <a href="index" class="logo">
 						<img src="{{asset('/assets/img/sparkout.png')}} "  alt="">
 					</a>
                 </div>
 				<!-- /Logo -->
 				
-				<!-- <a id="toggle_btn" href="javascript:void(0);" style="margin: 20px">
-					<span class="bar-icon">
+				 <a id="toggle_btn" href="javascript:void(0);" style="margin: 20px">
+					<!-- <span class="bar-icon">
 						<span></span>
 						<span></span>
 						<span></span>
-					</span>
-				</a> -->
+					</span> -->
+				</a> 
 				
 				<!-- Header Title -->
-                <!-- <div class="page-title-box">
+                 <!-- <div class="page-title-box">
 					<h3>Sparkout Tech solutions</h3>
-                </div> -->
+                </div>  -->
 				<!-- /Header Title -->
 				
-				<a id="mobile_btn" class="mobile_btn" href="#sidebar/sidebar"><i class="fa fa-bars"></i></a>
+				<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
 				
 				<!-- Header Menu -->
 				<ul class="nav user-menu">

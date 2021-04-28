@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
+	<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <meta name="description" content="Smarthr - Bootstrap Admin Template">
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
@@ -27,6 +27,7 @@
 		
 		<!-- Main CSS -->
         <link rel="stylesheet" href="{{asset('/assets/css/style.css')}} ">
+        
 		
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -44,19 +45,19 @@
 			
 				<!-- Logo -->
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="dashboard" class="logo">
 						<img src="{{asset('/assets/img/sparkout.png')}}" alt="">
 					</a>
                 </div>
 				<!-- /Logo -->
 				
-				<!-- <a id="toggle_btn" href="javascript:void(0);">
-					<span class="bar-icon">
+				 <a id="toggle_btn" href="javascript:void(0);">
+					<!-- <span class="bar-icon">
 						<span></span>
 						<span></span>
 						<span></span>
-					</span>
-				</a> -->
+					</span> -->
+				 </a>
 				
 				<!-- Header Title -->
                 <!-- <div class="page-title-box">

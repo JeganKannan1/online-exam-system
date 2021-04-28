@@ -141,13 +141,21 @@ Version      : 3.4
 html {
 	height: 100%;
 }
-body {
+/* body {
 	font-family: 'CircularStd', sans-serif;
 	font-size: .9375rem;
 	/* color: #EBEEEF; */
-	background-color: #f7f7f7;
+	/* background-color: #f7f7f7;
 	min-height: 100%;
 	overflow-x: hidden;
+} */
+body {
+    font-family: 'CircularStd', sans-serif;
+    font-size: .9375rem;
+    color: #1f1f1f;
+    background-color: #f7f7f7;
+    min-height: 100%;
+    overflow-x: hidden;
 }
 h1,
 h2,
@@ -7556,7 +7564,7 @@ ul.comment-list li ul.children {
 		max-height: 30px;
 		width : 160; 
 		height : 50;
-		margin: 10px;	}
+		margin: 10px;	
 
 	}
 	.mini-sidebar.expand-menu .sidebar {
