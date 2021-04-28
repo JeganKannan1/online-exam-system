@@ -10,6 +10,7 @@
                         <li><a href="/user">Users   </a></li>
                         <li><a href="/monthly-reports">Reports</a></li>
                         <li><a href="/list-team">Create Questions</a></li>
+                        <li><a href="/list-team1">Show Questions</a></li>
  
             </ul>
         </div>

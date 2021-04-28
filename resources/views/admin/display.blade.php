@@ -7,6 +7,17 @@
 	Create Questions
   </button>
 		</div>
+		<div class="container"style="margin: 100px 220px">
+			@if (count($errors) > 0)
+			   <div class = "alert alert-danger">
+				  <ul>
+					 @foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					 @endforeach
+				  </ul>
+			   </div>
+			@endif
+			</div>
 	</div>
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -25,7 +36,7 @@
 					<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value="{{$session_roleid}}">
 				  </div>
 				<div class="form-group">
-					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$session_teamid}}">
+					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value= {{$team_id}}>
 				  </div>
 				<div class="form-group">
 				  <label for="exampleInputEmail1">Questions</label>
