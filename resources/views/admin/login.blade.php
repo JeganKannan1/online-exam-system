@@ -10,7 +10,7 @@
         <title>login</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/sparklogo.png">
+        <!-- <link rel="shortcut icon" type="image/x-icon"> -->
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">

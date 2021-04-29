@@ -539,6 +539,7 @@ table.dataTable thead > tr > td.sorting {
 .btn-primary {
 	background-color: #ff9b44;
 	border: 1px solid #ff9b44;
+	margin-top: 30px;
 }
 .btn-primary:hover,
 .btn-primary:focus,

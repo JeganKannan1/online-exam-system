@@ -2,22 +2,11 @@
 @toastr_css
     <!-- Button trigger modal -->
 	<div class = "container-fluid">
-		<div class = "col-md-6" style="margin: 100px 220px">
+		<div class = "col-md-6" >
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 	Create Questions
   </button>
 		</div>
-		<div class="container"style="margin: 100px 220px">
-			@if (count($errors) > 0)
-			   <div class = "alert alert-danger">
-				  <ul>
-					 @foreach ($errors->all() as $error)
-						<li>{{ $error }}</li>
-					 @endforeach
-				  </ul>
-			   </div>
-			@endif
-			</div>
 	</div>
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -29,7 +18,6 @@
 			<span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
-		
 		<div class="modal-body">
 			<form action="{{route('add-question')}}" method = "POST">
 				@csrf
@@ -54,8 +42,6 @@
 					<label for="exampleInputPassword1">Answer</label>
 					<input type="text" class="form-control" id="answer" placeholder="answer" name="answer"required>
 				  </div>
-				  
-				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
 		<div class="modal-footer">

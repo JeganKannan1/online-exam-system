@@ -2,9 +2,11 @@
 
 @toastr_css
 
-<div class = "container-fluid">
-    <div class = "col-md-6" style="margin: 100px 220px">
-        <div class="container">
+<div class="page-wrapper">
+		<div class="content container-fluid">
+      
+     
+            
             @if (count($errors) > 0)
                <div class = "alert alert-danger">
                   <ul>
@@ -14,7 +16,9 @@
                   </ul>
                </div>
             @endif
-            </div>
+            <div class="page-header">
+				<div class="row">
+					<div class="col">
         <form action="{{route('add-role')}}" method = "POST">
             @csrf
             <div class="form-group">
@@ -24,7 +28,12 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    <div class = "col-md-8" style="margin: 100px 220px">
+</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card">
+			<div class="card-header">
         @if(isset($getRoles))
             <table id="example1" class="table table-bordered table-hover">
                 <thead>
@@ -51,7 +60,9 @@
 
                 </tbody>
             </table>
-        @endif
+        @endif 
+</div>
+</div>
     </div>
 </div>
 @jquery
