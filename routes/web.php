@@ -8,7 +8,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExamController;
-
+use App\Http\Controllers\ForgotPasswordController;
 
 
 
@@ -83,6 +83,12 @@ Route::get('/take-test',[TestController::class,'takeTest'])->name('take-test')->
 Route::post('/check-answer',[TestController::class,'checkAnswer'])->name('check-answer');
 Route::get('/answer',[TestController::class,'answerPage'])->name('answer')->middleware('admin');
 Route::get('/report',[TestController::class,'monthlyReport'])->name('report')->middleware('admin');
+
+Route::get('/forgot-password',[ForgotPasswordController::class,'setEmail'])->name('forgot-password');
+Route::post('/send-mail',[ForgotPasswordController::class,'sendMail'])->name('send-mail');
+Route::get('/redirect',[ForgotPasswordController::class,'reDirect'])->name('redirect');
+Route::get('/reset-password/{id}',[ForgotPasswordController::class,'resetPassword'])->name('reset-password');
+Route::post('/update-password',[ForgotPasswordController::class,'updatePassword'])->name('update-password');
 
 
 ?>

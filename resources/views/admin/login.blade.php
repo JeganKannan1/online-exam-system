@@ -68,7 +68,7 @@
 											<label>Password</label>
 										</div>
 										<div class="col-auto">
-											<a class="text-muted" href="#">
+											<a class="text-muted" href="/forgot-password">
 												Forgot password?
 											</a>
 										</div>
