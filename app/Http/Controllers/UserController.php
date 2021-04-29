@@ -89,4 +89,10 @@ class UserController extends Controller
     return back();
     }
 
+    public function empDashboard(){
+        $session_id = Session::get('team_id');
+        $getTeam = DB::table('questions')->where('team_id', $session_id)->first();
+        return view('employee.employee',compact('getTeam'));
+    }
+
 }

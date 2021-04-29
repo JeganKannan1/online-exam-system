@@ -27,17 +27,8 @@ class ExamController extends Controller
         $getTeams = $this->questionreg->where('team_id', $session_id)->get();
         return view('employee.created',compact('getTeams'));
     }
-    public function empDashboard(){
-        $session_id = Session::get('team_id');
-        $getTeam = DB::table('questions')->where('team_id', $session_id)->first();
-        return view('employee.employee',compact('getTeam'));
-    }
-    public function answerPage(){
-        $session_id = Session::get('team_id');
-        $session_userid = Session::get('id');
-        $user = DB::table('table_marks')->where('team_id', $session_id)->where('user_id', $session_userid)->orderBy('id', 'DESC')->first();
-        return view('employee.answer',compact('user'));
-    }
+    
+    
     public function addQuestion(Request $request){
         try{
         $this->validate($request,[
@@ -69,66 +60,6 @@ class ExamController extends Controller
             Log::info('admin login',$exception->getMessages());
         }
     }
-    
-    public function takeTest(){
-        $session_id = Session::get('team_id');
-        $getTeam = DB::table('questions')->where('team_id', $session_id)->get();
-
-        return view('employee.questions',compact('getTeam'));
-     }
-     public function checkAnswer(Request $request){
-        try{
-            $this->validate($request,[
-                'name'=>'required',
-                ]);
-        $session_id = Session::get('team_id');
-        $session_userid = Session::get('id');
-        $session_username = Session::get('username');
-        $array = [];
-        $total = [];
-        $skip = $request->id;
-        foreach($request->name as $answer){
-            array_push($total,$answer);
-            $getTeam =DB::table('questions')->where('team_id', $session_id)->where('answer', $answer)->first();
-            if( ($getTeam && $answer)== true ){
-                array_push($array,$answer);
-            }
-           
-        }
-    
-        $count = count($array);
-        $total = count($total);
-        $skipped = $skip - $total;
-        $user = new Answer([
-            'user_id' => $session_userid,
-            'score' => $count,
-            'total' => $skip,
-            'skiped' => $skipped,
-            'team_id' => $session_id,
-            'role_id' => 3
-        ]);
-        $user->save();
-        // dd($count);
-        // dd($total);
-        return redirect()->route('answer');
-        }catch(Throwable $exception){
-            return back()
-            ->with('error',$exception->getMessages());
-            Log::info('admin login',$exception->getMessages());
-    }
-    }
-
-    public function monthlyReport(){
-        $session_id = Session::get('team_id');
-        $session_userid = Session::get('id');
-        $getTeam = DB::table('table_marks')->where('team_id', $session_id)->where('user_id', $session_userid)->get();
-        return view('employee.report',compact('getTeam'));
-     }
-     public function deleteQuestion($id)
-    {
-        $this->questionreg->where('id',$id)->delete();
-        return back();
-    }
     public function editQuestion($id){
         
         $editTeams = $this->questionreg->where('id',$id)->first();
@@ -159,5 +90,10 @@ class ExamController extends Controller
                 Log::info('admin login',$exception->getMessages());
             }
     }
-
+    public function deleteQuestion($id)
+    {
+        $this->questionreg->where('id',$id)->delete();
+        return back();
+    }
+    
 }
