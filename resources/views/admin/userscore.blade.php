@@ -5,7 +5,13 @@
     $('#example1').DataTable();
 } );
 </script>
-<div class="container col-md-6" style="margin:220px">
+<div class="page-wrapper">
+		<div class="content container-fluid">
+      <div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">
+<!-- <div class="container col-md-6" style="margin:220px"> -->
       <table id="example1" class="table table-bordered table-hover">
         <thead>
         <tr class="text-center">

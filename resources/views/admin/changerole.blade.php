@@ -1,8 +1,7 @@
 @extends('layouts.app')
+<div class="page-wrapper">
+		<div class="content container-fluid">
 
-<div class = "container-fluid">
-    <div class = "col-md-6" style="margin: 100px 220px">
-        <div class="container">
             @if (count($errors) > 0)
                <div class = "alert alert-danger">
                   <ul>
@@ -12,7 +11,9 @@
                   </ul>
                </div>
             @endif
-            </div>
+            <div class="page-header">
+				<div class="row">
+					<div class="col">
         <form action="{{route('update-role')}}" method = "POST">
             @csrf
             <div class="form-group">
@@ -25,6 +26,9 @@
             <button type="submit" class="btn btn-primary">update</button>
         </form>
     </div>
+</div>
+</div>
+</div>
 </div>
 
 </body>

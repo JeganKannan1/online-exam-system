@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @toastr_css
+<div class="page-wrapper">
+		<div class="content container-fluid">
     <!-- Button trigger modal -->
-	<div class = "container-fluid">
-		<div class = "col-md-6" style="margin: 100px 220px">
+	<!-- <div class = "container-fluid">
+		<div class = "col-md-6" style="margin: 100px 220px"> -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 	Create Questions
   </button>
@@ -44,11 +46,9 @@
 				  </div>
 				  
 				<button type="submit" class="btn btn-primary">Submit</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top: 30px">Close</button>
+
 			</form>
-		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		  <button type="button" class="btn btn-primary">Save changes</button>
 		</div>
 	  </div>
 	</div>

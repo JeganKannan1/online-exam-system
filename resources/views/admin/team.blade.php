@@ -1,30 +1,28 @@
 @extends('layouts.app')
-@toastr_css
-    <div class = "container-fluid" style="margin: 100px 100px">
-      <div class="container"style="margin: 100px 100px">
-      @if (count($errors) > 0)
-         <div class = "alert alert-danger">
-            <ul>
-               @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-               @endforeach
-            </ul>
-         </div>
-      @endif
-      </div>
-      <div class = "col-md-6" style="margin: 100px 220px">
+
+<div class="page-wrapper">
+		<div class="content container-fluid">
+      
+     
+            <div class="page-header">
+						<div class="row">
+							<div class="col">
       <form action="{{route('create-team')}}" method = "POST">
         @csrf
-        
-        <div class="form-group">
-          <label>create new team</label>
+            <label>create new team</label>
           <input type="text" class="form-control" id="team" name = "team_name">
-        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       </div>
-      <div class = "col-md-8" style="margin: 100px 220px">
+    
+      </div>
+      </div>
 
+
+      <div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">
 @if(isset($getTeams))
       <table id="example1" class="table table-bordered table-hover">
         <thead>
@@ -56,10 +54,12 @@
     @endif
       </div>
     </div>
+    </div>
+    </div> 
+    </div>
+    </div>
   
-		@jquery
-@toastr_js
-@toastr_render
+		
 		<!-- Custom JS -->
 </body>
 </html>
