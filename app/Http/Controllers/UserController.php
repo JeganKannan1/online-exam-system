@@ -26,9 +26,9 @@ class UserController extends Controller
     }
 
     public function addUser(){
-        $getUsers = $this->userreg->get();
-        $teamname = Team::all();
-        $rolename = Role::all();
+        $getUsers = $this->userreg->get()->except(["id"=>1]);
+        $teamname = Team::all()->except(["id"=>1]);
+        $rolename = Role::all()->except(["id"=>1]);
         return view('admin.user',compact('teamname','rolename','getUsers'));
     }
     public function createUser(Request $request){

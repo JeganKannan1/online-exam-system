@@ -12,6 +12,8 @@
 
 		<!-- Favicon -->
         <!-- <link rel="shortcut icon" type="image/x-icon"> -->
+		<link rel="shortcut icon" type="image/x-icon" href="{{asset('/assets/img/sparklogo.png')}}">
+
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.min.css')}}">
