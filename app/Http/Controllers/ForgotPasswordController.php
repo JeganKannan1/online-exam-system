@@ -40,9 +40,14 @@ class ForgotPasswordController extends Controller
                 'email'=>'required',
             ]);
             $getId = $this->userreg->where('email',$request->email)->first();
+            if($getId){
             $email=new ForgotPassword($getId);
             dispatch($email);
             return redirect('/redirect');
+            }else{
+                toastr()->error('entered email not found');
+                return back();
+            }
         }catch(Throwable $exception){
             toastr()->error('entered email not found');
             return redirect()->route('login')

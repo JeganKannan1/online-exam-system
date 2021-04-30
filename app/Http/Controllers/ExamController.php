@@ -45,6 +45,7 @@ class ExamController extends Controller
             {
 
             $question = Question::create($request->all());
+            toastr()->success('Question created successfully');
             return redirect('/created');
             }else{
                 toastr()->error('please enter an answer from one of the given option');
@@ -79,6 +80,7 @@ class ExamController extends Controller
              if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4)
                 {
                     $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
+                    toastr()->success('Question edited successfully');
                     return redirect('/created');
                 }else{
                     toastr()->error('please enter an answer from one of the given option');
@@ -93,6 +95,7 @@ class ExamController extends Controller
     public function deleteQuestion($id)
     {
         $this->questionreg->where('id',$id)->delete();
+        toastr()->success('Question deleted successfully');
         return back();
     }
     

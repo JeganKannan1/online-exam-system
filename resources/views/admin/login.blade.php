@@ -67,18 +67,18 @@
 										<div class="col">
 											<label>Password</label>
 										</div>
-										<div class="col-auto">
-											<a class="text-muted" href="/forgot-password">
-												Forgot password?
-											</a>
-										</div>
+										
 									</div>
                                     <input class="form-control" type="password" name = "password">
 								</div>
 								<div class="form-group text-center">
 									<button class="btn btn-primary account-btn" type="submit">Login</button>
 								</div>
-								
+								<div class="col-auto">
+									<a class="text-muted" href="/forgot-password">
+										Forgot password?
+									</a>
+								</div>
 							</form>
 							<!-- /Account Form -->
 							

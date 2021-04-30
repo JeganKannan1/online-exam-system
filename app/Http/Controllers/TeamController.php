@@ -41,6 +41,7 @@ class TeamController extends Controller
          $getTeam = $this->teamreg->where('team_name',$request->team_name)->first();
                 if(empty($getTeam)){
                 $user = $this->teamreg->create($request->all());
+                toastr()->success('Team created successfully');
                 return back();
                  }else{
                     toastr()->error('entered team already exists');
@@ -57,6 +58,7 @@ class TeamController extends Controller
     public function delete($id)
     {
         $this->teamreg->where('id',$id)->delete();
+        toastr()->success('Team deleted successfully');
         return back();
     }
 
@@ -72,6 +74,7 @@ class TeamController extends Controller
                 'team_name'=>'required',
              ]);
         $this->teamreg->where('id',$request->id)->update($request->except(['_token']));
+        toastr()->success('Team edited successfully');
         return redirect('/team');
         }catch(Throwable $exception){
             return redirect()->route('dashboard')

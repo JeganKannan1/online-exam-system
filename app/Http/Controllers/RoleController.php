@@ -33,9 +33,10 @@ class RoleController extends Controller
                  $getTeam = $this->rolereg->where('role_name',$request->role_name)->first();
                  if(empty($getTeam)){
                     $role = $this->rolereg->create($request->all());
+                    toastr()->success('Role created successfully');
                     return back();
                  }else{
-                    toastr()->error('entered role already exists');
+                    toastr()->error('Entered role already exists');
                     return back();
                  }
                 }catch(Throwable $exception){
@@ -55,6 +56,7 @@ class RoleController extends Controller
                     'role_name'=>'required'
                  ]);
         $this->rolereg->where('id',$request->id)->update($request->except(['_token']));
+        toastr()->success('Role edited successfully');
         return redirect('/role');
         }catch(Throwable $exception){
             return redirect()->route('dashboard')
@@ -65,6 +67,7 @@ class RoleController extends Controller
         public function deleteRole($id)
         {
         $this->rolereg->where('id',$id)->delete();
+        toastr()->success('Role deleted successfully');
         return back();
         }
 }

@@ -49,6 +49,7 @@ class UserController extends Controller
 
         $details=new SendEmailJob($request->all());
         dispatch($details);
+        toastr()->success('User created successfully');
         return back();
         }else{
             toastr()->error('entered user already exists');
@@ -75,6 +76,7 @@ class UserController extends Controller
                 
              ]);
         $this->userreg->where('id',$request->id)->update($request->except(['_token','password']));
+        toastr()->success('User edited successfully');
         return redirect('/user');
     }
         catch(Throwable $exception){
@@ -86,6 +88,7 @@ class UserController extends Controller
     public function deleteUser($id)
     {
     $this->userreg->where('id',$id)->delete();
+    toastr()->success('User deleted successfully');
     return back();
     }
 
