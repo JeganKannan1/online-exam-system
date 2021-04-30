@@ -7,7 +7,7 @@
                         
                    
                 </li>
-                        <li><a href="/create-question">create Test</a></li>
+                        <li><a href="/create-question">Create Test</a></li>
                         <li><a href="/team-report">Report</a></li>
 
                      </ul>

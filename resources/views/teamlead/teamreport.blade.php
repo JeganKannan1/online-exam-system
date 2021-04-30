@@ -1,6 +1,10 @@
 @extends('layouts.dashboard')
-<div class="card" style="margin: 100px 220px">
-    <div class="card-header">
+<div class="page-wrapper">
+		<div class="content container-fluid">
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card">
+			<div class="card-header">
       Team Members
     </div>
     @foreach ($editTeamate as $teamate)
@@ -10,3 +14,8 @@
     @endforeach
     
   </div>
+  </div>
+  </div>
+  </div>
+  </div>
+

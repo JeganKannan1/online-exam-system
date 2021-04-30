@@ -1,8 +1,8 @@
 @extends('layouts.dashboard')
 @toastr_css
     <!-- Button trigger modal -->
-	<div class = "container-fluid">
-		<div class = "col-md-6" >
+	<div class="page-wrapper">
+		<div class="content container-fluid">
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 	Create Questions
   </button>
@@ -42,11 +42,9 @@
 					<label for="exampleInputPassword1">Answer</label>
 					<input type="text" class="form-control" id="answer" placeholder="answer" name="answer"required>
 				  </div>
-			</form>
-		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		  <button type="button" class="btn btn-primary">Save changes</button>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top: 30px">Close</button>
+            </form>
 		</div>
 	  </div>
 	</div>

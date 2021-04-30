@@ -37,6 +37,7 @@
           </div>
             
         </div>
+        <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputAddress">Phone Number</label>
             <input type="text" class="form-control" id="PhoneNumber" placeholder="Enter the Phone Number" name="phone">
@@ -56,6 +57,7 @@
                 <option value="{{ $role->id }}">{{ $role->role_name }}</option>
               @endforeach
             </select>
+          </div>
           </div>
         
           <button type="submit" class="btn btn-primary">Submit</button>

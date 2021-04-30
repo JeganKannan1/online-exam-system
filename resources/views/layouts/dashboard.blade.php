@@ -7,11 +7,12 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Team Lead</title>
+        <title>Team-Lead</title>
 		
 		<!-- Favicon -->
         <!-- <link rel="shortcut icon" type="image/x-icon"> -->
-		
+		<link rel="shortcut icon" type="image/x-icon" href="{{asset('/assets/img/sparklogo.png')}}">
+
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{asset('/assets/css/bootstrap.min.css')}}">
 		

@@ -1,5 +1,9 @@
 @extends('layouts.app')
-<div class="card" style="margin: 100px 220px">
+<div class="page-wrapper">
+		<div class="content container-fluid">
+    <div class="page-header">
+          <div class="row">
+            <div class="col">
     <div class="card-header">
       Teams
     </div>
@@ -9,4 +13,8 @@
         </ul>
     @endforeach
     
+  </div>
+  </div>
+  </div>
+  </div>
   </div>

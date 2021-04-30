@@ -90,7 +90,7 @@ class AdminexamController extends Controller
     public function displayQuestion($id){
         $session_id = Session::get('team_id');
         $getTeams = $this->questionreg->where('team_id', $id)->get();
-        return view('admin.showQuestion',compact('getTeams'));
+        return view('admin.showquestion',compact('getTeams'));
     }
     public function changeQuestion($id){
         

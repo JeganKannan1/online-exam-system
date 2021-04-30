@@ -89,7 +89,7 @@ class AdminAuthController extends Controller
 
     public function monthlyReport(){
         $session_roleid = Session::get('role_id');
-        $getTeam = $this->team->get();
+        $getTeam = $this->team->get()->except(["id"=>1]);
         return view('admin.reports',compact('getTeam'));
     }
     public function teamReport($id){
