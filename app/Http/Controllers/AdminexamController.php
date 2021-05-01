@@ -116,7 +116,7 @@ class AdminexamController extends Controller
                 {
                     $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
                     toastr()->success('Question edited successfully');
-                    return redirect('/display-questions');
+                    return redirect()->route('display-questions',['id' => $request->team_id]);
                 }else{
                     toastr()->error('please enter an answer from one of the given option');
                     return back();

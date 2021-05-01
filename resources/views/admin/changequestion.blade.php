@@ -7,7 +7,7 @@
       <form action="{{route('rewrite-question')}}" method = "POST">
         @csrf
         <div class="form-group">
-            <input type="hidden" value="{{$editTeams->id}}" name="id">
+            <input type="hidden" value="{{$editTeams->team_id}}" name="team_id">
         
           <label>Question</label>
           <input type="text" class="form-control" id="question" name = "question" value="{{ $editTeams->question}}">
