@@ -23,9 +23,7 @@ use App\Http\Controllers\ForgotPasswordController;
 |
 */
 
-Route::get('/', function () {
-  return view('welcome');
-});
+Route::get('/', [AdminAuthController::class,'welcome'])->name('welcome')->middleware('admin');
 
 Route::get('/index',[AdminAuthController::class,'index'])->name('index')->middleware('admin');
 Route::get('/login',[AdminAuthController::class,'login'])->name('login');

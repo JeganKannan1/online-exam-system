@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\Admin;
 use App\Models\Team;
@@ -34,6 +35,9 @@ class AdminAuthController extends Controller
      * return view
      * @parm id
      */
+    public function welcome(){
+        return view('welcome');
+    }
     public function index(){
         return view('admin.index');
     }
@@ -46,11 +50,16 @@ class AdminAuthController extends Controller
 
     public function adminLogin(Request $request){
         try{
-            $this->validate($request,[
+            $validator = Validator::make($request->all(),[
                 'username'=>'required|min:5',
                 'password'=>'required|min:5'
              ]);
-                
+             
+             if ($validator->fails()) {
+                $error_messages = implode(',', $validator->messages()->all());
+                toastr()->error($error_messages);
+                return back();
+            }
             $user = $this->userreg->where('username',$request->username)->where('password',$request->password)->first();
             if(isset($user))
             {
@@ -58,7 +67,7 @@ class AdminAuthController extends Controller
                 Session::put('id',$user->id);
                 Session::put('role_id',$user->role_id);
                 Session::put('team_id',$user->team_id);
-                toastr()->info('successfully logged in');
+                toastr()->success('Successfully Logged in');
                 // Base on role id user will navigate
                     switch ($user->role_id) 
                     {
@@ -72,11 +81,11 @@ class AdminAuthController extends Controller
                         return redirect()->route('dashboard');
                     }
                  } else{
-                toastr()->error('username/password is incorrect');
+                toastr()->error('Username/Password is incorrect');
                 return back();
             }
         }catch(Throwable $exception){
-            return back()->with('error',$exception->getMessages());
+            return back();
             Log::info('admin login',$exception->getMessages());
         }
        
@@ -84,6 +93,7 @@ class AdminAuthController extends Controller
 
     public function logout(){
         Session::flush();
+        toastr()->success('Logout Successfully');
         return redirect()->route('login');
     }
 

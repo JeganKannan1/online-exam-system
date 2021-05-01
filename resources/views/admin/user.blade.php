@@ -74,7 +74,7 @@
         <table id="example1" class="table table-bordered table-hover">
           <thead>
           <tr class="text-center">
-            <th class="text-center">Id</th>
+            <th class="text-center">S.No</th>
             <th class="text-center">UserName</th>
             <th class="text-center">Phone</th>
             <th class="text-center">Team</th>
@@ -86,11 +86,11 @@
           <tbody>
             @foreach ($getUsers as $getUser)
               <tr class="text-center">
-              <td class="text-center">{{ $getUser->id }}</td>
+              <td class="text-center">{{ $loop->index+1 }}</td>
               <td class="text-center">{{ $getUser->username }}</td>
               <td class="text-center">{{ $getUser->phone }}</td>
-              <td class="text-center">{{ $getUser->team_id }}</td>
-              <td class="text-center">{{ $getUser->role_id }}</td>
+              <td class="text-center">{{ $getUser->Team->team_name }}</td>
+              <td class="text-center">{{ $getUser->Role->role_name }}</td>
 
 
               <td class="text-center">
@@ -104,6 +104,8 @@
           
         </tbody>
         </table>
+        @else
+          <h3>No Data Found</h3>
       @endif 
           </div>
         </div>

@@ -67,16 +67,20 @@ class AdminexamController extends Controller
          ]);
          $getTeam = $this->questionreg->where('question',$request->question)->first();
          if(empty($getTeam)){
-         if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4){
+             if($request->option1 != $request->option2 && $request->option2 != $request->option3 && $request->option3 != $request->option4 && $request->option1 != $request->option3 && $request->option2 != $request->option4){
+                if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4){
 
         $question = Question::create($request->all());
         toastr()->success('Question created successfully');
         return redirect()->route('display-questions',['id' => $request->team_id]);
-         }else{
+        }else{
             toastr()->error('please enter an answer from one of the given option');
             return back();
-
          }
+        }else{
+            toastr()->error('options are repeated');
+            return back();
+        }
         }else{
             toastr()->error('the entered question is already exist please enter a new question');
             return back();

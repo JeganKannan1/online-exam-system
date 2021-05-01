@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Question;
 use App\Models\Answer;
+use Illuminate\Support\Facades\Validator;
 
 use Mail;
 use DB;
@@ -32,9 +33,14 @@ class TestController extends Controller
 
     public function checkAnswer(Request $request){
         try{
-            $this->validate($request,[
+            $validator = Validator::make($request->all(),[
                 'name'=>'required',
                 ]);
+                if ($validator->fails()) {
+                    $error_messages = implode(',', $validator->messages()->all());
+                    toastr()->error($error_messages);
+                    return back();
+                }
         $session_id = Session::get('team_id');
         $session_userid = Session::get('id');
         $session_username = Session::get('username');

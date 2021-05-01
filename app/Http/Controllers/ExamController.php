@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Question;
 use App\Models\Answer;
+use Illuminate\Support\Facades\Validator;
 
 use Mail;
 use DB;
@@ -31,7 +32,7 @@ class ExamController extends Controller
     
     public function addQuestion(Request $request){
         try{
-        $this->validate($request,[
+            $validator = Validator::make($request->all(),[
             'question'=>'required',
             'option1'=>'required',
             'option2'=>'required',
@@ -39,6 +40,11 @@ class ExamController extends Controller
             'option4'=>'required',
             'answer'=>'required'
          ]);
+         if ($validator->fails()) {
+            $error_messages = implode(',', $validator->messages()->all());
+            toastr()->error($error_messages);
+            return back();
+        }
          $getTeam = $this->questionreg->where('question',$request->question)->first();
          if(empty($getTeam)){
          if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4)
@@ -68,7 +74,7 @@ class ExamController extends Controller
     }
     public function updateQuestion(Request $request){
         try{
-            $this->validate($request,[
+            $validator = Validator::make($request->all(),[
                 'question'=>'required',
                 'option1'=>'required',
                 'option2'=>'required',
@@ -76,6 +82,11 @@ class ExamController extends Controller
                 'option4'=>'required',
                 'answer'=>'required'
              ]);
+             if ($validator->fails()) {
+                $error_messages = implode(',', $validator->messages()->all());
+                toastr()->error($error_messages);
+                return back();
+            }
              
              if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4)
                 {

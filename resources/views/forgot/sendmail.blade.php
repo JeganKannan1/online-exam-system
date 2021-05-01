@@ -9,7 +9,7 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>login</title>
+        <title>Forgot-Password</title>
 		
 		<!-- Favicon -->
         <!-- <link rel="shortcut icon" type="image/x-icon"> -->
@@ -36,17 +36,17 @@
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
 			    <div class="account-content">
-				    <div class = "container">
-            @if (count($errors) > 0)
-                <div class = "alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-      </div> 
+                        {{-- <div class = "container">
+                @if (count($errors) > 0)
+                    <div class = "alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+        </div>  --}}
             <form action="{{route('send-mail')}}" method = "POST">
                 @csrf
                 <div class="form-group">

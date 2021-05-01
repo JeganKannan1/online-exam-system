@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@toastr_css
 
 
 <div class = "container-fluid">
@@ -25,3 +26,8 @@
       </form>
     </div>
 </div>
+@jquery
+    @toastr_js
+    @toastr_render
+</body>
+</html>

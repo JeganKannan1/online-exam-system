@@ -8,6 +8,8 @@ use App\Models\Admin;
 use App\Models\Team;
 use App\Models\Answer;
 use App\Models\Question;
+use Illuminate\Support\Facades\Validator;
+
 
 use Mail;
 use DB;
@@ -36,22 +38,28 @@ class ForgotPasswordController extends Controller
 
     public function sendMail(Request $request){
         try{
-            $this->validate($request,[
+            $validator = Validator::make($request->all(),[
                 'email'=>'required',
             ]);
+            if ($validator->fails()) {
+                $error_messages = implode(',', $validator->messages()->all());
+                toastr()->error($error_messages);
+                return back();
+            }
             $getId = $this->userreg->where('email',$request->email)->first();
             if($getId){
             $email=new ForgotPassword($getId);
             dispatch($email);
+            toastr()->success('Mail sent successfully');
             return redirect('/redirect');
             }else{
-                toastr()->error('entered email not found');
+                toastr()->error('Entered email not found');
                 return back();
             }
         }catch(Throwable $exception){
-            toastr()->error('entered email not found');
-            return redirect()->route('login')
-            ->with('error',$exception->getMessages());
+            // toastr()->error('Entered email not found');
+            // return redirect()->route('login')
+            // ->with('error',$exception->getMessages());
             Log::info('admin login',$exception->getMessages());
         }
         
@@ -70,23 +78,29 @@ class ForgotPasswordController extends Controller
 
     public function updatePassword(Request $request){  
         try{
-            $this->validate($request,[
+            $validator = Validator::make($request->all(),[
                 'password'=>'required',
                 'password1'=>'required',
              ]);
+             if ($validator->fails()) {
+                $error_messages = implode(',', $validator->messages()->all());
+                toastr()->error($error_messages);
+                return back();
+            }
              if($request->password == $request->password1){
              $update = $this->userreg->where('id',$request->id)->update(['password' => $request->password]);
+             toastr()->success('Password reseted successfully');
              $details = $this->userreg->where('id',$request->id)->get();
              $password=new newPassword($details);
             dispatch($password);
             return redirect('/login');
              }
              else{
-                toastr()->error('password not match');
+                toastr()->error('Password not match');
                 return back();
              }
         }catch(Throwable $exception){
-            toastr()->error('entered email not found');
+            toastr()->error('Entered email not found');
             return redirect()->route('login')
             ->with('error',$exception->getMessages());
             Log::info('admin login',$exception->getMessages());

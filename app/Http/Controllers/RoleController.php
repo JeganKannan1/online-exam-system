@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Role;
+use Illuminate\Support\Facades\Validator;
 
 use Mail;
 use DB;
@@ -27,9 +28,14 @@ class RoleController extends Controller
         }
         public function createRole(Request $request){
             try{
-                $this->validate($request,[
+                $validator = Validator::make($request->all(),[
                     'role_name'=>'required'
                  ]);
+                 if ($validator->fails()) {
+                    $error_messages = implode(',', $validator->messages()->all());
+                    toastr()->error($error_messages);
+                    return back();
+                }
                  $getTeam = $this->rolereg->where('role_name',$request->role_name)->first();
                  if(empty($getTeam)){
                     $role = $this->rolereg->create($request->all());
@@ -52,9 +58,14 @@ class RoleController extends Controller
         }
         public function updateRole(Request $request){
             try{
-                $this->validate($request,[
+                $validator = Validator::make($request->all(),[
                     'role_name'=>'required'
                  ]);
+                 if ($validator->fails()) {
+                    $error_messages = implode(',', $validator->messages()->all());
+                    toastr()->error($error_messages);
+                    return back();
+                }
         $this->rolereg->where('id',$request->id)->update($request->except(['_token']));
         toastr()->success('Role edited successfully');
         return redirect('/role');

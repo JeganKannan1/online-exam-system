@@ -13,24 +13,24 @@
         <!-- <link rel="shortcut icon" type="image/x-icon"> -->
 		
 		<!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 		
 		<!-- Fontawesome CSS -->
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
 		
 		<!-- Main CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 		
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
-		@toastr_css
+		
 
     </head>
     <body class="account-page">
-	
+		@toastr_css
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
 			<div class="account-content">
@@ -41,7 +41,7 @@
 						<a href="#"><img src="assets/img/sparkout.png"></a>
 					</div>
 					<!-- /Account Logo -->
-					@if (count($errors) > 0)
+					{{-- @if (count($errors) > 0)
          <div class = "alert alert-danger">
             <ul>
                @foreach ($errors->all() as $error)
@@ -49,7 +49,7 @@
                @endforeach
             </ul>
          </div>
-      @endif
+      @endif --}}
 					<div class="account-box">
 						<div class="account-wrapper">
 							<h3 class="account-title">Login</h3>

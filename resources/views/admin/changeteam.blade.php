@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@toastr_css
+
 <div class="page-wrapper">
 		<div class="content container-fluid">
 
@@ -33,4 +35,9 @@
 </div>
 </div>
 </div>
-
+@jquery
+    @toastr_js
+    @toastr_render
+</body>
+    </html>
+    

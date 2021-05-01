@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\Admin;
 use App\Models\Answer;
+use Illuminate\Support\Facades\Validator;
+
 
 use Mail;
 use DB;
@@ -35,9 +37,14 @@ class TeamController extends Controller
     public function createTeam(Request $request)
     {
         try{
-        $this->validate($request,[
+            $validator = Validator::make($request->all(),[
             'team_name'=>'required',
          ]);
+         if ($validator->fails()) {
+            $error_messages = implode(',', $validator->messages()->all());
+            toastr()->error($error_messages);
+            return back();
+        }
          $getTeam = $this->teamreg->where('team_name',$request->team_name)->first();
                 if(empty($getTeam)){
                 $user = $this->teamreg->create($request->all());
@@ -70,9 +77,14 @@ class TeamController extends Controller
     }
     public function updateTeam(Request $request){
         try{
-            $this->validate($request,[
+            $validator = Validator::make($request->all(),[
                 'team_name'=>'required',
              ]);
+             if ($validator->fails()) {
+                $error_messages = implode(',', $validator->messages()->all());
+                toastr()->error($error_messages);
+                return back();
+            }
         $this->teamreg->where('id',$request->id)->update($request->except(['_token']));
         toastr()->success('Team edited successfully');
         return redirect('/team');
