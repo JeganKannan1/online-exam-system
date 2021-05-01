@@ -80,7 +80,6 @@
             <th class="text-center">Team</th>
             <th class="text-center">Role</th>
             <th class="text-center">Action</th>
-            <th class="text-center">Action1</th>
           </tr>
           </thead>
           <tbody>
@@ -94,10 +93,8 @@
 
 
               <td class="text-center">
-                <a href="{{route('edit-user', $getUser->id)}}" class="btn btn-sm btn-outline-danger py-0">Edit</a>
-              </td>
-                <td class="text-center">
-                <a href="{{route('delete-user', $getUser->id)}}" class="btn btn-sm btn-outline-danger py-0">delete</a>
+                <a href="{{route('edit-user', $getUser->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-right:20px;">Edit</a>
+                <a href="{{route('delete-user', $getUser->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-left:20px;">delete</a>
               </td>
             </tr>  
             @endforeach

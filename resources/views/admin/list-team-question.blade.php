@@ -1,20 +1,27 @@
 @extends('layouts.app')
 <div class="page-wrapper">
 		<div class="content container-fluid">
-    <div class="page-header">
-          <div class="row">
-            <div class="col">
-    <div class="card-header">
-      Teams
+    <div class="text-center">  
+    <h3>Teams</h3>
+</div>
+  <div class="row row-teams">
+  @foreach($getTeam as $team)
+  
+
+<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+<a href="/display-questions/{{$team->id}}">
+<div class="card dash-widget">
+  <div class="card-body">
+    <div class="text-center">
+      <h4>{{$team->team_name}}</h4>
     </div>
-    @foreach ($getTeam as $team)
-        <ul class="list-group list-group-flush">
-            <a href="/display-questions/{{$team->id}}"><li class="list-group-item">{{$team->team_name}}</li></a>
-        </ul>
-    @endforeach
     
   </div>
-  </div>
-  </div>
-  </div>
-  </div>
+</div>
+
+</div>
+</a>
+@endforeach
+</div>
+</div>
+</div>

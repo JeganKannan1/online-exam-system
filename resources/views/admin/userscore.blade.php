@@ -1,10 +1,12 @@
-@extends('layouts.app')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+ @extends('layouts.app')
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>  
 <script>$(document).ready( function () {
     $('#example1').DataTable();
 } );
 </script>
+</head>
+<body>
 <div class="page-wrapper">
 		<div class="content container-fluid">
       <div class="row">
@@ -24,15 +26,26 @@
        <tbody>
         
           @foreach ($getTeam as $getReport)
-            <tr class="text-center">
-            <td class="text-center">{{ $getReport->id }}</td>
-            <td class="text-center">{{ $getReport->created_at }}</td>
-            <td class="text-center">{{ $getReport->score }}</td>
-          @endforeach
+               <tr class="text-center">
+               <td class="text-center">{{ $getReport->id }}</td>
+               <td class="text-center">{{ $getReport->created_at }}</td>
+               <td class="text-center">{{ $getReport->score }}</td>
+            @endforeach
          
        </tbody>
       </table>
+<<<<<<< HEAD
       @else
       <h3>No Data Found</h3>
       @endif
 </div>
+=======
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+		
+   
+>>>>>>> 74d87710bb25d9ed143ec57e7847f75a11ac7773

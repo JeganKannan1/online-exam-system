@@ -17,9 +17,7 @@
            <th class="text-center">option3</th>
            <th class="text-center">option4</th>
            <th class="text-center">answer</th>
-           <th class="text-center">Action</th>
-           <th class="text-center">Action1</th>
-
+           <th class="text-center col-md-2">Action</th>
         </tr>
         </thead>
        <tbody>
@@ -34,10 +32,8 @@
             <td class="text-center">{{ $getTeam->option4 }}</td>
             <td class="text-center">{{ $getTeam->answer }}</td>
             <td class="text-center">
-                <a href="{{route('change-question', $getTeam->id)}}" class="btn btn-sm btn-outline-danger py-0">edit</a>
-            </td>
-            <td class="text-center">
-                <a href="{{route('delete-question', $getTeam->id)}}" class="btn btn-sm btn-outline-danger py-0">delete</a>
+                <a href="{{route('change-question', $getTeam->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-right:20px;">edit</a>
+                <a href="{{route('delete-question', $getTeam->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-right:20px;">delete</a>
             </td>
            </tr>  
           @endforeach

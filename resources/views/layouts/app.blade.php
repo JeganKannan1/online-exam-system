@@ -10,6 +10,7 @@
         <title>Admin-Dashboard </title>
 		
 		<!-- Favicon -->
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
         <link rel="shortcut icon" type="image/x-icon" href="{{asset('/assets/img/sparklogo.png')}}">
 		
 		<!-- Bootstrap CSS -->
@@ -44,24 +45,16 @@
 				<!-- Logo -->
                 <div class="header-left">
                     <a href="index" class="logo">
-						<img src="{{asset('/assets/img/sparkout.png')}} "  alt="">
+						<img src="{{asset('/assets/img/sparkout.png')}} " style="width: 200px;" alt="">
 					</a>
                 </div>
 				<!-- /Logo -->
 				
 				 <a id="toggle_btn" href="javascript:void(0);" style="margin: 20px">
-					<!-- <span class="bar-icon">
-						<span></span>
-						<span></span>
-						<span></span>
-					</span> -->
+				
 				</a> 
 				
-				<!-- Header Title -->
-                 <!-- <div class="page-title-box">
-					<h3>Sparkout Tech solutions</h3>
-                </div>  -->
-				<!-- /Header Title -->
+			
 				
 				<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
 				
@@ -77,8 +70,7 @@
 							<span>Admin</span>
 						</a> 
 						<div class="dropdown-menu">
-							<!-- <a class="dropdown-item" href="profile.html">My Profile</a> -->
-							<!-- <a class="dropdown-item" href="settings.html">Settings</a> -->
+							
 							<a class="dropdown-item" href="/logout">Logout</a>
 						</div>
 					</li>
@@ -89,8 +81,7 @@
 				<div class="dropdown mobile-user-menu">
 					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 					<div class="dropdown-menu dropdown-menu-right">
-						<!-- <a class="dropdown-item" href="profile.html">My Profile</a> -->
-						<!-- <a class="dropdown-item" href="settings.html">Settings</a> -->
+						
 						<a class="dropdown-item" href="/logout">Logout</a>
 					</div>
 				</div>

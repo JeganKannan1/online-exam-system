@@ -1,21 +1,28 @@
 @extends('layouts.dashboard')
 <div class="page-wrapper">
 		<div class="content container-fluid">
-<div class="row">
-	<div class="col-lg-12">
-		<div class="card">
-			<div class="card-header">
-      Team Members
+    <div class="text-center">  
+    <h3>Teams</h3>
+</div>
+  <div class="row row-teams">
+  @foreach($editTeamate as $teamate)
+  
+
+<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+<a href="/user-report/{{$teamate->id}}">
+<div class="card dash-widget">
+  <div class="card-body">
+    <div class="text-center">
+      <h4>{{$teamate->username}}</h4>
     </div>
-    @foreach ($editTeamate as $teamate)
-        <ul class="list-group list-group-flush">
-            <a href="/user-report/{{$teamate->id}}"><li class="list-group-item">{{$teamate->username}}</li></a>
-        </ul>
-    @endforeach
     
   </div>
-  </div>
-  </div>
-  </div>
-  </div>
+</div>
+
+</div>
+</a>
+@endforeach
+</div>
+</div>
+</div>
 

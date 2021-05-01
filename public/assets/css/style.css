@@ -196,6 +196,7 @@ a:focus {
     box-shadow: none;
     font-size: 15px;
     height: 44px;
+	margin-top: 15px;
 }
 .form-control:focus {
 	border-color: #ccc;
@@ -1596,6 +1597,12 @@ table.dataTable thead > tr > td.sorting {
 }
 .card-footer {
     background-color: #fff;
+}
+.row-card {
+	margin-top: 20px;	
+}
+.row-teams {
+	margin-top: 40px;
 }
 .page-title {
     color: #1f1f1f;
