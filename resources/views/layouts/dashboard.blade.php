@@ -45,7 +45,7 @@
 				<!-- Logo -->
                 <div class="header-left">
                     <a href="#" class="logo">
-						<img src="{{asset('/assets/img/sparkout.png')}}" alt="">
+						<img src="{{asset('/assets/img/sparkout.png')}}" style="width: 200px; alt="">
 					</a>
                 </div>
 				<!-- /Logo -->
@@ -77,8 +77,6 @@
 							<span>TeamLead</span>
 						</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">My Profile</a>
-							<!-- <a class="dropdown-item" href="#">Settings</a> -->
 							<a class="dropdown-item" href="/logout">Logout</a>
 						</div>
 					</li>
@@ -89,8 +87,6 @@
 				<div class="dropdown mobile-user-menu">
 					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="profile.html">My Profile</a>
-						<a class="dropdown-item" href="settings.html">Settings</a>
 						<a class="dropdown-item" href="/logout">Logout</a>
 					</div>
 				</div>

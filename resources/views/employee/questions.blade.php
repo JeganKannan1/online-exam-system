@@ -8,7 +8,7 @@
 	</head>
 	<body>
         <div class="page-wrapper">
-            <div id="info2" class="row justify-content-center border rounded-pill bg-success"></div>
+            <div id="timer" class="row justify-content-center border rounded-pill bg-success"></div>
 
             <div class="content container col-md-8">
 
@@ -77,7 +77,7 @@
           if(time){
           time--;
           var min = Math.floor(time/60),sec= Math.round(time%60);
-           document.getElementById("info2").innerHTML =min +":" + sec + " min left";
+           document.getElementById("timer").innerHTML =min +":" + sec + " min left";
            callsetTimeOut();
           }min +"Min Left"
           }, 1000);

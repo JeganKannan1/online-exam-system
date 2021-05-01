@@ -22,8 +22,8 @@
         <form action="{{route('add-role')}}" method = "POST">
             @csrf
             <div class="form-group">
-                <label>create new role</label>
-                <input type="text" class="form-control" id="role" name = "role_name">
+                <label>Create New Role</label>
+                <input type="text" class="form-control" id="role" name = "role_name" placeholder="Enter The Role">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -41,7 +41,6 @@
                         <th class="text-center">Id</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Action</th>
-                        <th class="text-center">Action1</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,10 +49,8 @@
                             <td class="text-center">{{ $getRole->id }}</td>
                             <td class="text-center">{{ $getRole->role_name }}</td>
                             <td class="text-center">
-                            <a href="{{route('edit-role', $getRole->id)}}" class="btn btn-sm btn-outline-danger py-0">Edit</a>
-                            </td>
-                            <td class="text-center">
-                            <a href="{{route('delete-role', $getRole->id)}}" class="btn btn-sm btn-outline-danger py-0">delete</a>
+                            <a href="{{route('edit-role', $getRole->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-right:20px;">Edit</a>
+                            <a href="{{route('delete-role', $getRole->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-left:20px;">delete</a>
                             </td>
                         </tr>
                     @endforeach
