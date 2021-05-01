@@ -34,18 +34,12 @@
          
        </tbody>
       </table>
-<<<<<<< HEAD
       @else
       <h3>No Data Found</h3>
       @endif
 </div>
-=======
 </div>
 </div>
 </div>
 </div>
 </div>
-</div>
-		
-   
->>>>>>> 74d87710bb25d9ed143ec57e7847f75a11ac7773
