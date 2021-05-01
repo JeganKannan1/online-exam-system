@@ -14,7 +14,9 @@
 							<div class="card">
 								<div class="card-header">
 <!-- <div class="container col-md-6" style="margin:220px"> -->
-   @if(isset($getReport))
+   @if(isset($getTeam))
+   
+
       <table id="example1" class="table table-bordered table-hover">
         <thead>
         <tr class="text-center">
@@ -34,12 +36,10 @@
          
        </tbody>
       </table>
-<<<<<<< HEAD
+      
       @else
       <h3>No Data Found</h3>
       @endif
-</div>
-=======
 </div>
 </div>
 </div>
@@ -48,4 +48,3 @@
 </div>
 		
    
->>>>>>> 74d87710bb25d9ed143ec57e7847f75a11ac7773
