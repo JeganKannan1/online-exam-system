@@ -114,7 +114,8 @@ class AdminexamController extends Controller
              
              if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4)
                 {
-                    $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
+                    $update = $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
+                    
                     toastr()->success('Question edited successfully');
                     return redirect()->route('display-questions',['id' => $request->team_id]);
                 }else{

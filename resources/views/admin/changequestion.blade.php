@@ -8,7 +8,7 @@
         @csrf
         <div class="form-group">
             <input type="hidden" value="{{$editTeams->team_id}}" name="team_id">
-        
+            <input type="hidden" value="{{$editTeams->id}}" name="id">
           <label>Question</label>
           <input type="text" class="form-control" id="question" name = "question" value="{{ $editTeams->question}}">
           <label>option1</label>
