@@ -52,7 +52,7 @@
           </select>
         </div>
  
-        <button type="submit" class="btn btn-primary">update</button>
+        <button type="submit" class="btn btn-primary">Update</button>
       </form>
     </div>
 </div>

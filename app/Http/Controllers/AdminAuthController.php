@@ -9,6 +9,7 @@ use App\Models\Admin;
 use App\Models\Team;
 use App\Models\Answer;
 use App\Models\Question;
+use Illuminate\Support\Arr;
 
 use Mail;
 use DB;
@@ -39,15 +40,13 @@ class AdminAuthController extends Controller
         return view('welcome');
     }
     public function index(){
-        return view('admin.index');
+        $getUsers = $this->team->get()->except(["id"=>1]);
+        return view('admin.index',compact('getUsers'));
     }
 
     public function login(){
         return view('admin.login');
     }
-
-    
-
     public function adminLogin(Request $request){
         try{
             $validator = Validator::make($request->all(),[

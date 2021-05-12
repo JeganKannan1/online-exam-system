@@ -27,7 +27,7 @@
       <table id="example1" class="table table-bordered table-hover">
         <thead>
         <tr class="text-center">
-           <th class="text-center">Id</th>
+           <th class="text-center">S.no</th>
            <th class="text-center">Name</th>
            <th class="text-center">Action</th>
           </tr>
@@ -36,7 +36,7 @@
         
           @foreach ($getTeams as $getTeam)
             <tr class="text-center">
-            <td class="text-center">{{ $getTeam->id }}</td>
+            <td class="text-center">{{ $loop->index+1 }}</td>
             <td class="text-center">{{ $getTeam->team_name }}</td>
 
             <td class="text-center ">

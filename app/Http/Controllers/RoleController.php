@@ -23,7 +23,7 @@ class RoleController extends Controller
     }
 
     public function addRole(){
-        $getRoles = $this->rolereg->get();
+        $getRoles = $this->rolereg->get()->except(["id"=>1]);
         return view('admin.role',compact('getRoles'));
         }
         public function createRole(Request $request){

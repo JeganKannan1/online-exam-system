@@ -21,14 +21,21 @@
         </tr>
         </thead>
        <tbody>
-        
+        @if(count($getTeam)>0)
           @foreach ($getTeam as $getTeams)
             <tr class="text-center">
             <td class="text-center">{{ $getTeams->id }}</td>
             <td class="text-center">{{ $getTeams->created_at }}</td>
             <td class="text-center">{{ $getTeams->score }}</td>
+            </tr>
           @endforeach
-         
+          @else
+          <tr class="text-center">
+            <td class="text-center"></td>
+            <td class="text-center">No data found</td>
+            <td class="text-center"></td>
+            </tr>
+            @endif
        </tbody>
       </table>
 </div>

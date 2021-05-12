@@ -25,7 +25,7 @@
         </div>
         
         <div class="form-group">
-          <label>update team</label>
+          <label>Update Tseam</label>
           <input type="text" class="form-control" id="team" name = "team_name" value="{{ $editTeams->team_name}}">
         </div>
         <button type="submit" class="btn btn-primary">update</button>

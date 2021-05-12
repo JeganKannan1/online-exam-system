@@ -14,32 +14,43 @@
 							<div class="card">
 								<div class="card-header">
 <!-- <div class="container col-md-6" style="margin:220px"> -->
-   @if(isset($getTeam))
+   
    
 
       <table id="example1" class="table table-bordered table-hover">
         <thead>
         <tr class="text-center">
-           <th class="text-center">Id</th>
+           <th class="text-center">S.NO</th>
            <th class="text-center">Date</th>
            <th class="text-center">Score</th>
         </tr>
         </thead>
        <tbody>
-        
+         @if(count($getTeam)>0)
           @foreach ($getTeam as $getReport)
                <tr class="text-center">
-               <td class="text-center">{{ $getReport->id }}</td>
+               <td class="text-center">{{ $loop->index+1 }}</td>
                <td class="text-center">{{ $getReport->created_at }}</td>
                <td class="text-center">{{ $getReport->score }}</td>
+               </tr>
             @endforeach
          
        </tbody>
+       @else
+      <tbody>
+         <tr class="text-center">
+            <td class="text-center">
+            </td>
+            <td class="text-center"><h3>No data found</h3>
+            </td>
+            <td class="text-center">
+            </td>
+         </tr>
+      @endif
       </table>
       
-      @else
-      <h3>No Data Found</h3>
-      @endif
+     
+      
 </div>
 </div>
 </div>

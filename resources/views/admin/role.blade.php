@@ -38,7 +38,7 @@
             <table id="example1" class="table table-bordered table-hover">
                 <thead>
                     <tr class="text-center">
-                        <th class="text-center">Id</th>
+                        <th class="text-center">S.no</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Action</th>
                     </tr>
@@ -46,7 +46,7 @@
                 <tbody>
                     @foreach ($getRoles as $getRole)
                         <tr class="text-center">
-                            <td class="text-center">{{ $getRole->id }}</td>
+                            <td class="text-center">{{ $loop->index+1 }}</td>
                             <td class="text-center">{{ $getRole->role_name }}</td>
                             <td class="text-center">
                             <a href="{{route('edit-role', $getRole->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-right:20px;">Edit</a>

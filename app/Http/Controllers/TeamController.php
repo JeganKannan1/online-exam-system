@@ -29,7 +29,7 @@ class TeamController extends Controller
 
     public function addTeam()
      {
-        $getTeams = $this->teamreg->get();
+        $getTeams = $this->teamreg->get()->except(["id"=>1]);
         return view('admin.team',compact('getTeams'));
     }
 

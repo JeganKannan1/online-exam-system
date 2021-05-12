@@ -22,10 +22,10 @@
                 <input type="hidden" value="{{$editRoles->id}}" name="id">
             </div>
             <div class="form-group">
-                <label>update role</label>
+                <label>Update Role</label>
                 <input type="text" class="form-control" id="team" name = "role_name" value="{{ $editRoles->role_name}}">
             </div>
-            <button type="submit" class="btn btn-primary">update</button>
+            <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
 </div>

@@ -2,8 +2,10 @@
 <html>
 	<head>
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+
 
 	</head>
 	<body>
@@ -21,7 +23,7 @@
               </ul>
            </div>
         @endif
-    <form action="{{route('check-answer')}}" method="POST">
+    <form action="{{route('check-answer')}}" method="POST" id = "myForm">
 		@foreach ($getTeam as $question)
 		@csrf
         <div class="card" id="step-{{$loop->index+1}}">
@@ -69,7 +71,8 @@
             </div>
         </div>
         <script>
-            var time = 600;
+
+            var time = 60;
         callsetTimeOut();  
         
         function callsetTimeOut(){
@@ -79,6 +82,11 @@
           var min = Math.floor(time/60),sec= Math.round(time%60);
            document.getElementById("timer").innerHTML =min +":" + sec + " min left";
            callsetTimeOut();
+           
+           if(time<=0){
+            document.getElementById("myForm").submit();
+           
+           }
           }min +"Min Left"
           }, 1000);
         }

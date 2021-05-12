@@ -76,7 +76,7 @@
 								<div class="form-group text-center">
 									<button class="btn btn-primary account-btn" type="submit">Login</button>
 								</div>
-								<div class="col-auto">
+								<div class="col-auto" style="float: right">
 									<a class="text-muted" href="/forgot-password">
 										Forgot password?
 									</a>

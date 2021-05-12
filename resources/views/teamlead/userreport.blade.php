@@ -20,14 +20,21 @@
         </tr>
         </thead>
        <tbody>
-        
+        @if(count($userReport)>0)
           @foreach ($userReport as $getReport)
             <tr class="text-center">
-            <td class="text-center">{{ $getReport->id }}</td>
+            <td class="text-center">{{ $loop->index+1 }}</td>
             <td class="text-center">{{ $getReport->created_at }}</td>
             <td class="text-center">{{ $getReport->score }}</td>
+            </tr>
           @endforeach
-         
+         @else
+         <tr class="text-center">
+            <td class="text-center"></td>
+            <td class="text-center">No data found</td>
+            <td class="text-center"></td>
+         </tr>
+            @endif
        </tbody>
       </table>
 </div>

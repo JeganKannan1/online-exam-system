@@ -9,7 +9,7 @@
                         <li><a href="/index">Admin Dashboard</a></li>
                         <li><a href="/team">Teams</a></li>
                         <li><a href="/role">Roles</a></li>
-                        <li><a href="/user">Users   </a></li>
+                        <li><a href="/user">Employees</a></li>
                         <li><a href="/monthly-reports">Reports</a></li>
                         <li><a href="/list-team">Create Questions</a></li>
                         <li><a href="/list-team1">Show Questions</a></li>

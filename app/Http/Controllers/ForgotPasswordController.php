@@ -46,6 +46,10 @@ class ForgotPasswordController extends Controller
                 toastr()->error($error_messages);
                 return back();
             }
+            $user = $this->userreg->where('email',$request->email)->first();
+            if($user->is_verified == 1){
+            $update = $this->userreg->where('email',$request->email)->update(['is_verified' => 0]);
+            }
             $getId = $this->userreg->where('email',$request->email)->first();
             if($getId){
             $email=new ForgotPassword($getId);
@@ -72,8 +76,17 @@ class ForgotPasswordController extends Controller
 
 
     public function resetPassword($id){
-        $editUsers = $this->userreg->where('id',$id)->first();
-        return view('forgot.reset-password',compact('editUsers'));
+        $user = $this->userreg->where('id',$id)->first();
+
+        if($user->is_verified == 0){
+            $update = $this->userreg->where('id',$id)->update(['is_verified' => 1]);
+        }else{
+            toastr()->success('Send mail again');
+            return redirect('/forgot-password');        
+        }
+            $editUsers = $this->userreg->where('id',$id)->first();
+            return view('forgot.reset-password',compact('editUsers'));
+        
     }
 
     public function updatePassword(Request $request){  

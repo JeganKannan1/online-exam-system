@@ -11,7 +11,7 @@
       <table id="example1" class="table table-bordered table-hover">
         <thead>
         <tr class="text-center">
-           <th class="text-center">Id</th>
+           <th class="text-center">S.no</th>
            <th class="text-center">questions</th>
            <th class="text-center">option1</th>
            <th class="text-center">option2</th>
@@ -22,7 +22,7 @@
         </tr>
         </thead>
        <tbody>
-        
+        @if (count($getTeams)>0)
           @foreach ($getTeams as $getTeam)
             <tr class="text-center">
             <td class="text-center">{{ $loop->index+1 }}</td>
@@ -38,7 +38,11 @@
             </td>
            </tr>  
           @endforeach
-         
+          @else
+          <tr class="text-center">
+<h3>No data found</h3>
+@endif  
+          </tr>
        </tbody>
       </table>
 </div>

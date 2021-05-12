@@ -20,8 +20,8 @@
         @csrf
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputEmail4">UserName</label>
-            <input type="name" class="form-control" id="username" placeholder="Enter the Username" name="username">
+            <label for="inputEmail4">Employee Name</label>
+            <input type="name" class="form-control" id="username" placeholder="Enter the Employee Name" name="username">
           </div>
           <div class="form-group col-md-6">
               <label for="inputPassword4">Password</label>
@@ -75,7 +75,7 @@
           <thead>
           <tr class="text-center">
             <th class="text-center">S.No</th>
-            <th class="text-center">UserName</th>
+            <th class="text-center">Employee Name</th>
             <th class="text-center">Phone</th>
             <th class="text-center">Team</th>
             <th class="text-center">Role</th>
