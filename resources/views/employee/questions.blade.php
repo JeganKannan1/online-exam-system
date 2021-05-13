@@ -24,7 +24,7 @@
            </div>
         @endif
     <form action="{{route('check-answer')}}" method="POST" id = "myForm">
-		@foreach ($getTeam as $question)
+		@foreach ($session_id as $question)
 		@csrf
         <div class="card" id="step-{{$loop->index+1}}">
             

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Question;
 use App\Models\Answer;
+use App\Models\Test;
 use Illuminate\Support\Facades\Validator;
 
 use Mail;
@@ -32,35 +33,48 @@ class ExamController extends Controller
     
     public function addQuestion(Request $request){
         try{
-            $validator = Validator::make($request->all(),[
-            'question'=>'required',
-            'option1'=>'required',
-            'option2'=>'required',
-            'option3'=>'required',
-            'option4'=>'required',
-            'answer'=>'required'
-         ]);
-         if ($validator->fails()) {
-            $error_messages = implode(',', $validator->messages()->all());
-            toastr()->error($error_messages);
-            return back();
-        }
-         $getTeam = $this->questionreg->where('question',$request->question)->first();
-         if(empty($getTeam)){
-         if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4)
-            {
-
-            $question = Question::create($request->all());
-            toastr()->success('Question created successfully');
-            return redirect('/created');
-            }else{
-                toastr()->error('please enter an answer from one of the given option');
+            if(empty($request->test_name)){
+                toastr()->error("Test name field is required");
                 return back();
-         }
-         }else{
-            toastr()->error('the entered question is already exist please enter a new question');
-            return back();
-         }
+            }
+            foreach ($request->users as $data) {
+                $validator = Validator::make($data,[
+                    'question'=>'required',
+                    'option1'=>'required',
+                    'option2'=>'required',
+                    'option3'=>'required',
+                    'option4'=>'required',
+                    'answer'=>'required',
+                ]);
+            }
+            if ($validator->fails()) {
+                $error_messages = implode(',', $validator->messages()->all());
+                toastr()->error($error_messages);
+                return back();
+            }
+            $session_id = Session::get('team_id');
+            $test = new Test();
+            $test->test_title = $request->test_name;
+            $test->team_id = $session_id;
+            $test->save();
+                foreach ($request->users as $data) {
+                    
+                    $questions = new Question();
+                    $questions->team_id     = $request->team_id;
+                    $questions->role_id     = $request->role_id;
+                    $questions->test_name   = $test->id;
+                    $questions->question    = $data['question'];
+                    $questions->option1     = $data['option1'];
+                    $questions->option2     = $data['option2'];
+                    $questions->option3     = $data['option3'];
+                    $questions->option4     = $data['option4'];
+                    $questions->answer      = $data['answer'];
+                    $questions->save();
+                }
+                toastr()->success('Question created successfully');
+                return redirect('/created');
+           
+    
         }catch(Throwable $exception){
             return redirect()->route('dashboard')
             ->with('error',$exception->getMessages());
@@ -73,6 +87,7 @@ class ExamController extends Controller
         return view('teamlead.changequestion',compact('editTeams'));
     }
     public function updateQuestion(Request $request){
+        
         try{
             $validator = Validator::make($request->all(),[
                 'question'=>'required',

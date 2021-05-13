@@ -75,9 +75,9 @@ Route::get('/change-question/{team}',[AdminexamController::class,'changeQuestion
 Route::post('/rewrite-question',[AdminexamController::class,'rewriteQuestion'])->name('rewrite-question');
 Route::get('/list-team1',[AdminexamController::class,'listTeam1'])->name('list-team1')->middleware('admin');
 
-
-
-Route::get('/take-test',[TestController::class,'takeTest'])->name('take-test')->middleware('admin');
+Route::get('/test-name',[TestController::class,'testName'])->name('test-name')->middleware('admin');
+Route::get('/instruction',[TestController::class,'instruction'])->name('instruction')->middleware('admin');
+Route::post('/take-test',[TestController::class,'takeTest'])->name('take-test')->middleware('admin');
 Route::post('/check-answer',[TestController::class,'checkAnswer'])->name('check-answer');
 Route::get('/answer',[TestController::class,'answerPage'])->name('answer')->middleware('admin');
 Route::get('/report',[TestController::class,'monthlyReport'])->name('report')->middleware('admin');

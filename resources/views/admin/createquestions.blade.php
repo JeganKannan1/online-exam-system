@@ -3,24 +3,13 @@
     <!-- Button trigger modal -->
 	<div class="page-wrapper">
 		<div class="content container-fluid">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-	Create Questions
-  </button>
-		</div>
-	</div>
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h5 class="modal-title" id="exampleModalLabel">Question</h5>
-		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		  </button>
-		</div>
-		<div class="modal-body">
-			<form action="{{route('add-question')}}" method = "POST">
+			
+			<form action="{{route('add-question')}}" method="POST" class="myForm">
 				@csrf
+				<div class="form-group">
+					<label>Enter test title</label>
+					<input type="text" class="form-control" name="test_name" placeholder="Enter test title">
+				</div>
 				<div class="form-group">
 					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$getTeam->team_id}}">
 				  </div>
@@ -29,29 +18,43 @@
 				  </div>
 				<div class="form-group">
 				  <label for="exampleInputEmail1">Questions</label>
-				  <input type="text" class="form-control" id="question" aria-describedby="emailHelp" placeholder="Enter question" name="question" required>
+				  <input type="text" class="form-control" id="question" aria-describedby="emailHelp" placeholder="Enter question" name="users[0][question]">
 				</div>
 				<div class="form-group">
 				  <label for="exampleInputPassword1">Options</label>
-				  <input type="text" class="form-control" id="option1" placeholder="option1" name="option1"required>
-				  <input type="text" class="form-control" id="option2" placeholder="option2"name="option2"required>
-				  <input type="text" class="form-control" id="option3" placeholder="option3" name="option3"required>
-				  <input type="text" class="form-control" id="option4" placeholder="option4" name="option4"required>
+				  <input type="text" class="form-control" id="option1" placeholder="option1" name="users[0][option1]">
+				  <input type="text" class="form-control" id="option2" placeholder="option2"name="users[0][option2]">
+				  <input type="text" class="form-control" id="option3" placeholder="option3" name="users[0][option3]">
+				  <input type="text" class="form-control" id="option4" placeholder="option4" name="users[0][option4]">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Answer</label>
-					<input type="text" class="form-control" id="answer" placeholder="answer" name="answer"required>
+					<input type="text" class="form-control" id="answer" placeholder="answer" name="users[0][answer]">
 				  </div>
-				  <button type="submit" class="btn btn-primary">Submit</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-top: 30px">Close</button>
-            </form>
+				
+			<div id="popup"></div>
+			<div class="col-md-6">
+				<button class="btn btn-info" type ="button" id="popup1">ADD</button>
+		  </div>
+		  <div class="col-md-6">
+			<button type="submit" class="btn btn-primary" id="clickMe">Submit</button>
+	  		</div>
+		
+		</form>
+
 		</div>
-	  </div>
 	</div>
-  </div>
-  
-		@jquery
+	@jquery
 @toastr_js
 @toastr_render
+<script>
+	var count = 0;
+	console.log(count);
+	$('#popup1').click(function() {
+		count++;
+		$('#popup').append('<div class="form-group"><label for="exampleInputEmail1">Questions</label><input type="text" class="form-control" id="question" aria-describedby="emailHelp" placeholder="Enter question" name="users[' + count + '][question]"></div><div class="form-group"><label for="exampleInputPassword1">Options</label><input type="text" class="form-control" id="option1" placeholder="option1" name="users[' + count + '][option1]"><input type="text" class="form-control" id="option2" placeholder="option2"name="users[' + count + '][option2]"><input type="text" class="form-control" id="option3" placeholder="option3" name="users[' + count + '][option3]"><input type="text" class="form-control" id="option4" placeholder="option4" name="users[' + count + '][option4]"></div><div class="form-group"><label for="exampleInputPassword1">Answer</label><input type="text" class="form-control" id="answer" placeholder="answer" name="users[' + count + '][answer]"></div>');
+	});
+	
+	</script>
 </body>
 </html>

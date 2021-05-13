@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Question;
 use App\Models\Answer;
+use App\Models\Test;
 use Illuminate\Support\Facades\Validator;
 
 use Mail;
@@ -17,20 +18,29 @@ use App\Jobs\SendEmailJob;
 
 class TestController extends Controller
 {
-    public function __construct(Question $question,Answer $answer)
+    public function __construct(Question $question,Answer $answer,Test $test)
     {
 
        $this->questionreg = $question;
        $this->answer = $answer;
+       $this->test = $test;
 
     }
-    public function takeTest(){
+    public function instruction(){
         $session_id = Session::get('team_id');
-        $getTeam = $this->questionreg->where('team_id', $session_id)->get();
-        return view('employee.questions',compact('getTeam'));
-     }
-     
-
+        $testName = $this->test->where('team_id', $session_id)->get();
+        return view('employee.instructions',compact('testName'));
+    }
+    public function takeTest(Request $request){
+        $session_id = Session::get('team_id');
+        $testName = $this->questionreg->where('team_id', $session_id)->where('test_name',$request->test_name)->get();
+        Session::put('testName',$testName);
+        return redirect()->route('test-name');
+    }
+    public function testName(){
+        $session_id = Session::get('testName');
+        return view('employee.questions',compact('session_id'));
+    }
     public function checkAnswer(Request $request){
         try{
             $validator = Validator::make($request->all(),[

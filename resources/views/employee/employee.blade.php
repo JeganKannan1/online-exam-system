@@ -19,6 +19,7 @@
 								</ul>
 							</div>
 						</div>
+						<div id="test_name"></div>
 					</div>
 					
 				<!-- /Page Content -->
