@@ -61,6 +61,7 @@ Route::post('/update-team',[TeamController::class,'updateTeam'])->name('update-t
 
 Route::post('/add-question',[ExamController::class,'addQuestion'])->name('add-question');
 Route::get('/created',[ExamController::class,'newQuestion'])->name('created')->middleware('admin');
+Route::get('/test-report/{id}',[ExamController::class,'showTest'])->name('test-report')->middleware('admin');
 Route::get('/delete-question/{team}',[ExamController::class,'deleteQuestion'])->name('delete-question')->middleware('admin');
 Route::get('/edit-question/{team}',[ExamController::class,'editQuestion'])->name('edit-question')->middleware('admin');
 Route::post('/update-question',[ExamController::class,'updateQuestion'])->name('update-question');

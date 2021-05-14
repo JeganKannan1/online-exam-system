@@ -18,19 +18,23 @@ use App\Jobs\SendEmailJob;
 
 class ExamController extends Controller
 {
-    public function __construct(Question $question)
+    public function __construct(Question $question,Test $test)
     {
-
+        $this->test = $test;
        $this->questionreg = $question;
     }
 
     public function newQuestion(){
         $session_id = Session::get('team_id');
-        $getTeams = $this->questionreg->where('team_id', $session_id)->get();
-        return view('employee.created',compact('getTeams'));
+        $testTitle = $this->test->where('team_id', $session_id)->get();
+        return view('employee.created',compact('testTitle'));
     }
-    
-    
+    public function showTest($id){
+        $session_id = Session::get('team_id');
+        $questions = $this->questionreg->where('team_id', $session_id)->where('test_name', $id)->get();
+        return view('employee.show-questions',compact('questions'));
+    }
+   
     public function addQuestion(Request $request){
         try{
             if(empty($request->test_name)){
@@ -44,7 +48,6 @@ class ExamController extends Controller
                     'option2'=>'required',
                     'option3'=>'required',
                     'option4'=>'required',
-                    'answer'=>'required',
                 ]);
             }
             if ($validator->fails()) {
@@ -68,7 +71,7 @@ class ExamController extends Controller
                     $questions->option2     = $data['option2'];
                     $questions->option3     = $data['option3'];
                     $questions->option4     = $data['option4'];
-                    $questions->answer      = $data['answer'];
+                    $questions->answer      = $data['check'];
                     $questions->save();
                 }
                 toastr()->success('Question created successfully');

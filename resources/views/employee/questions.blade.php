@@ -38,21 +38,21 @@
                     <input type="hidden" value="{{($question->role_id)}}" name="role_id">
                     <div class="row">
                     <div class="form-check col-md-6">
-                    <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="{{$question->option1}}">
+                    <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="a">
                     <label class="form-check-label">{{$question->option1}}</label>
                     </div>
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="{{$question->option2}}">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="b">
 					<label class="form-check-label"> {{$question->option2}}</label>
                     </div>
                     </div>
                     <div class="row">
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="{{$question->option3}}">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="c">
 					<label class="form-check-label"> {{$question->option3}}</label>
                     </div>
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="{{$question->option4}}">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="d">
 					<label class="form-check-label"> {{$question->option4}}</label>
                     </div>
                 </div>

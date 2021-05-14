@@ -1,32 +1,11 @@
 @extends('layouts.dashboard')
 <div class="page-wrapper">
 		<div class="content container-fluid">
-      <div class="text-center">  
-        <h3>Teams</h3>
-    </div>
-      <div class="row row-teams">
-      @foreach($testTitle as $title)
-      
-    
-    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-    <a href="/test-report/{{$title->id}}">
-    <div class="card dash-widget">
-      <div class="card-body">
-        <div class="text-center">
-          <h4>{{$title->test_title}}</h4>
-        </div>
-        
-      </div>
-    </div>
-    
-    </div>
-    </a>
-    @endforeach
-    </div>
-    {{-- <div class="row">
+            <div class="row">
 	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-header">
+                <h3></h3>
       <table id="example1" class="table table-bordered table-hover">
         <thead>
         <tr class="text-center">
@@ -43,7 +22,7 @@
         </thead>
        <tbody>
         
-          @foreach ($getTeams as $getTeam)
+          @foreach ($questions as $getTeam)
             <tr class="text-center">
             <td class="text-center">{{ $loop->index+1 }}</td>
             <td class="text-center">{{ $getTeam->question }}</td>
@@ -64,6 +43,6 @@
 </div>
 </div>
 </div>
-</div> --}}
+</div>
 </div>
 </div>
