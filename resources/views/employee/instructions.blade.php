@@ -13,7 +13,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <button class="btn btn-success pull-right" type="submit">Submit</button>
+                    <button class="btn btn-success pull-right Target" formtarget="_blank" type="submit">Submit</button>
                 </div>
             </div>
         </form>

@@ -1,4 +1,3 @@
-@extends('layouts.user')
 <html>
 	<head>
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
@@ -24,7 +23,7 @@
            </div>
         @endif
     <form action="{{route('check-answer')}}" method="POST" id = "myForm">
-		@foreach ($session_id as $question)
+		@foreach ($sessionId as $question)
 		@csrf
         <div class="card" id="step-{{$loop->index+1}}">
             
@@ -36,6 +35,8 @@
                 <div class="form-group">
                     <input type="hidden" value="{{($loop->count)}}" name="id">
                     <input type="hidden" value="{{($question->role_id)}}" name="role_id">
+                    <input type="hidden" value="{{($question->test_name)}}" name="test_title">
+                    <input type="hidden" value="{{($question->id)}}" name="question_id">
                     <div class="row">
                     <div class="form-check col-md-6">
                     <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="a">
@@ -71,8 +72,14 @@
             </div>
         </div>
         <script>
+            document.addEventListener("visibilitychange", function() {
+            if (document.visibilityState === 'visible') {
+            } else {
+                // document.getElementById("myForm").submit();
+            }
+            });
 
-            var time = 60;
+            var time = 300;
         callsetTimeOut();  
         
         function callsetTimeOut(){
@@ -84,6 +91,7 @@
            callsetTimeOut();
            
            if(time<=0){
+               console.log('mudinchuchu');
             document.getElementById("myForm").submit();
            
            }

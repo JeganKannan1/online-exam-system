@@ -15,7 +15,7 @@ $(document).ready(function() {
 		],
 		xkey: 'y',
 		ykeys: ['a'],
-		labels: ['Total Income', 'Total Outcome'],
+		labels: ['Avg score'],
 		lineColors: ['#ff9b44','#fc6075'],
 		lineWidth: '3px',
 		barColors: ['#ff9b44','#fc6075'],
