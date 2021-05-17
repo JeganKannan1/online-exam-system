@@ -35,7 +35,7 @@
         <td class="text-center">{{ $getTeam->option4 }}</td>
         <td class="text-center">{{ $getTeam->answer }}</td>
         <td class="text-center">
-            <a href="{{route('edit-question', $getTeam->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-right:20px;">edit</a>
+            <a href="{{route('change-question', $getTeam->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-right:20px;">edit</a>
             <a href="{{route('delete-question', $getTeam->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-left:20px;">delete</a>
         </td>
        </tr>  

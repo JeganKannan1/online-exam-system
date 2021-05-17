@@ -31,7 +31,6 @@
                 <h3 class="card-title">{{$loop->index+1}}.{{$question->question}}</h3>
             </div>
             <div class="card-body">
-               
                 <div class="form-group">
                     <input type="hidden" value="{{($loop->count)}}" name="id">
                     <input type="hidden" value="{{($question->role_id)}}" name="role_id">

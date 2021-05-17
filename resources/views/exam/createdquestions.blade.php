@@ -20,4 +20,3 @@
       @endforeach
     </div>
   </div>
-</div>

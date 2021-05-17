@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Answer;
 use App\Models\Test;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Validator;
 
 use Mail;
@@ -18,10 +19,16 @@ use App\Jobs\SendEmailJob;
 
 class ExamController extends Controller
 {
-    public function __construct(Question $question,Test $test)
+    public function __construct(Question $question,Test $test,Admin $user)
     {
+        $this->userreg = $user;
         $this->test = $test;
        $this->questionreg = $question;
+    }
+    public function createQuestion(){
+        $session_id = Session::get('team_id');
+        $getTeam = $this->userreg->where('team_id', $session_id)->first();
+        return view('teamlead.createquestions',compact('getTeam'));
     }
 
     public function newQuestion(){
@@ -41,25 +48,7 @@ class ExamController extends Controller
         return view('exam.questions',compact('questions','testTitle'));
     }
     public function addQuestion(Request $request){
-        try{
-            if(empty($request->test_name)){
-                toastr()->error("Test name field is required");
-                return back();
-            }
-            foreach ($request->users as $data) {
-                $validator = Validator::make($data,[
-                    'question'=>'required',
-                    'option1'=>'required',
-                    'option2'=>'required',
-                    'option3'=>'required',
-                    'option4'=>'required',
-                ]);
-            }
-            if ($validator->fails()) {
-                $error_messages = implode(',', $validator->messages()->all());
-                toastr()->error($error_messages);
-                return back();
-            }
+       try{
             $test = new Test();
             $test->test_title = $request->test_name;
             $test->team_id = $request->team_id;
@@ -79,11 +68,9 @@ class ExamController extends Controller
                     $questions->save();
                 }
                 toastr()->success('Question created successfully');
-                if(Session::get('role_id')==1){
-                    return redirect()->route('display-questions',['id' => $request->team_id]);
-                }else{     
+                 
                     return redirect('/created');   
-                }
+                
                 
            
     

@@ -56,7 +56,6 @@ class TestController extends Controller
         $session_username = Session::get('username');
         $array = [];
         $total = [];
-        
         $skip = $request->id;
         $title = $request->test_title;
         foreach($request->name as $answer){
@@ -74,15 +73,15 @@ class TestController extends Controller
         $count = count($array);
         $total = count($total);
         $skipped = $skip - $total;
-        $user = new Answer([
-            'user_id' => $session_userid,
-            'test_title' => $title,
-            'score' => $count,
-            'total' => $skip,
-            'skiped' => $skipped,
-            'team_id' => $session_id,
-            'role_id' => 3
-        ]);
+        $user = new Answer();
+
+            $user->user_id = $session_userid;
+            $user->test_title = $title;
+            $user->score = $count;
+            $user->total = $skip;
+            $user->skiped = $skipped;
+            $user->team_id = $session_id;
+            $user->role_id = 3;
         $user->save();
         
         // dd($count);
@@ -100,22 +99,21 @@ class TestController extends Controller
         $user = $this->answer->where('team_id', $session_id)->where('user_id', $session_userid)->orderBy('id', 'DESC')->first();
         return view('employee.answer',compact('user'));
     }
-
     public function monthlyReport(){
-        $session_id = Session::get('team_id');
-        $session_userid = Session::get('id');
-        $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        $getTeam = $this->answer->where('team_id', $session_id)->where('user_id', $session_userid)->get();
-        $result[] = ['mon','score'];
-        foreach ($getTeam as $key => $value) {
-            foreach($month as $mon){
-            $result[++$key] = [$mon, (int)$value->id];
-            }
-        }
-  
+        $teamId = Session::get('team_id');
+        $userId = Session::get('id');
+        $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','sss','ssw','wws','wwe','hhh'];
+        $getTeam = $this->answer->where('team_id', $teamId)->where('user_id', $userId)->get();
+        
+        $result[] = ['month','score'];
+
+        
+       foreach ($getTeam as $key => $value) {
+            $result[++$key] = [$value->test_title, (int)$value->score];
+    }
+        
         return view('employee.report')
                 ->with('visitor',json_encode($result));
-        // return view('employee.report',compact('getTeam'));
-     }
 
+}
 }

@@ -30,11 +30,7 @@ class AdminexamController extends Controller
     //     $getTeam = $this->userreg->where('team_id', $session_id)->first();
     //     return view('admin.adminquestions',compact('getTeam'));
     // }
-    public function createQuestion(){
-        $session_id = Session::get('team_id');
-        $getTeam = $this->userreg->where('team_id', $session_id)->first();
-        return view('admin.createquestions',compact('getTeam'));
-    }
+    
     
     public function listTeam(){
         $session_roleid = Session::get('role_id');
@@ -58,36 +54,29 @@ class AdminexamController extends Controller
 
     public function setQuestion(Request $request){
         try{
-        $this->validate($request,[
-            'question'=>'required',
-            'option1'=>'required',
-            'option2'=>'required',
-            'option3'=>'required',
-            'option4'=>'required',
-            'answer'=>'required',
-         ]);
-         $getTeam = $this->questionreg->where('question',$request->question)->first();
-         if(empty($getTeam)){
-             if($request->option1 != $request->option2 && $request->option2 != $request->option3 && $request->option3 != $request->option4 && $request->option1 != $request->option3 && $request->option2 != $request->option4){
-                if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4){
-
-        $question = Question::create($request->all());
-        toastr()->success('Question created successfully');
-        return redirect()->route('display-questions',['id' => $request->team_id]);
-        }else{
-            toastr()->error('please enter an answer from one of the given option');
-            return back();
-         }
-        }else{
-            toastr()->error('options are repeated');
-            return back();
-        }
-        }else{
-            toastr()->error('the entered question is already exist please enter a new question');
-            return back();
-         }
+            $test = new Test();
+            $test->test_title = $request->test_name;
+            $test->team_id = $request->team_id;
+            $test->save();
+                foreach ($request->users as $data) {
+                    
+                    $questions = new Question();
+                    $questions->team_id     = $request->team_id;
+                    $questions->role_id     = $request->role_id;
+                    $questions->test_name   = $test->id;
+                    $questions->question    = $data['question'];
+                    $questions->option1     = $data['option1'];
+                    $questions->option2     = $data['option2'];
+                    $questions->option3     = $data['option3'];
+                    $questions->option4     = $data['option4'];
+                    $questions->answer      = $data['check'];
+                    $questions->save();
+                }
+                toastr()->success('Question created successfully');
+                 
+                return redirect()->route('display-questions',['id' => $request->team_id]);
         }catch(Throwable $exception){
-            return redirect()->route('index')
+            return redirect()->route('dashboard')
             ->with('error',$exception->getMessages());
             Log::info('admin login',$exception->getMessages());
         }
@@ -105,25 +94,12 @@ class AdminexamController extends Controller
     }
     public function rewriteQuestion(Request $request){
         try{
-            $this->validate($request,[
-                'question'=>'required',
-                'option1'=>'required',
-                'option2'=>'required',
-                'option3'=>'required',
-                'option4'=>'required',
-                'answer'=>'required'
-             ]);
-             
-             if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4)
-                {
+                
                     $update = $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
                     
                     toastr()->success('Question edited successfully');
                     return redirect()->route('display-questions',['id' => $request->team_id]);
-                }else{
-                    toastr()->error('please enter an answer from one of the given option');
-                    return back();
-                }
+               
             }catch(Throwable $exception){
             return redirect()->route('dashboard')
             ->with('error',$exception->getMessages());

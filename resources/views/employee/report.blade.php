@@ -8,40 +8,6 @@
   <div class="page-wrapper">
 		<div class="content container-fluid">
       <div id="linechart" style="width: 100%; height: 500px;"></div>
-      {{-- <div class="row">
-	      <div class="col-lg-12">
-		      <div class="card">
-			      <div class="card-header">
-              <table id="example1" class="table table-bordered table-hover">
-                <thead>
-                  <tr class="text-center">
-                    <th class="text-center">Id</th>
-                    <th class="text-center">Date</th>
-                    <th class="text-center">Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @if(count($getTeam)>0)
-                    @foreach ($getTeam as $getTeams)
-                      <tr class="text-center">
-                      <td class="text-center">{{ $getTeams->id }}</td>
-                      <td class="text-center">{{ $getTeams->created_at }}</td>
-                      <td class="text-center">{{ $getTeams->score }}</td>
-                      </tr>
-                    @endforeach
-                  @else
-                    <tr class="text-center">
-                    <td class="text-center"></td>
-                    <td class="text-center">No data found</td>
-                    <td class="text-center"></td>
-                    </tr>
-                  @endif
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div> --}}
     </div>
   </div>
 

@@ -104,7 +104,19 @@ class TeamController extends Controller
         return view('teamlead.teamreport',compact('editTeamate'));
     }
     public function userReport($id){
-        $userReport = $this->userscore->where('user_id',$id)->get();
-        return view('teamlead.userreport',compact('userReport'));
+        $session_id = Session::get('team_id');
+        $session_userid = Session::get('id');
+        $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','sss','ssw','wws','wwe','hhh'];
+        $getTeam = $this->userscore->where('team_id', $session_id)->where('user_id', $id)->get();
+        
+        $result[] = ['month','score'];
+
+        
+       foreach ($getTeam as $key => $value) {
+            $result[++$key] = [$value->created_at->format('d'), (int)$value->score];
+    }
+        
+        return view('teamlead.userreport')
+                ->with('visitor',json_encode($result));
     }
 }

@@ -66,9 +66,8 @@ Route::get('/test-report/{id}',[ExamController::class,'showTest'])->name('test-r
 Route::get('/delete-question/{team}',[ExamController::class,'deleteQuestion'])->name('delete-question')->middleware('admin');
 Route::get('/edit-question/{team}',[ExamController::class,'editQuestion'])->name('edit-question')->middleware('admin');
 Route::post('/update-question',[ExamController::class,'updateQuestion'])->name('update-question');
+Route::get('/create-question',[ExamController::class,'createQuestion'])->name('create-question')->middleware('admin');
 
-
-Route::get('/create-question',[AdminexamController::class,'createQuestion'])->name('create-question')->middleware('admin');
 Route::get('/list-team',[AdminexamController::class,'listTeam'])->name('list-team')->middleware('admin');
 Route::get('/make-question/{id}',[AdminexamController::class,'makeQuestion'])->name('make-question')->middleware('admin');
 Route::post('/set-question',[AdminexamController::class,'setQuestion'])->name('set-question');
