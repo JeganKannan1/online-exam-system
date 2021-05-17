@@ -31,10 +31,15 @@ class ExamController extends Controller
     }
     public function showTest($id){
         $session_id = Session::get('team_id');
+        $testTitle = $this->test->where('team_id', $session_id)->where('id', $id)->first();
         $questions = $this->questionreg->where('team_id', $session_id)->where('test_name', $id)->get();
-        return view('employee.show-questions',compact('questions'));
+        return view('employee.show-questions',compact('questions','testTitle'));
     }
-   
+    public function createdQuestion($teamId,$id){
+        $testTitle = $this->test->where('team_id', $teamId)->where('id', $id)->first();
+        $questions = $this->questionreg->where('team_id', $teamId)->where('test_name', $id)->get();
+        return view('exam.questions',compact('questions','testTitle'));
+    }
     public function addQuestion(Request $request){
         try{
             if(empty($request->test_name)){
@@ -55,10 +60,9 @@ class ExamController extends Controller
                 toastr()->error($error_messages);
                 return back();
             }
-            $session_id = Session::get('team_id');
             $test = new Test();
             $test->test_title = $request->test_name;
-            $test->team_id = $session_id;
+            $test->team_id = $request->team_id;
             $test->save();
                 foreach ($request->users as $data) {
                     
@@ -75,7 +79,12 @@ class ExamController extends Controller
                     $questions->save();
                 }
                 toastr()->success('Question created successfully');
-                return redirect('/created');
+                if(Session::get('role_id')==1){
+                    return redirect()->route('display-questions',['id' => $request->team_id]);
+                }else{     
+                    return redirect('/created');   
+                }
+                
            
     
         }catch(Throwable $exception){
@@ -106,15 +115,13 @@ class ExamController extends Controller
                 return back();
             }
              
-             if($request->answer == $request->option1||$request->answer == $request->option2||$request->answer == $request->option3||$request->answer == $request->option4)
-                {
+             
                     $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
                     toastr()->success('Question edited successfully');
                     return redirect('/created');
-                }else{
                     toastr()->error('please enter an answer from one of the given option');
                     return back();
-             }
+             
             }catch(Throwable $exception){
                 return redirect()->route('dashboard')
                 ->with('error',$exception->getMessages());

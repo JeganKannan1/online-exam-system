@@ -20,8 +20,12 @@
           <label>option4</label>
           <input type="text" class="form-control" id="option4" name = "option4" value="{{ $editTeams->option4}}">
           <label>answer</label>
-          <input type="text" class="form-control" id="answer" name = "answer" value="{{ $editTeams->answer}}">
-        </div>
+          <select name="answer" id="answer" class="form-control">
+            <option value="a">A</option>
+            <option value="b">B</option>
+            <option value="c">C</option>
+            <option value="d">D</option>
+          </select>           </div>
         <button type="submit" class="btn btn-primary">update</button>
       </form>
     </div>

@@ -35,14 +35,14 @@ class TestController extends Controller
         $teamId = Session::get('team_id');
         $testName = $this->questionreg->where('team_id', $teamId)->where('test_name',$request->test_name)->get();
         Session::put('testName',$testName);
-        return redirect()->route('test-name');
+        return redirect()->route('take-exam');
     }
     public function testName(){
         $testName = Session::get('testName');
         return view('employee.questions',compact('testName'));
     }
     public function checkAnswer(Request $request){
-        try{
+                try{
             $validator = Validator::make($request->all(),[
                 'name'=>'required',
                 ]);
@@ -56,21 +56,27 @@ class TestController extends Controller
         // $session_username = Session::get('username');
         $array = [];
         $total = [];
+        
         $skip = $request->id;
+        $title = $request->test_title;
         foreach($request->name as $answer){
-            array_push($total,$answer);
-            $getTeam =$this->questionreg->where('team_id', $teamId)->where('answer', $answer)->first();
-            if( ($getTeam && $answer)== true ){
-                array_push($array,$answer);
+            
+            foreach($answer as $key){
+                array_push($total,$key);
+                
+            $getTeam =$this->questionreg->where('team_id', $session_id)->where('id', $request->question_id)->where('answer', $key)->first();
+
+            if($getTeam){
+                array_push($array,$key);
+                }
             }
-           
         }
-    
         $count = count($array);
         $total = count($total);
         $skipped = $skip - $total;
         $user = new Answer([
-            'user_id' => $userId,
+            'user_id' => $session_userid,
+            'test_title' => $title,
             'score' => $count,
             'total' => $skip,
             'skiped' => $skipped,
@@ -93,10 +99,20 @@ class TestController extends Controller
     }
 
     public function monthlyReport(){
-        $teamId = Session::get('team_id');
-        $userId = Session::get('id');
-        $getTeam = $this->answer->where('team_id', $teamId)->where('user_id', $userId)->get();
-        return view('employee.report',compact('getTeam'));
-    }
+        $session_id = Session::get('team_id');
+        $session_userid = Session::get('id');
+        $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        $getTeam = $this->answer->where('team_id', $session_id)->where('user_id', $session_userid)->get();
+        $result[] = ['mon','score'];
+        foreach ($getTeam as $key => $value) {
+            foreach($month as $mon){
+            $result[++$key] = [$mon, (int)$value->id];
+            }
+        }
+  
+        return view('employee.report')
+                ->with('visitor',json_encode($result));
+        // return view('employee.report',compact('getTeam'));
+     }
 
 }

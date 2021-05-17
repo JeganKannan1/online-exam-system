@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 @toastr_css
     <!-- Button trigger modal -->
 	<div class="page-wrapper">
@@ -11,7 +11,7 @@
 					<input type="text" class="form-control" name="test_name" placeholder="Enter test title">
 				</div>
 				<div class="form-group">
-					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$getTeam->team_id}}">
+					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$team_id}}">
 				  </div>
 				  <div class="form-group">
 					<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value="{{$getTeam->role_id}}">

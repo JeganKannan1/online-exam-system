@@ -5,7 +5,10 @@
 	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-header">
-                <h3></h3>
+            <div class="text-center">
+                <h3>{{ $testTitle->test_title }}</h3>
+            </div>
+           
       <table id="example1" class="table table-bordered table-hover">
         <thead>
         <tr class="text-center">

@@ -60,7 +60,8 @@ Route::post('/update-team',[TeamController::class,'updateTeam'])->name('update-t
 
 
 Route::post('/add-question',[ExamController::class,'addQuestion'])->name('add-question');
-Route::get('/created',[ExamController::class,'newQuestion'])->name('created')->middleware('admin');
+Route::get('/created',[ExamController::class,'newQuestion'])->name('created')->middleware('admin');Route::get('/created',[ExamController::class,'newQuestion'])->name('created')->middleware('admin');
+Route::get('/created-questions/{team_id}/{id}',[ExamController::class,'createdQuestion'])->name('created-questions')->middleware('admin');
 Route::get('/test-report/{id}',[ExamController::class,'showTest'])->name('test-report')->middleware('admin');
 Route::get('/delete-question/{team}',[ExamController::class,'deleteQuestion'])->name('delete-question')->middleware('admin');
 Route::get('/edit-question/{team}',[ExamController::class,'editQuestion'])->name('edit-question')->middleware('admin');
@@ -76,7 +77,7 @@ Route::get('/change-question/{team}',[AdminexamController::class,'changeQuestion
 Route::post('/rewrite-question',[AdminexamController::class,'rewriteQuestion'])->name('rewrite-question');
 Route::get('/list-team1',[AdminexamController::class,'listTeam1'])->name('list-team1')->middleware('admin');
 
-Route::get('/test-name',[TestController::class,'testName'])->name('test-name')->middleware('admin');
+Route::get('/take-exam',[TestController::class,'testExam'])->name('take-exam')->middleware('admin');
 Route::get('/instruction',[TestController::class,'instruction'])->name('instruction')->middleware('admin');
 Route::post('/take-test',[TestController::class,'takeTest'])->name('take-test')->middleware('admin');
 Route::post('/check-answer',[TestController::class,'checkAnswer'])->name('check-answer');

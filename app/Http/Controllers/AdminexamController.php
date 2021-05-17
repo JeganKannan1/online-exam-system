@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Admin;
 use App\Models\Team;
+use App\Models\Test;
 
 use Mail;
 use DB;
@@ -17,11 +18,12 @@ use App\Jobs\SendEmailJob;
 
 class AdminexamController extends Controller
 {
-    public function __construct(Question $question,Admin $user,Team $team)
+    public function __construct(Question $question,Admin $user,Team $team,Test $test)
     {
         $this->userreg = $user;
         $this->team = $team;
         $this->questionreg = $question;
+        $this->test = $test;
     }
     // public function adminQuestion(){
     //     $session_id = Session::get('team_id');
@@ -48,11 +50,10 @@ class AdminexamController extends Controller
 
 
     public function makeQuestion($id){
-        $session_teamid = Session::get('team_id');
-        $session_roleid = Session::get('role_id');
-        $team_id = $id;
-        $getTeam = $this->questionreg->where('team_id',$id)->first();
-        return view('admin.display',compact('session_roleid','session_teamid','team_id'));
+        $session_id = Session::get('team_id');
+        $team_id  = $id;
+        $getTeam = $this->userreg->where('team_id', $session_id)->first();
+        return view('exam.newquestion',compact('getTeam','team_id'));
     }
 
     public function setQuestion(Request $request){
@@ -92,9 +93,10 @@ class AdminexamController extends Controller
         }
     }
     public function displayQuestion($id){
-        // $session_id = Session::get('team_id');
-        $getTeams = $this->questionreg->where('team_id', $id)->get();
-        return view('admin.showquestion',compact('getTeams'));
+        $session_id = Session::get('team_id');
+        $team_id  = $id;
+        $testTitle = $this->test->where('team_id', $id)->get();
+        return view('exam.createdquestions',compact('testTitle','team_id'));
     }
     public function changeQuestion($id){
         
