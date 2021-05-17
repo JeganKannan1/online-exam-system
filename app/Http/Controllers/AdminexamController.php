@@ -35,13 +35,13 @@ class AdminexamController extends Controller
     }
     
     public function listTeam(){
-        $session_roleid = Session::get('role_id');
+        // $session_roleid = Session::get('role_id');
         $getTeam = $this->team->get()->except(["id" => 1]);
         return view('admin.listTeam',compact('getTeam'));
     }
 
     public function listTeam1(){
-        $session_roleid = Session::get('role_id');
+        // $session_roleid = Session::get('role_id');
         $getTeam = $this->team->get()->except(["id" => 1]);
         return view('admin.list-team-question',compact('getTeam'));
     }
@@ -92,7 +92,7 @@ class AdminexamController extends Controller
         }
     }
     public function displayQuestion($id){
-        $session_id = Session::get('team_id');
+        // $session_id = Session::get('team_id');
         $getTeams = $this->questionreg->where('team_id', $id)->get();
         return view('admin.showquestion',compact('getTeams'));
     }

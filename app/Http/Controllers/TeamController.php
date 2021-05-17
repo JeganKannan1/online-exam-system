@@ -69,7 +69,6 @@ class TeamController extends Controller
         return back();
     }
 
-    
     public function edit($id){
         
         $editTeams = $this->teamreg->where('id',$id)->first();
@@ -98,9 +97,8 @@ class TeamController extends Controller
         return view('teamlead.dashboard');
     }
     public function teamReport(){
-        $session_teamid = Session::get('team_id');
-        $session_roleid = Session::get('role_id');
-        $editTeamate = $this->userreg->where('team_id',$session_teamid)->where('role_id','3')->get();
+        $teamId = Session::get('team_id');
+        $editTeamate = $this->userreg->where('team_id',$teamId)->where('role_id','3')->get();
         return view('teamlead.teamreport',compact('editTeamate'));
     }
     public function userReport($id){

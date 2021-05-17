@@ -21,7 +21,7 @@ class ExamController extends Controller
     public function __construct(Question $question,Test $test)
     {
         $this->test = $test;
-       $this->questionreg = $question;
+        $this->questionreg = $question;
     }
 
     public function newQuestion(){
