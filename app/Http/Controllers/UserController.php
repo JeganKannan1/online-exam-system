@@ -28,7 +28,6 @@ class UserController extends Controller
 
     public function addUser(){
         $getUsers = $this->userreg->with('Team')->with('Role')->get()->except(["id"=>1]);
-        // dd($getUsers);
         $teamname = Team::all()->except(["id"=>1]);
         $rolename = Role::all()->except(["id"=>1]);
         return view('admin.user',compact('teamname','rolename','getUsers'));
@@ -105,8 +104,8 @@ class UserController extends Controller
     }
 
     public function empDashboard(){
-        $session_id = Session::get('team_id');
-        $getTeam = DB::table('questions')->where('team_id', $session_id)->first();
+        $teamId = Session::get('team_id');
+        $getTeam = DB::table('questions')->where('team_id', $teamId)->first();
         return view('employee.employee',compact('getTeam'));
     }
 

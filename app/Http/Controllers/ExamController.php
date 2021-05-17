@@ -23,7 +23,7 @@ class ExamController extends Controller
     {
         $this->userreg = $user;
         $this->test = $test;
-       $this->questionreg = $question;
+        $this->questionreg = $question;
     }
     public function createQuestion(){
         $session_id = Session::get('team_id');

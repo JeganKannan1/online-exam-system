@@ -27,19 +27,19 @@ class TestController extends Controller
 
     }
     public function instruction(){
-        $session_id = Session::get('team_id');
-        $testName = $this->test->where('team_id', $session_id)->get();
+        $teamId = Session::get('team_id');
+        $testName = $this->test->where('team_id', $teamId)->get();
         return view('employee.instructions',compact('testName'));
     }
     public function takeTest(Request $request){
-        $session_id = Session::get('team_id');
-        $testName = $this->questionreg->where('team_id', $session_id)->where('test_name',$request->test_name)->get();
+        $teamId = Session::get('team_id');
+        $testName = $this->questionreg->where('team_id', $teamId)->where('test_name',$request->test_name)->get();
         Session::put('testName',$testName);
         return redirect()->route('take-exam');
     }
-    public function testExam(){
-        $sessionId = Session::get('testName');
-        return view('employee.questions',compact('sessionId'));
+    public function testName(){
+        $testName = Session::get('testName');
+        return view('employee.questions',compact('testName'));
     }
     public function checkAnswer(Request $request){
                 try{
@@ -51,9 +51,9 @@ class TestController extends Controller
                     toastr()->error($error_messages);
                     return back();
                 }
-        $session_id = Session::get('team_id');
-        $session_userid = Session::get('id');
-        $session_username = Session::get('username');
+        $teamId = Session::get('team_id');
+        $userId = Session::get('id');
+        // $session_username = Session::get('username');
         $array = [];
         $total = [];
         $skip = $request->id;
@@ -83,9 +83,6 @@ class TestController extends Controller
             $user->team_id = $session_id;
             $user->role_id = 3;
         $user->save();
-        
-        // dd($count);
-        // dd($total);
         return redirect()->route('answer');
         }catch(Throwable $exception){
             return back()
@@ -94,9 +91,9 @@ class TestController extends Controller
     }
     }
     public function answerPage(){
-        $session_id = Session::get('team_id');
-        $session_userid = Session::get('id');
-        $user = $this->answer->where('team_id', $session_id)->where('user_id', $session_userid)->orderBy('id', 'DESC')->first();
+        $teamId = Session::get('team_id');
+        $userId = Session::get('id');
+        $user = $this->answer->where('team_id', $teamId)->where('user_id', $userId)->orderBy('id', 'DESC')->first();
         return view('employee.answer',compact('user'));
     }
     public function monthlyReport(){

@@ -33,13 +33,13 @@ class AdminexamController extends Controller
     
     
     public function listTeam(){
-        $session_roleid = Session::get('role_id');
+        // $session_roleid = Session::get('role_id');
         $getTeam = $this->team->get()->except(["id" => 1]);
         return view('admin.listTeam',compact('getTeam'));
     }
 
     public function listTeam1(){
-        $session_roleid = Session::get('role_id');
+        // $session_roleid = Session::get('role_id');
         $getTeam = $this->team->get()->except(["id" => 1]);
         return view('admin.list-team-question',compact('getTeam'));
     }

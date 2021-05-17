@@ -59,11 +59,8 @@
 						    <input type="radio" id="name4activaitor"class="radio0" onclick="if(this.checked){ document.getElementById('option4').focus();}" name="users[0][check]" value="d"/>D
 						</div>
 					</div>
-                    
-				
-
-
-                </div>
+					
+					</div>
 			
 				
 			        <div id="popup"></div>
