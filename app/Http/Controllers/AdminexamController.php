@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateQuestionRequest;
 
 use App\Models\Question;
 use App\Models\Admin;
@@ -25,35 +26,25 @@ class AdminexamController extends Controller
         $this->questionreg = $question;
         $this->test = $test;
     }
-    // public function adminQuestion(){
-    //     $session_id = Session::get('team_id');
-    //     $getTeam = $this->userreg->where('team_id', $session_id)->first();
-    //     return view('admin.adminquestions',compact('getTeam'));
-    // }
-    
-    
     public function listTeam(){
         // $session_roleid = Session::get('role_id');
         $getTeam = $this->team->get()->except(["id" => 1]);
         return view('admin.listTeam',compact('getTeam'));
     }
-
     public function listTeam1(){
         // $session_roleid = Session::get('role_id');
         $getTeam = $this->team->get()->except(["id" => 1]);
         return view('admin.list-team-question',compact('getTeam'));
     }
-
-
     public function makeQuestion($id){
         $session_id = Session::get('team_id');
         $team_id  = $id;
         $getTeam = $this->userreg->where('team_id', $session_id)->first();
         return view('exam.newquestion',compact('getTeam','team_id'));
     }
-
-    public function setQuestion(Request $request){
+    public function setQuestion(CreateQuestionRequest $request){
         try{
+            $validated = $request->validated();
             $test = new Test();
             $test->test_title = $request->test_name;
             $test->team_id = $request->team_id;
