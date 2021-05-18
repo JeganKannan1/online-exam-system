@@ -53,7 +53,6 @@ class TestController extends Controller
                 }
         $teamId = Session::get('team_id');
         $userId = Session::get('id');
-        // $session_username = Session::get('username');
         $array = [];
         $total = [];
         $skip = $request->id;
@@ -63,7 +62,7 @@ class TestController extends Controller
             foreach($answer as $key){
                 array_push($total,$key);
                 
-            $getTeam =$this->questionreg->where('team_id', $session_id)->where('id', $request->question_id)->where('answer', $key)->first();
+            $getTeam =$this->questionreg->where('team_id', $teamId)->where('id', $request->question_id)->where('answer', $key)->first();
 
             if($getTeam){
                 array_push($array,$key);
@@ -75,12 +74,12 @@ class TestController extends Controller
         $skipped = $skip - $total;
         $user = new Answer();
 
-            $user->user_id = $session_userid;
+            $user->user_id = $userId;
             $user->test_title = $title;
             $user->score = $count;
             $user->total = $skip;
             $user->skiped = $skipped;
-            $user->team_id = $session_id;
+            $user->team_id = $teamId;
             $user->role_id = 3;
         $user->save();
         return redirect()->route('answer');

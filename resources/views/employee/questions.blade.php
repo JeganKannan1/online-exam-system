@@ -32,34 +32,34 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <input type="hidden" value="{{($loop->count)}}" name="id">
-                    <input type="hidden" value="{{($question->role_id)}}" name="role_id">
-                    <input type="hidden" value="{{($question->test_name)}}" name="test_title">
-                    <input type="hidden" value="{{($question->id)}}" name="question_id">
+                    <input type="hidden" value="{{($loop->count)}}" name="id" required>
+                    <input type="hidden" value="{{($question->role_id)}}" name="role_id" required>
+                    <input type="hidden" value="{{($question->test_name)}}" name="test_title" required>
+                    <input type="hidden" value="{{($question->id)}}" name="question_id" required>
                     <div class="row">
                     <div class="form-check col-md-6">
-                    <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="a">
+                    <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="a" required>
                     <label class="form-check-label">{{$question->option1}}</label>
                     </div>
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="b">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="b" required>
 					<label class="form-check-label"> {{$question->option2}}</label>
                     </div>
                     </div>
                     <div class="row">
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="c">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="c" required>
 					<label class="form-check-label"> {{$question->option3}}</label>
                     </div>
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="d">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="d" required>
 					<label class="form-check-label"> {{$question->option4}}</label>
                     </div>
                 </div>
                 </div>
 
 				@if ($loop->index == ($loop->count)-1 )
-				<button class="btn btn-success pull-right" type="submit">Finish!</button>
+				<button class="btn btn-success pull-right"  type="submit">Finish!</button>
 				@endif
 
 				
@@ -74,7 +74,7 @@
             document.addEventListener("visibilitychange", function() {
             if (document.visibilityState === 'visible') {
             } else {
-                // document.getElementById("myForm").submit();
+                document.getElementById("myForm").submit();
             }
             });
 
@@ -97,6 +97,42 @@
           }min +"Min Left"
           }, 1000);
         }
+
+        //right clicks disable
+
+        var message = "";
+        function clickIE() {
+            if (document.all) {
+                (message);
+                return false;
+            }
+        }
+        
+        function clickNS(e) {
+            if (document.layers || (document.getElementById && !document.all)) {
+                if (e.which == 2 || e.which == 3) {
+                    (message);
+                    return false;
+                }
+            }
+        }
+        if (document.layers) {
+            document.captureEvents(Event.MOUSEDOWN);
+            document.onmousedown = clickNS;
+        } else {
+            document.onmouseup = clickNS;
+            document.oncontextmenu = clickIE;
+        }
+        
+        document.oncontextmenu = new Function("return false")
+
+        //reload alert message
+        window.onbeforeunload = function() {
+            return "Data will be lost if you leave the page, are you sure?";
+        };
+        
+        
+
         </script>
 
 		@jquery

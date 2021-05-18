@@ -21,26 +21,26 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Employee Name</label>
-            <input type="name" class="form-control" id="username" placeholder="Enter the Employee Name" name="username">
+            <input type="name" class="form-control" id="username" placeholder="Enter the Employee Name" name="username" required>
           </div>
           <div class="form-group col-md-6">
               <label for="inputPassword4">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Enter the Password" name="password" value = "sparkout">
+              <input type="password" class="form-control" id="password" placeholder="Enter the Password" name="password" value = "sparkout" required>
           </div>
           <div class="form-group col-md-6">
               <label for="inputEmail4">Name</label>
-              <input type="name" class="form-control" id="name" placeholder="Enter the name" name="name">
+              <input type="name" class="form-control" id="name" placeholder="Enter the name" name="name" required>
           </div>
           <div class="form-group col-md-6">
               <label for="inputEmail4">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter the email" name="email">
+              <input type="email" class="form-control" id="email" placeholder="Enter the email" name="email" required>
           </div>
             
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputAddress">Phone Number</label>
-            <input type="text" class="form-control" id="PhoneNumber" placeholder="Enter the Phone Number" name="phone">
+            <input type="text" class="form-control" id="PhoneNumber" placeholder="Enter the Phone Number" name="phone" required>
           </div>
           <div class="form-group col-md-6">
               <label for="inputAddress">Select Team</label>

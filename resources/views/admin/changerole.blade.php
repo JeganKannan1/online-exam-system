@@ -19,11 +19,11 @@
         <form action="{{route('update-role')}}" method = "POST">
             @csrf
             <div class="form-group">
-                <input type="hidden" value="{{$editRoles->id}}" name="id">
+                <input type="hidden" value="{{$editRoles->id}}" name="id" required>
             </div>
             <div class="form-group">
                 <label>Update Role</label>
-                <input type="text" class="form-control" id="team" name = "role_name" value="{{ $editRoles->role_name}}">
+                <input type="text" class="form-control" id="team" name = "role_name" value="{{ $editRoles->role_name}}" required>
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>

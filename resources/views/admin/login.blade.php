@@ -71,7 +71,7 @@
 										</div>
 										
 									</div>
-                                    <input class="form-control" type="password" name = "password">
+                                    <input class="form-control" type="password" name = "password" required>
 								</div>
 								<div class="form-group text-center">
 									<button class="btn btn-primary account-btn" type="submit">Login</button>

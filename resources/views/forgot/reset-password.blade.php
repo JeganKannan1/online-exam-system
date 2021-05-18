@@ -34,25 +34,33 @@
 		<!-- Main Wrapper -->
             <div class="main-wrapper">
 			    <div class="account-content">
-				    <div class = "container col-md-12">
+				    <div class = "container">
+                    <div class="account-logo">
+						<a href="#"><img src="assets/img/sparkout.png"></a>
+					</div>
                         <form action="{{route('update-password')}}" method = "POST">
                             @csrf
                             <div class="form-group">
-                            <input type="hidden" class="form-control" id="id" name = "id" value = '{{$editUsers->id}}'>
+                            <input type="hidden" class="form-control" id="id" name = "id" value = '{{$editUsers->id}}' required >
                             </div>
+                            <div class="account-box">
+					        <div class="account-wrapper">
+                            <h3 class="account-title">Reset-Password</h3></br>
                             <div class="form-group">
                             <label>Create new password</label>
-                            <input type="password" class="form-control" id="password" name = "password">
+                            <input type="password" class="form-control" id="password" name = "password" required >
                             </div>
                             <div class="form-group">
                             <label>Confirm password</label>
-                            <input type="password" class="form-control" id="password1" name = "password1">
+                            <input type="password" class="form-control" id="password1" name = "password1" required >
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
+</div>
+</div>
     @jquery
 @toastr_js
 @toastr_render

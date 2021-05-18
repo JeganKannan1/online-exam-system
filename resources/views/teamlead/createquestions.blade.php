@@ -8,17 +8,17 @@
 				@csrf
 				<div class="form-group">
 					<label>Enter test title</label>
-					<input type="text" class="form-control" name="test_name" placeholder="Enter test title">
+					<input type="text" class="form-control" name="test_name" placeholder="Enter test title" required >
 				</div>
 				<div class="form-group">
-					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$getTeam->team_id}}">
+					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$getTeam->team_id}}" required >
 				  </div>
 				  <div class="form-group">
-					<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value="{{$getTeam->role_id}}">
+					<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value="{{$getTeam->role_id}}" required >
 				  </div>
 				<div class="form-group">
 				  <label for="exampleInputEmail1">Questions</label>
-				  <input type="text" class="form-control" id="question" aria-describedby="emailHelp" placeholder="Enter question" name="users[0][question]">
+				  <input type="text" class="form-control" id="question" aria-describedby="emailHelp" placeholder="Enter question" name="users[0][question]" required >
 				</div>
 				<div class="form-group">
 					<label>Options</label><br>
@@ -28,16 +28,16 @@
                 <div class="form-group">
 				    <div class="form-group">
                         <label for="Option A">
-						    <input type="text" class="form-control" id="option1" placeholder="Option A" name="users[0][option1]" />
+						    <input type="text" class="form-control" id="option1" placeholder="Option A" name="users[0][option1]" required />
                         </label>
 						<label for="Option B">
-						    <input type="text" class="form-control" id="option2" placeholder="Option B"name="users[0][option2]" />
+						    <input type="text" class="form-control" id="option2" placeholder="Option B"name="users[0][option2]" required />
                         </label>
 						<label for="Option C"> 
-						    <input type="text" class="form-control" id="option3" placeholder="Option C" name="users[0][option3]" />
+						    <input type="text" class="form-control" id="option3" placeholder="Option C" name="users[0][option3]" required />
 						</label>
 						<label for="Option D">
-						    <input type="text" class="form-control" id="option4" placeholder="Option D" name="users[0][option4]" />
+						    <input type="text" class="form-control" id="option4" placeholder="Option D" name="users[0][option4]" required />
 						</label>
 					</div>
 
@@ -47,16 +47,16 @@
 
 					<div class="form-group row">
 					    <div class="col-md-3">
-						    <input type="radio" id="name1activaitor" class="radio0" onclick="if(this.checked){ document.getElementById('option1').focus();}" name="users[0][check]" value="a"/>A
+						    <input type="radio" id="name1activaitor" class="radio0" onclick="if(this.checked){ document.getElementById('option1').focus();}" name="users[0][check]" value="a" required />A
 						</div>
 						<div class="col-md-3">
-						    <input type="radio" id="name2activaitor" class="radio0" onclick="if(this.checked){ document.getElementById('option2').focus();}" name="users[0][check]" value="b"/>B
+						    <input type="radio" id="name2activaitor" class="radio0" onclick="if(this.checked){ document.getElementById('option2').focus();}" name="users[0][check]" value="b" required />B
 						</div>	
 						<div class="col-md-3">
-						    <input type="radio" id="name3activaitor"class="radio0" onclick="if(this.checked){ document.getElementById('option3').focus();}" name="users[0][check]" value="c"/>C
+						    <input type="radio" id="name3activaitor"class="radio0" onclick="if(this.checked){ document.getElementById('option3').focus();}" name="users[0][check]" value="c" required />C
 						</div>
 						<div class="col-md-3">
-						    <input type="radio" id="name4activaitor"class="radio0" onclick="if(this.checked){ document.getElementById('option4').focus();}" name="users[0][check]" value="d"/>D
+						    <input type="radio" id="name4activaitor"class="radio0" onclick="if(this.checked){ document.getElementById('option4').focus();}" name="users[0][check]" value="d" required />D
 						</div>
 					</div>
 					
