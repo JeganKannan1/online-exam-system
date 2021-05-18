@@ -40,8 +40,17 @@ class AdminAuthController extends Controller
         return view('welcome');
     }
     public function index(){
+        $teamId = Session::get('team_id');
+        $getTeam = DB::table('table_marks')->join('test', 'test.id', '=', 'table_marks.test_title')
+              ->select('table_marks.score','test.test_title')
+               
+              ->get();
+              $result[] = ['month','score'];
+       foreach ($getTeam as $key => $value) {
+            $result[++$key] = [$value->test_title, (int)$value->score];
+    }
         $getUsers = $this->team->get()->except(["id"=>1]);
-        return view('admin.index',compact('getUsers'));
+        return view('admin.index',compact('getUsers'))->with('visitor',json_encode($result));
     }
 
     public function login(){

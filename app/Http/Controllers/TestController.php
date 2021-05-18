@@ -58,29 +58,28 @@ class TestController extends Controller
         $total = [];
         $skip = $request->id;
         $title = $request->test_title;
+        // dd($request->all());
         foreach($request->name as $answer){
-            
-            foreach($answer as $key){
-                array_push($total,$key);
+                array_push($total,$answer);
                 
-            $getTeam =$this->questionreg->where('team_id', $session_id)->where('id', $request->question_id)->where('answer', $key)->first();
+            $getTeam =$this->questionreg->where('team_id', $teamId)->where('id', $answer['question'])->where('answer', $answer['answer'])->first();
 
             if($getTeam){
-                array_push($array,$key);
+                array_push($array,$answer);
                 }
-            }
+            
         }
         $count = count($array);
         $total = count($total);
         $skipped = $skip - $total;
         $user = new Answer();
 
-            $user->user_id = $session_userid;
+            $user->user_id = $userId;
             $user->test_title = $title;
             $user->score = $count;
             $user->total = $skip;
             $user->skiped = $skipped;
-            $user->team_id = $session_id;
+            $user->team_id = $teamId;
             $user->role_id = 3;
         $user->save();
         return redirect()->route('answer');
@@ -99,9 +98,12 @@ class TestController extends Controller
     public function monthlyReport(){
         $teamId = Session::get('team_id');
         $userId = Session::get('id');
-        $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','sss','ssw','wws','wwe','hhh'];
-        $getTeam = $this->answer->where('team_id', $teamId)->where('user_id', $userId)->get();
-        
+        // $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','sss','ssw','wws','wwe','hhh'];
+        // $getTeam = $this->answer->where('team_id', $teamId)->where('user_id', $userId)->get();
+        $getTeam = DB::table('table_marks')->join('test', 'test.id', '=', 'table_marks.test_title')
+              ->select('table_marks.score','test.test_title')
+              ->where('user_id', $userId) 
+              ->get();
         $result[] = ['month','score'];
 
         

@@ -35,24 +35,24 @@
                     <input type="hidden" value="{{($loop->count)}}" name="id">
                     <input type="hidden" value="{{($question->role_id)}}" name="role_id">
                     <input type="hidden" value="{{($question->test_name)}}" name="test_title">
-                    <input type="hidden" value="{{($question->id)}}" name="question_id">
+                    <input type="hidden" value="{{($question->id)}}" name="name[{{$loop->index+1}}][question]">
                     <div class="row">
                     <div class="form-check col-md-6">
-                    <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="a">
+                    <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="a" required>
                     <label class="form-check-label">{{$question->option1}}</label>
                     </div>
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="b">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="b"required>
 					<label class="form-check-label"> {{$question->option2}}</label>
                     </div>
                     </div>
                     <div class="row">
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="c">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="c" required>
 					<label class="form-check-label"> {{$question->option3}}</label>
                     </div>
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="d">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="d" required>
 					<label class="form-check-label"> {{$question->option4}}</label>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
             document.addEventListener("visibilitychange", function() {
             if (document.visibilityState === 'visible') {
             } else {
-                // document.getElementById("myForm").submit();
+                document.getElementById("myForm").submit();
             }
             });
 

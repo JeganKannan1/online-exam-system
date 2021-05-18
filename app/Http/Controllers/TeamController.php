@@ -94,7 +94,20 @@ class TeamController extends Controller
         }
     }
     public function tlDashboard(){
-        return view('teamlead.dashboard');
+        $teamId = Session::get('team_id');
+        $getTeam = DB::table('table_marks')->join('test', 'test.id', '=', 'table_marks.test_title')
+              ->select('table_marks.score','test.test_title')
+              ->where('table_marks.team_id', $teamId)->groupBy('test.test_title')->pluck('test.test_title','table_marks.score'); 
+              
+        $result[] = ['month','score'];
+
+      dd($getTeam);
+       foreach ($getTeam as $key => $value) {
+               
+            $result[++$key] = [$value->test_title, (int)$value->score];
+           }
+    
+        return view('teamlead.dashboard')->with('visitor',json_encode($result));
     }
     public function teamReport(){
         $teamId = Session::get('team_id');
@@ -104,14 +117,17 @@ class TeamController extends Controller
     public function userReport($id){
         $session_id = Session::get('team_id');
         $session_userid = Session::get('id');
-        $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','sss','ssw','wws','wwe','hhh'];
-        $getTeam = $this->userscore->where('team_id', $session_id)->where('user_id', $id)->get();
-        
+        // $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','sss','ssw','wws','wwe','hhh'];
+        // $getTeam = $this->userscore->where('team_id', $session_id)->where('user_id', $id)->get();
+        $getTeam = DB::table('table_marks')->join('test', 'test.id', '=', 'table_marks.test_title')
+        ->select('table_marks.score','test.test_title')
+        ->where('user_id', $id) 
+        ->get();
         $result[] = ['month','score'];
 
         
        foreach ($getTeam as $key => $value) {
-            $result[++$key] = [$value->created_at->format('d'), (int)$value->score];
+            $result[++$key] = [$value->test_title, (int)$value->score];
     }
         
         return view('teamlead.userreport')
