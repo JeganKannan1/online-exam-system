@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UserLoginRequest;
 
 use App\Models\Admin;
 use App\Models\Team;
@@ -56,18 +57,9 @@ class AdminAuthController extends Controller
     public function login(){
         return view('admin.login');
     }
-    public function adminLogin(Request $request){
+    public function adminLogin(UserLoginRequest $request){
         try{
-            $validator = Validator::make($request->all(),[
-                'username'=>'required|min:5',
-                'password'=>'required|min:5'
-             ]);
-             
-             if ($validator->fails()) {
-                $error_messages = implode(',', $validator->messages()->all());
-                toastr()->error($error_messages);
-                return back();
-            }
+            $validated = $request->validated();
             $user = $this->userreg->where('username',$request->username)->where('password',$request->password)->first();
             if(isset($user))
             {

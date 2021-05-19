@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\CreateQuestionRequest;
+use App\Http\Requests\UpdateQuestionRequest;
 use App\Models\Question;
 use App\Models\Answer;
 use App\Models\Test;
@@ -47,8 +48,9 @@ class ExamController extends Controller
         $questions = $this->questionreg->where('team_id', $teamId)->where('test_name', $id)->get();
         return view('exam.questions',compact('questions','testTitle'));
     }
-    public function addQuestion(Request $request){
+    public function addQuestion(CreateQuestionRequest $request){
        try{
+        $validated = $request->validated();
             $test = new Test();
             $test->test_title = $request->test_name;
             $test->team_id = $request->team_id;
@@ -85,24 +87,10 @@ class ExamController extends Controller
         $editTeams = $this->questionreg->where('id',$id)->first();
         return view('teamlead.changequestion',compact('editTeams'));
     }
-    public function updateQuestion(Request $request){
+    public function updateQuestion(UpdateQuestionRequest $request){
         
         try{
-            $validator = Validator::make($request->all(),[
-                'question'=>'required',
-                'option1'=>'required',
-                'option2'=>'required',
-                'option3'=>'required',
-                'option4'=>'required',
-                'answer'=>'required'
-             ]);
-             if ($validator->fails()) {
-                $error_messages = implode(',', $validator->messages()->all());
-                toastr()->error($error_messages);
-                return back();
-            }
-             
-             
+            $validated = $request->validated();
                     $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
                     toastr()->success('Question edited successfully');
                     return redirect('/created');

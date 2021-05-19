@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\TeamRequest;
 use App\Models\Team;
 use App\Models\Admin;
 use App\Models\Answer;
@@ -34,17 +34,11 @@ class TeamController extends Controller
     }
 
 
-    public function createTeam(Request $request)
+    public function createTeam(TeamRequest $request)
     {
         try{
-            $validator = Validator::make($request->all(),[
-            'team_name'=>'required',
-         ]);
-         if ($validator->fails()) {
-            $error_messages = implode(',', $validator->messages()->all());
-            toastr()->error($error_messages);
-            return back();
-        }
+            $validated = $request->validated();
+
          $getTeam = $this->teamreg->where('team_name',$request->team_name)->first();
                 if(empty($getTeam)){
                 $user = $this->teamreg->create($request->all());
@@ -74,16 +68,9 @@ class TeamController extends Controller
         $editTeams = $this->teamreg->where('id',$id)->first();
         return view('admin.changeteam',compact('editTeams'));
     }
-    public function updateTeam(Request $request){
+    public function updateTeam(TeamRequest $request){
         try{
-            $validator = Validator::make($request->all(),[
-                'team_name'=>'required',
-             ]);
-             if ($validator->fails()) {
-                $error_messages = implode(',', $validator->messages()->all());
-                toastr()->error($error_messages);
-                return back();
-            }
+            $validated = $request->validated();
         $this->teamreg->where('id',$request->id)->update($request->except(['_token']));
         toastr()->success('Team edited successfully');
         return redirect('/team');
@@ -97,11 +84,10 @@ class TeamController extends Controller
         $teamId = Session::get('team_id');
         $getTeam = DB::table('table_marks')->join('test', 'test.id', '=', 'table_marks.test_title')
               ->select('table_marks.score','test.test_title')
-              ->where('table_marks.team_id', $teamId)->groupBy('test.test_title')->pluck('test.test_title','table_marks.score'); 
+              ->where('table_marks.team_id', $teamId)->get(); 
               
         $result[] = ['month','score'];
 
-      dd($getTeam);
        foreach ($getTeam as $key => $value) {
                
             $result[++$key] = [$value->test_title, (int)$value->score];

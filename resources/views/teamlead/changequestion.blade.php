@@ -1,8 +1,14 @@
 @extends('layouts.dashboard')
-
-
+@toastr_css
 <div class = "container-fluid">
     <div class = "col-md-6" style="margin: 100px 220px">
+      @if (count($errors) > 0)
+			   <ul>
+				  @foreach ($errors->all() as $error)
+			   <?php toastr()->error($error);?>
+				  @endforeach
+			   </ul>
+		 	@endif
       <form action="{{route('update-question')}}" method = "POST">
         @csrf
         <div class="form-group">
@@ -30,3 +36,6 @@
       </form>
     </div>
 </div>
+@jquery
+@toastr_js
+@toastr_render

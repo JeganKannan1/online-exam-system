@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
 
@@ -26,16 +26,9 @@ class RoleController extends Controller
         $getRoles = $this->rolereg->get()->except(["id"=>1]);
         return view('admin.role',compact('getRoles'));
         }
-        public function createRole(Request $request){
+        public function createRole(RoleRequest $request){
             try{
-                $validator = Validator::make($request->all(),[
-                    'role_name'=>'required'
-                 ]);
-                 if ($validator->fails()) {
-                    $error_messages = implode(',', $validator->messages()->all());
-                    toastr()->error($error_messages);
-                    return back();
-                }
+                $validated = $request->validated();
                  $getTeam = $this->rolereg->where('role_name',$request->role_name)->first();
                  if(empty($getTeam)){
                     $role = $this->rolereg->create($request->all());
@@ -56,16 +49,9 @@ class RoleController extends Controller
         $editRoles = $this->rolereg->where('id',$id)->first();
         return view('admin.changerole',compact('editRoles'));
         }
-        public function updateRole(Request $request){
+        public function updateRole(RoleRequest $request){
             try{
-                $validator = Validator::make($request->all(),[
-                    'role_name'=>'required'
-                 ]);
-                 if ($validator->fails()) {
-                    $error_messages = implode(',', $validator->messages()->all());
-                    toastr()->error($error_messages);
-                    return back();
-                }
+                $validated = $request->validated();
         $this->rolereg->where('id',$request->id)->update($request->except(['_token']));
         toastr()->success('Role edited successfully');
         return redirect('/role');

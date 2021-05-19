@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @toastr_css
+@if (count($errors) > 0)
+			   <ul>
+				  @foreach ($errors->all() as $error)
+			   <?php toastr()->error($error);?>
+				  @endforeach
+			   </ul>
+@endif
 <div class="page-wrapper">
 		<div class="content container-fluid">
       

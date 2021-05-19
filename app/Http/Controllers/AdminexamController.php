@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateQuestionRequest;
-
+use App\Http\Requests\UpdateQuestionRequest;
 use App\Models\Question;
 use App\Models\Admin;
 use App\Models\Team;
@@ -83,10 +83,10 @@ class AdminexamController extends Controller
         $editTeams = $this->questionreg->where('id',$id)->first();
         return view('admin.changequestion',compact('editTeams'));
     }
-    public function rewriteQuestion(Request $request){
+    public function rewriteQuestion(UpdateQuestionRequest $request){
         try{
-                
-                    $update = $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
+            $validated = $request->validated();
+            $update = $this->questionreg->where('id',$request->id)->update($request->except(['_token']));
                     
                     toastr()->success('Question edited successfully');
                     return redirect()->route('display-questions',['id' => $request->team_id]);

@@ -30,7 +30,13 @@
 
         </head>
         <body class="account-page">
-	
+            @if (count($errors) > 0)
+            <ul>
+               @foreach ($errors->all() as $error)
+            <?php toastr()->error($error);?>
+               @endforeach
+            </ul>
+          @endif
 		<!-- Main Wrapper -->
             <div class="main-wrapper">
 			    <div class="account-content">

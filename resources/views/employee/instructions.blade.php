@@ -1,4 +1,6 @@
 @extends('layouts.user')
+@toastr_css
+
 <div class="page-wrapper">
     <div class="content container col-md-8">
         <form action="take-test" method="POST">
@@ -24,3 +26,6 @@
         <li>Test should be conducted as per time</li>
         </div>
 </div>
+@jquery
+    @toastr_js
+    @toastr_render

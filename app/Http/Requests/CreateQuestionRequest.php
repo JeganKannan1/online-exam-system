@@ -25,19 +25,26 @@ class CreateQuestionRequest extends FormRequest
     {
         return [
             'test_name' => 'required',
-            'users' => 'required',
+            'users' => 'array|min:1',
+            'users.*.question' => 'required',
+            'users.*.option1' => 'required',
+            'users.*.option2' => 'required',
+            'users.*.option3' => 'required',
+            'users.*.option4' => 'required',
+            'users.*.check' => 'required',
         ];
     }
-    protected function formatErrors(Validator $validator)
+    public function messages()
     {
-        
-        $messages = $validator->messages();
-        dd($messages);
-        foreach ($messages->all() as $message)
-        {
-            toastr()->error($message, 'Failed', ['timeOut' => 10000]);
-        }
-
-        return $validator->errors()->all();
+        return [
+            'test_name.required' => 'Test name is required!',
+            'users' => 'array|min:1',
+            'users.*.question.required' => 'Question is required!',
+            'users.*.option1.required' => 'Option A is required!',
+            'users.*.option2.required' => 'Option B is required!',
+            'users.*.option3.required' => 'Option C is required!',
+            'users.*.option4.required' => 'Option D is required!',
+            'users.*.check.required' => 'Answer is required!',
+        ];
     }
 }

@@ -4,14 +4,12 @@
 <div class="page-wrapper">
 		<div class="content container-fluid">
 
-    @if (count($errors) > 0)
-       <div class = "alert alert-danger">
-          <ul>
-             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-             @endforeach
-          </ul>
-       </div>
+      @if (count($errors) > 0)
+      <ul>
+       @foreach ($errors->all() as $error)
+      <?php toastr()->error($error);?>
+       @endforeach
+      </ul>
     @endif
 
     <div class="page-header">
@@ -27,6 +25,10 @@
           <label for="inputEmail4">UserName</label>
           <input type="name" class="form-control" id="username" placeholder="Enter the Username" name="username" value="{{$editUsers->username}}">
         </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter the Password" name="password" value = "{{$editUsers->username}}">
+      </div>
         <div class="form-group col-md-6">
           <label for="inputEmail4">Name</label>
           <input type="name" class="form-control" id="name" placeholder="Enter the name" name="name" value="{{$editUsers->name}}">

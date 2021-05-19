@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use App\Http\Requests\UserRequest;
 use App\Models\Admin;
 use App\Models\Team;
 use App\Models\Role;
@@ -32,21 +32,9 @@ class UserController extends Controller
         $rolename = Role::all()->except(["id"=>1]);
         return view('admin.user',compact('teamname','rolename','getUsers'));
     }
-    public function createUser(Request $request){
+    public function createUser(UserRequest $request){
         try{
-            $validator = Validator::make($request->all(),[
-                'username'=>'required',
-                'password'=>'required',
-                'name'=>'required',
-                'email'=>'required',
-                'phone'=>'required',
-                
-             ]);
-             if ($validator->fails()) {
-                $error_messages = implode(',', $validator->messages()->all());
-                toastr()->error($error_messages);
-                return back();
-            }
+            $validated = $request->validated();
              $getTeam = $this->userreg->where('username',$request->username)->first();
              
                 if(empty($getTeam)){
@@ -72,20 +60,9 @@ class UserController extends Controller
         $editUsers = $this->userreg->where('id',$id)->first();
         return view('admin.changeuser',compact('editUsers'));
     }
-    public function updateUser(Request $request){
+    public function updateUser(UserRequest $request){
         try{
-            $validator = Validator::make($request->all(),[
-                'username'=>'required',
-                'name'=>'required',
-                'email'=>'required',
-                'phone'=>'required',
-                
-            ]);
-             if ($validator->fails()) {
-                $error_messages = implode(',', $validator->messages()->all());
-                toastr()->error($error_messages);
-                return back();
-            }
+            $validated = $request->validated();
         $this->userreg->where('id',$request->id)->update($request->except(['_token','password']));
         toastr()->success('User edited successfully');
         return redirect('/user');

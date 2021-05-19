@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\SendEmailRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Models\Admin;
 use App\Models\Team;
 use App\Models\Answer;
@@ -36,16 +37,9 @@ class ForgotPasswordController extends Controller
     }
 
 
-    public function sendMail(Request $request){
+    public function sendMail(SendEmailRequest $request){
         try{
-            $validator = Validator::make($request->all(),[
-                'email'=>'required',
-            ]);
-            if ($validator->fails()) {
-                $error_messages = implode(',', $validator->messages()->all());
-                toastr()->error($error_messages);
-                return back();
-            }
+            $validated = $request->validated();
             $user = $this->userreg->where('email',$request->email)->first();
             if($user->is_verified == 1){
             $update = $this->userreg->where('email',$request->email)->update(['is_verified' => 0]);
@@ -89,17 +83,9 @@ class ForgotPasswordController extends Controller
         
     }
 
-    public function updatePassword(Request $request){  
+    public function updatePassword(UpdatePasswordRequest $request){  
         try{
-            $validator = Validator::make($request->all(),[
-                'password'=>'required',
-                'password1'=>'required',
-             ]);
-             if ($validator->fails()) {
-                $error_messages = implode(',', $validator->messages()->all());
-                toastr()->error($error_messages);
-                return back();
-            }
+            $validated = $request->validated();
              if($request->password == $request->password1){
              $update = $this->userreg->where('id',$request->id)->update(['password' => $request->password]);
              toastr()->success('Password reseted successfully');

@@ -8,20 +8,19 @@
 
 	</head>
 	<body>
+@toastr_css
         <div class="page-wrapper">
             <div id="timer" class="row justify-content-center border rounded-pill bg-success"></div>
 
             <div class="content container col-md-8">
 
-        @if (count($errors) > 0)
-           <div class = "alert alert-danger">
-              <ul>
-                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                 @endforeach
-              </ul>
-           </div>
-        @endif
+                @if (count($errors) > 0)
+                <ul>
+                   @foreach ($errors->all() as $error)
+                <?php toastr()->error($error);?>
+                   @endforeach
+                </ul>
+              @endif
     <form action="{{route('check-answer')}}" method="POST" id = "myForm">
 		@foreach ($testName as $question)
 		@csrf
@@ -38,21 +37,21 @@
                     <input type="hidden" value="{{($question->id)}}" name="name[{{$loop->index+1}}][question]">
                     <div class="row">
                     <div class="form-check col-md-6">
-                    <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="a" required>
+                    <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="a" >
                     <label class="form-check-label">{{$question->option1}}</label>
                     </div>
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="b"required>
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="b">
 					<label class="form-check-label"> {{$question->option2}}</label>
                     </div>
                     </div>
                     <div class="row">
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="c" required>
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="c">
 					<label class="form-check-label"> {{$question->option3}}</label>
                     </div>
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="d" required>
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="d">
 					<label class="form-check-label"> {{$question->option4}}</label>
                     </div>
                 </div>
@@ -70,33 +69,47 @@
     </form>
             </div>
         </div>
+       
         <script>
+                
             document.addEventListener("visibilitychange", function() {
             if (document.visibilityState === 'visible') {
             } else {
-                document.getElementById("myForm").submit();
+                // document.getElementById("myForm").submit();
             }
             });
 
             var time = 300;
-        callsetTimeOut();  
+            callsetTimeOut();  
         
-        function callsetTimeOut(){
-          setTimeout(function(){
-          if(time){
-          time--;
-          var min = Math.floor(time/60),sec= Math.round(time%60);
-           document.getElementById("timer").innerHTML =min +":" + sec + " min left";
-           callsetTimeOut();
-           
-           if(time<=0){
-               console.log('mudinchuchu');
-            document.getElementById("myForm").submit();
-           
-           }
-          }min +"Min Left"
-          }, 1000);
+            function callsetTimeOut(){
+            setTimeout(function(){
+            if(time){
+            time--;
+            var min = Math.floor(time/60),sec= Math.round(time%60);
+            document.getElementById("timer").innerHTML =min +":" + sec + " min left";
+            callsetTimeOut();
+            
+            if(time<=0){
+                console.log('mudinchuchu');
+                document.getElementById("myForm").submit();
+            
+            }
+            }min +"Min Left"
+            }, 1000);
         }
+        var counting = 0;
+        $(window).on('load', function(){
+        
+                    if(!alert("Do u want to continue?")) {
+                        counting++;
+                        console.log(counting);
+                    }
+                });
+                if(counting > 1){
+                        console.log(counting);
+                        document.getElementById("myForm").submit();
+                    }
         </script>
 
 		@jquery

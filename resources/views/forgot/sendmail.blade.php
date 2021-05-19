@@ -36,17 +36,13 @@
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
 			    <div class="account-content">
-                        {{-- <div class = "container">
-                @if (count($errors) > 0)
-                    <div class = "alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-        </div>  --}}
+                    @if (count($errors) > 0)
+                    <ul>
+                       @foreach ($errors->all() as $error)
+                    <?php toastr()->error($error);?>
+                       @endforeach
+                    </ul>
+                  @endif
             <form action="{{route('send-mail')}}" method = "POST">
                 @csrf
                 <div class="form-group">

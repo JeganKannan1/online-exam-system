@@ -43,15 +43,13 @@
 						<a href="#"><img src="assets/img/sparkout.png"></a>
 					</div>
 					<!-- /Account Logo -->
-					{{-- @if (count($errors) > 0)
-         <div class = "alert alert-danger">
+					@if (count($errors) > 0)
             <ul>
                @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
+			   <?php toastr()->error($error);?>
                @endforeach
             </ul>
-         </div>
-      @endif --}}
+			      @endif
 					<div class="account-box">
 						<div class="account-wrapper">
 							<h3 class="account-title">Login</h3>
