@@ -19,11 +19,11 @@
       <form action="{{route('update-user')}}" method = "POST">
         @csrf
           <div class="form-group">
-            <input type="hidden" value="{{$editUsers->id}}" name="id">
+            <input type="hidden" value="{{$editUsers->id}}" name="id" required>
           </div>
         <div class="form-group col-md-6">
           <label for="inputEmail4">UserName</label>
-          <input type="name" class="form-control" id="username" placeholder="Enter the Username" name="username" value="{{$editUsers->username}}">
+          <input type="name" class="form-control" id="username" placeholder="Enter the Username" name="username" value="{{$editUsers->username}}" required>
         </div>
         <div class="form-group col-md-6">
           <label for="inputPassword4">Password</label>
@@ -31,15 +31,15 @@
       </div>
         <div class="form-group col-md-6">
           <label for="inputEmail4">Name</label>
-          <input type="name" class="form-control" id="name" placeholder="Enter the name" name="name" value="{{$editUsers->name}}">
+          <input type="name" class="form-control" id="name" placeholder="Enter the name" name="name" value="{{$editUsers->name}}" required>
         </div>
         <div class="form-group col-md-6">
           <label for="inputEmail4">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter the email" name="email" value="{{$editUsers->email}}">
+          <input type="email" class="form-control" id="email" placeholder="Enter the email" name="email" value="{{$editUsers->email}}" required>
         </div>
         <div class="form-group col-md-6">
           <label for="inputAddress">Phone Number</label>
-          <input type="text" class="form-control" id="PhoneNumber" placeholder="Enter the Phone Number" name="phone" value="{{$editUsers->phone}}">
+          <input type="text" class="form-control" id="PhoneNumber" placeholder="Enter the Phone Number" name="phone" value="{{$editUsers->phone}}" required>
         </div>
         <div class="form-group col-md-6">
           <label for="inputAddress">Select Team</label>

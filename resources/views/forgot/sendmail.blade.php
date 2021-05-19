@@ -45,15 +45,20 @@
                   @endif
             <form action="{{route('send-mail')}}" method = "POST">
                 @csrf
+                <div class="account-box">
+					<div class="account-wrapper">
+                    <h3 class="account-title">Forgot-Password</h3></br>
                 <div class="form-group">
                     <label>Enter your registered email address</label>
-                        <input type="email" class="form-control" id="email" name = "email">
+                        <input type="email" class="form-control" id="email" name = "email" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</div>
             </form>
         </div>
     </div>
-  
+</div>
 		@jquery
 @toastr_js
 @toastr_render

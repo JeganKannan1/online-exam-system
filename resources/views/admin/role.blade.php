@@ -21,7 +21,7 @@
             @csrf
             <div class="form-group">
                 <label>Create New Role</label>
-                <input type="text" class="form-control" id="role" name = "role_name" placeholder="Enter The Role">
+                <input type="text" class="form-control" id="role" name = "role_name" placeholder="Enter The Role" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

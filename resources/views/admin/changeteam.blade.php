@@ -19,12 +19,12 @@
       <form action="{{route('update-team')}}" method = "POST">
         @csrf
         <div class="form-group">
-            <input type="hidden" value="{{$editTeams->id}}" name="id">
+            <input type="hidden" value="{{$editTeams->id}}" name="id" required>
         </div>
         
         <div class="form-group">
           <label>Update Tseam</label>
-          <input type="text" class="form-control" id="team" name = "team_name" value="{{ $editTeams->team_name}}">
+          <input type="text" class="form-control" id="team" name = "team_name" value="{{ $editTeams->team_name}}" required>
         </div>
         <button type="submit" class="btn btn-primary">update</button>
       </form>

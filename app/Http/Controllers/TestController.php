@@ -54,7 +54,6 @@ class TestController extends Controller
                     // $validated = $request->validated();
         $teamId = Session::get('team_id');
         $userId = Session::get('id');
-        // $session_username = Session::get('username');
         $array = [];
         $total = [];
         $skip = $request->id;

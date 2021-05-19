@@ -17,10 +17,10 @@
 					<input type="text" class="form-control" name="test_name" placeholder="Enter test title" >
 				</div>
 				<div class="form-group">
-					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$team_id}}">
+					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$team_id}}" required>
 				  </div>
 				  <div class="form-group">
-					<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value="{{$getTeam->role_id}}">
+					<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value="{{$getTeam->role_id}}" required>
 				  </div>
 				<div class="form-group">
 				  <label for="exampleInputEmail1">1.Questions</label>
@@ -34,16 +34,16 @@
                 <div class="form-group">
 				    <div class="form-group">
                         <label for="Option A">
-						    <input type="text" class="form-control" id="option1" placeholder="Option A" name="users[0][option1]" />
+						    <input type="text" class="form-control" id="option1" placeholder="Option A" name="users[0][option1]" required />
                         </label>
 						<label for="Option B">
-						    <input type="text" class="form-control" id="option2" placeholder="Option B"name="users[0][option2]" />
+						    <input type="text" class="form-control" id="option2" placeholder="Option B"name="users[0][option2]" required />
                         </label>
 						<label for="Option C"> 
-						    <input type="text" class="form-control" id="option3" placeholder="Option C" name="users[0][option3]" />
+						    <input type="text" class="form-control" id="option3" placeholder="Option C" name="users[0][option3]" required />
 						</label>
 						<label for="Option D">
-						    <input type="text" class="form-control" id="option4" placeholder="Option D" name="users[0][option4]" />
+						    <input type="text" class="form-control" id="option4" placeholder="Option D" name="users[0][option4]" required />
 						</label>
 					</div>
 

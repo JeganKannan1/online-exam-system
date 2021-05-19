@@ -35,10 +35,10 @@
 			<form action="{{route('set-question')}}" method = "POST">
 				@csrf
 				<div class="form-group">
-					<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value="{{$session_roleid}}">
+					<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value="{{$session_roleid}}" required>
 				  </div>
 				<div class="form-group">
-					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value= {{$team_id}}>
+					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$team_id}}" required>
 				  </div>
 				<div class="form-group">
 				  <label for="exampleInputEmail1">Questions</label>
@@ -46,10 +46,10 @@
 				</div>
 				<div class="form-group">
 				  <label for="exampleInputPassword1">Options</label>
-				  <input type="text" class="form-control" id="option1" placeholder="option1" name="option1"required>
-				  <input type="text" class="form-control" id="option2" placeholder="option2"name="option2"required>
-				  <input type="text" class="form-control" id="option3" placeholder="option3" name="option3"required>
-				  <input type="text" class="form-control" id="option4" placeholder="option4" name="option4"required>
+				  <input type="text" class="form-control" id="option1" placeholder="option1" name="option1" required>
+				  <input type="text" class="form-control" id="option2" placeholder="option2"name="option2" required>
+				  <input type="text" class="form-control" id="option3" placeholder="option3" name="option3" required>
+				  <input type="text" class="form-control" id="option4" placeholder="option4" name="option4" required>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Answer</label>

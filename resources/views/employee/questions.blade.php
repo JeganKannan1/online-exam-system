@@ -31,34 +31,34 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <input type="hidden" value="{{($loop->count)}}" name="id">
-                    <input type="hidden" value="{{($question->role_id)}}" name="role_id">
-                    <input type="hidden" value="{{($question->test_name)}}" name="test_title">
-                    <input type="hidden" value="{{($question->id)}}" name="name[{{$loop->index+1}}][question]">
+                    <input type="hidden" value="{{($loop->count)}}" name="id" required>
+                    <input type="hidden" value="{{($question->role_id)}}" name="role_id" required>
+                    <input type="hidden" value="{{($question->test_name)}}" name="test_title" required>
+                    <input type="hidden" value="{{($question->id)}}" name="question_id" required>
                     <div class="row">
                     <div class="form-check col-md-6">
-                    <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="a" >
+                    <input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="a" required>
                     <label class="form-check-label">{{$question->option1}}</label>
                     </div>
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="b">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="b" required>
 					<label class="form-check-label"> {{$question->option2}}</label>
                     </div>
                     </div>
                     <div class="row">
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="c">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="c" required>
 					<label class="form-check-label"> {{$question->option3}}</label>
                     </div>
                     <div class="form-check col-md-6">
-					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][answer]" value="d">
+					<input type="radio" id="vehicle{{$loop->index+1}}" class="radio"  name="name[{{$loop->index+1}}][]" value="d" required>
 					<label class="form-check-label"> {{$question->option4}}</label>
                     </div>
                 </div>
                 </div>
 
 				@if ($loop->index == ($loop->count)-1 )
-				<button class="btn btn-success pull-right" type="submit">Finish!</button>
+				<button class="btn btn-success pull-right"  type="submit">Finish!</button>
 				@endif
 
 				

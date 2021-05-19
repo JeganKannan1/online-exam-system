@@ -17,10 +17,10 @@
 					<input type="text" class="form-control" name="test_name" placeholder="Enter test title" >
 				</div>
 				<div class="form-group">
-					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$getTeam->team_id}}">
+					<input type="hidden" class="form-control" id="team_id" aria-describedby="emailHelp" name="team_id" value="{{$getTeam->team_id}}" required >
 				  </div>
 				  <div class="form-group">
-					<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value="{{$getTeam->role_id}}">
+					<input type="hidden" class="form-control" id="role_id" aria-describedby="emailHelp" name="role_id" value="{{$getTeam->role_id}}" required >
 				  </div>
 				<div class="form-group">
 				  <label for="exampleInputEmail1">1.Questions</label>

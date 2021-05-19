@@ -17,7 +17,7 @@
       <form action="{{route('create-team')}}" method = "POST">
         @csrf
             <label>Create New Team</label>
-          <input type="text" class="form-control" id="team" name = "team_name" placeholder="Enter The Team">
+          <input type="text" class="form-control" id="team" name = "team_name" placeholder="Enter The Team" required>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       </div>
