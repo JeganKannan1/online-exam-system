@@ -24,43 +24,53 @@ class AdminAuthController extends Controller
 {
     public function __construct(Admin $user,Team $team,Answer $answer,Question $question)
     {
-       $this->userreg = $user;
+       $this->user = $user;
        $this->team = $team;
        $this->answer = $answer;
        $this->questionreg = $question;
-
-
     }
 
     /**
-     * view admin dashboard page
+     * view admin welcome page
      * return view
-     * @parm id
      */
     public function welcome(){
         return view('welcome');
     }
+    /**
+     * shows graph in admin dashboard page
+     * return view
+     */
     public function index(){
         $teamId = Session::get('team_id');
-        $getTeam = DB::table('table_marks')->join('test', 'test.id', '=', 'table_marks.test_title')
-              ->select('table_marks.score','test.test_title')
-               
-              ->get();
-              $result[] = ['month','score'];
-       foreach ($getTeam as $key => $value) {
-            $result[++$key] = [$value->test_title, (int)$value->score];
+        $getScore = $this->answer->join('test', 'test.id', '=', 'table_marks.test_title')
+                    ->select('test.test_title', DB::raw('AVG(table_marks.score) as total_score'))
+                    ->groupBy('test.test_title')
+                    ->get(); 
+        $getTeam = $this->team->get()->except(["id"=>1]);
+        $result[] = ['month','score'];
+        foreach ($getScore as $key => $value) {
+            $result[++$key] = [$value->test_title, (int)$value->total_score];  
+        }
+        return view('admin.index',compact('getTeam'))->with('visitor',json_encode($result));
     }
-        $getUsers = $this->team->get()->except(["id"=>1]);
-        return view('admin.index',compact('getUsers'))->with('visitor',json_encode($result));
-    }
-
+    /**
+     * view admin login page
+     * return view
+     */
     public function login(){
         return view('admin.login');
     }
+    /**
+     * check the user credential and redirect to their respective dashboard page
+     * case 1 - admin,case 2 - teamlead,default - employee
+     * return view
+     * @param $request
+     */
     public function adminLogin(UserLoginRequest $request){
         try{
             $validated = $request->validated();
-            $user = $this->userreg->where('username',$request->username)->where('password',$request->password)->first();
+            $user = $this->user->where('username',$request->username)->where('password',$request->password)->first();
             if(isset($user))
             {
                 Session::put('username',$request->username);
@@ -80,7 +90,7 @@ class AdminAuthController extends Controller
                         default:
                         return redirect()->route('dashboard');
                     }
-                 } else{
+            }else{
                 toastr()->error('Username/Password is incorrect');
                 return back();
             }
@@ -88,24 +98,36 @@ class AdminAuthController extends Controller
             return back();
             Log::info('admin login',$exception->getMessages());
         }
-       
     }
-
+    /**
+     * view logout page 
+     * return view 
+     */
     public function logout(){
         Session::flush();
         toastr()->success('Logout Successfully');
         return redirect()->route('login');
     }
-
+    /**
+     * view reports page 
+     * return view 
+     */
     public function monthlyReport(){
-        // $session_roleid = Session::get('role_id');
         $getTeam = $this->team->get()->except(["id"=>1]);
         return view('admin.reports',compact('getTeam'));
     }
+    /**
+     * view userdetails page 
+     * return view 
+     */
     public function teamReport($id){
-        $getTeam = $this->userreg->where('team_id',$id)->where('role_id','3')->get();
+        $getTeam = $this->user->where('team_id',$id)->where('role_id','3')->get();
         return view('teamlead.userdetail',compact('getTeam'));
     }
+    /**
+     * view userscore page 
+     * return view 
+     */
     public function teamScore($id){
         $getTeam = $this->answer->where('user_id',$id)->get();
         return view('admin.userscore',compact('getTeam'));

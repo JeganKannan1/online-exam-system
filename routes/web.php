@@ -9,6 +9,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\QueryController;
+
 
 
 
@@ -76,6 +78,7 @@ Route::get('/change-question/{team}',[AdminexamController::class,'changeQuestion
 Route::post('/rewrite-question',[AdminexamController::class,'rewriteQuestion'])->name('rewrite-question');
 Route::get('/list-team1',[AdminexamController::class,'listTeam1'])->name('list-team1')->middleware('admin');
 
+
 Route::get('/take-exam',[TestController::class,'testName'])->name('take-exam')->middleware('admin');
 Route::get('/instruction',[TestController::class,'instruction'])->name('instruction')->middleware('admin');
 Route::post('/take-test',[TestController::class,'takeTest'])->name('take-test')->middleware('admin');
@@ -89,5 +92,9 @@ Route::get('/redirect',[ForgotPasswordController::class,'reDirect'])->name('redi
 Route::get('/reset-password/{id}',[ForgotPasswordController::class,'resetPassword'])->name('reset-password');
 Route::post('/update-password',[ForgotPasswordController::class,'updatePassword'])->name('update-password');
 
+Route::get('/delete-test/{id}/{testId}',[QueryController::class,'deleteTest'])->name('delete-test');
+Route::get('/query',[QueryController::class,'query'])->name('query')->middleware('admin');
+Route::post('/user-query',[QueryController::class,'userQuery'])->name('user-query')->middleware('admin');
+Route::get('/show-query',[QueryController::class,'showQuery'])->name('show-query')->middleware('admin');
 
 ?>

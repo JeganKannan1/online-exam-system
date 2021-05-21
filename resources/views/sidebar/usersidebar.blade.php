@@ -6,6 +6,7 @@
                 <li><a class="active" href="/dashboard">Employee Dashboard</a></li>
                 <li><a href="/instruction">Take Test</a></li>
                 <li><a href="/report">Report</a></li>
+                <li><a href="/query">Queries</a></li>
             </ul>
         </div>
     </div>

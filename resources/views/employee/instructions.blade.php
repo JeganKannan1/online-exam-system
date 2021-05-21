@@ -3,7 +3,7 @@
 
 <div class="page-wrapper">
     <div class="content container col-md-8">
-        <form action="take-test" method="POST">
+        <form action="{{route('take-test')}}" method="POST">
             @csrf
             <div class="form-group">
                 <div class="form-group col-md-6">

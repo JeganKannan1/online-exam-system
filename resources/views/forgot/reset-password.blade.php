@@ -51,7 +51,7 @@
                             </div>
                             <div class="account-box">
 					        <div class="account-wrapper">
-                            <h3 class="account-title">Reset-Password</h3></br>
+                            <h3 class="account-title">Reset-Password</h3><br>
                             <div class="form-group">
                             <label>Create new password</label>
                             <input type="password" class="form-control" id="password" name = "password" required >

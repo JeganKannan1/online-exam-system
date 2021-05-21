@@ -1,5 +1,3 @@
-@toastr_css
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,7 +7,7 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Forgot-Password</title>
+        <title>Query</title>
 		
 		<!-- Favicon -->
         <!-- <link rel="shortcut icon" type="image/x-icon"> -->
@@ -35,34 +33,47 @@
 	
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
-			    <div class="account-content">
-                    @if (count($errors) > 0)
-                    <ul>
-                       @foreach ($errors->all() as $error)
-                    <?php toastr()->error($error);?>
-                       @endforeach
-                    </ul>
-                  @endif
-            <form action="{{route('send-mail')}}" method = "POST">
-                @csrf
-                <div class="account-box">
-					<div class="account-wrapper">
-                    <h3 class="account-title">Forgot-Password</h3><br>
-                <div class="form-group">
-                    <label>Enter your registered email address</label>
-                        <input type="email" class="form-control" id="email" name = "email" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-</div>
-</div>
-            </form>
+			<div class="account-content">
+				<div class="container">
+				
+					<!-- Account Logo -->
+					
+					<!-- /Account Logo -->
+					
+					<div class="account-box">
+						<div class="account-wrapper">
+                            <p>You can take your test again.</p>
+							<h1>Please click the below button to re-test the test.</h1>
+                                <a href = "http://127.0.0.1:8000/instruction"><button class="btn btn-primary">Re-take Test</button></a>
+							
+							<!-- Account Form -->
+						
+							<!-- /Account Form -->
+							
+						</div>
+					</div>
+				</div>
+			</div>
         </div>
-    </div>
-</div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+        <script src="{{asset('assets/js/jquery-3.2.1.min.js')}}"></script>
+		
+		<!-- Bootstrap Core JS -->
+        <script src="{{asset('assets/js/popper.min.js')}}"></script>
+        <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+		
+		<!-- Slimscroll JS -->
+		<script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
+		
+		<!-- Chart JS -->
+		<script src="{{asset('assets/plugins/morris/morris.min.js')}}"></script>
+		<script src="{{asset('assets/plugins/raphael/raphael.min.js')}}"></script>
+		<script src="{{asset('assets/js/chart.js')}}"></script>
+    <script src="{{asset('assets/js/app.js')}}"></script>
 		@jquery
 @toastr_js
 @toastr_render
-		<!-- Custom JS -->
-</body>
+    </body>
 </html>
-

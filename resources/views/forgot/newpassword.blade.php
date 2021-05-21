@@ -1,1 +1,1 @@
-<h4>your new password is{{ $details }}</h4>
+<h4>your new password is{{ $details->password }}</h4>

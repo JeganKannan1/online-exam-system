@@ -8,5 +8,10 @@ class Answer extends Model
 {
     //
     protected $table = "table_marks";
-    protected $fillable = ['user_id','score', 'total','skiped','team_id','role_id'];
+    protected $fillable = ['user_id','test_title','score', 'total','skiped','team_id','role_id'];
+
+    public function Test()
+    {
+        return $this->belongsTo(Test::class,'test_title','id');
+    }
 }

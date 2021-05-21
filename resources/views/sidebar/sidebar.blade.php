@@ -13,6 +13,7 @@
                         <li><a href="/monthly-reports">Reports</a></li>
                         <li><a href="/list-team">Create Questions</a></li>
                         <li><a href="/list-team1">Show Questions</a></li>
+                        <li><a href="/show-query">Show Queries</a></li>
  
             </ul>
         </div>
