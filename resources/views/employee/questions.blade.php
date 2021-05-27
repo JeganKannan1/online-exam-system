@@ -8,6 +8,7 @@
 
 	</head>
 	<body>
+        <div id = "saw"></div>
 @toastr_css
         <div class="page-wrapper">
             <div id="timer" class="row justify-content-center border rounded-pill bg-success"></div>
@@ -69,49 +70,26 @@
     </form>
             </div>
         </div>
-       
-        <script>
-                
-            document.addEventListener("visibilitychange", function() {
-            if (document.visibilityState === 'visible') {
-            } else {
-                // document.getElementById("myForm").submit();
-            }
-            });
-
-            var time = 300;
-            callsetTimeOut();  
-        
-            function callsetTimeOut(){
-            setTimeout(function(){
-            if(time){
-            time--;
-            var min = Math.floor(time/60),sec= Math.round(time%60);
-            document.getElementById("timer").innerHTML =min +":" + sec + " min left";
-            callsetTimeOut();
-            
-            if(time<=0){
-                console.log('mudinchuchu');
-                document.getElementById("myForm").submit();
-            
-            }
-            }min +"Min Left"
-            }, 1000);
-        }
-        // var counting = 0;
-        // $(window).on('load', function(){
-        
-        //             if(!alert("Do u want to continue?")) {
-        //                 counting++;
-        //                 console.log(counting);
-        //             }
-        //         });
-        //         if(counting > 1){
-        //                 console.log(counting);
-        //                 document.getElementById("myForm").submit();
-        //             }
-        </script>
-
+        <div class="modal" tabindex="-1" role="dialog" id="ss">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    <script src="{{asset('assets/js/answer.js')}}"></script>
 		@jquery
 @toastr_js
 @toastr_render

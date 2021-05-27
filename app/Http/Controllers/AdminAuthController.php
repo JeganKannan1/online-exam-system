@@ -43,16 +43,37 @@ class AdminAuthController extends Controller
      */
     public function index(){
         $teamId = Session::get('team_id');
+        $getTeam = $this->team->get()->except(['id'=>1]);
+        $overallScore = [];
+        foreach($getTeam as $teams){
+            
         $getScore = $this->answer->join('test', 'test.id', '=', 'table_marks.test_title')
                     ->select('test.test_title', DB::raw('AVG(table_marks.score) as total_score'))
                     ->groupBy('test.test_title')
-                    ->get(); 
-        $getTeam = $this->team->get()->except(["id"=>1]);
-        $result[] = ['month','score'];
-        foreach ($getScore as $key => $value) {
-            $result[++$key] = [$value->test_title, (int)$value->total_score];  
+                    ->where('table_marks.team_id',$teams->id)
+                    ->pluck('total_score','test.test_title')->toArray(); 
+            array_push($overallScore,$getScore);
         }
-        return view('admin.index',compact('getTeam'))->with('visitor',json_encode($result));
+        $fResult =[];
+        foreach ($overallScore as $key => $splitScore) {
+            # code...
+            foreach ($splitScore as $secKey => $singleValue) {
+                if ($key == 0) {
+                    $fResult[$secKey] = [];
+                    array_push($fResult[$secKey],$singleValue);
+                } else {
+                    array_push($fResult[$secKey],$singleValue);
+                }
+                
+            }
+           
+        }
+
+        $finalResult = [];
+        foreach ($fResult as $key => $resultSingle) {
+            $finalResult[] = [$key,$resultSingle[0],$resultSingle[1],$resultSingle[2],$resultSingle[3],$resultSingle[4]];
+        }
+        return view('admin.index',compact('getTeam'))->with('visitor',json_encode($finalResult));
     }
     /**
      * view admin login page
@@ -73,6 +94,7 @@ class AdminAuthController extends Controller
             $user = $this->user->where('username',$request->username)->where('password',$request->password)->first();
             if(isset($user))
             {
+                session_start();
                 Session::put('username',$request->username);
                 Session::put('id',$user->id);
                 Session::put('role_id',$user->role_id);
@@ -104,7 +126,8 @@ class AdminAuthController extends Controller
      * return view 
      */
     public function logout(){
-        Session::flush();
+        session_start();
+        session_destroy();
         toastr()->success('Logout Successfully');
         return redirect()->route('login');
     }

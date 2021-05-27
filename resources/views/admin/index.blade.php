@@ -47,21 +47,35 @@
 			<script  src="https://www.gstatic.com/charts/loader.js"></script>
   
     <script>
-      var visitor = <?php echo $visitor; ?>;
-      console.log(visitor);
-      google.charts.load('current', {'packages':['corechart']});
+		var visitor = <?php echo $visitor; ?>;
+				  console.log(visitor);
+           google.charts.load('current', {'packages':['line']});
       google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable(visitor);
-        var options = {
-            title: 'Performance',
-            curveType: 'function',
 
-        };
-        var chart = new google.visualization.LineChart(document.getElementById('linechart'));
-        chart.draw(data, options);
-      }
-    </script>
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Teams');
+      data.addColumn('number', 'php');
+      data.addColumn('number', 'nodejs');
+      data.addColumn('number', 'android');
+	  data.addColumn('number', 'ios');
+	  data.addColumn('number', 'testing');
+      data.addRows(visitor);
+
+      var options = {
+        chart: {
+          title: 'Team performance',
+          subtitle: 'per test'
+        },
+        width: 900,
+        height: 500
+      };
+
+      var chart = new google.charts.Line(document.getElementById('linechart'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
     </script>  
 				
 			
