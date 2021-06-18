@@ -1,6 +1,8 @@
-window.onbeforeunload = function() {
-    $('#ss').modal('show');
-}
+window.onbeforeunload = function () {
+
+ 
+
+};
         document.addEventListener("visibilitychange", function() {
         if (document.visibilityState === 'visible') {
         } else {

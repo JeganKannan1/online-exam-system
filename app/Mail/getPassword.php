@@ -29,6 +29,6 @@ class getPassword extends Mailable
      */
     public function build()
     {
-        return $this->view('forgot.newpassword')->with("details",$this->password);
+        return $this->markdown('forgot.newpassword')->with("details",$this->password);
     }
 }

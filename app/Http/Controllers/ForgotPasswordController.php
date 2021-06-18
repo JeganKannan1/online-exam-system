@@ -46,9 +46,9 @@ class ForgotPasswordController extends Controller
         try{
             $validated = $request->validated();
             $user = $this->userreg->where('email',$request->email)->first();
-            if($user->is_verified == 1){
-                $update = $this->userreg->where('email',$request->email)->update(['is_verified' => 0]);
-            }
+            // if($user->is_verified == 1){
+            //     $update = $this->userreg->where('email',$request->email)->update(['is_verified' => 0]);
+            // }
             $getId = $this->userreg->where('email',$request->email)->first();
             if($getId){
                 $email=new ForgotPassword($getId);

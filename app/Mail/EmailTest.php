@@ -29,6 +29,6 @@ class EmailTest extends Mailable
      */
     public function build()
     {
-        return $this->view('forgot.mail')->with("details",$this->mail);
+        return $this->markdown('forgot.mail')->with("details",$this->mail);
     }
 }

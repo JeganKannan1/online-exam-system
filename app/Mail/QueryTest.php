@@ -29,6 +29,6 @@ class QueryTest extends Mailable
      */
     public function build()
     {
-        return $this->view('forgot.query')->with("details",$this->mail);
+        return $this->markdown('forgot.query')->with("details",$this->mail);
     }
 }

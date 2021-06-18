@@ -16,7 +16,7 @@ use Mail;
 use DB;
 use Session;
 Use Log;
-
+use Carbon\Carbon;
 use App\Jobs\SendEmailJob;
 
 
@@ -128,8 +128,10 @@ class AdminAuthController extends Controller
     public function logout(){
         session_start();
         session_destroy();
+        if(session_destroy()){
         toastr()->success('Logout Successfully');
         return redirect()->route('login');
+        }
     }
     /**
      * view reports page 

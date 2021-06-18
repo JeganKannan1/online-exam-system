@@ -29,3 +29,7 @@
 @jquery
     @toastr_js
     @toastr_render
+    <?php 
+        if (!(Session::has('username')))
+        return redirect()->route('');
+    ?>
