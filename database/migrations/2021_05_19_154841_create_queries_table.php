@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -16,11 +17,8 @@ class CreateQueriesTable extends Migration
         Schema::create('queries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('admin');
             $table->integer('team_id');
-            $table->foreign('team_id')->references('id')->on('teams');
             $table->integer('test_id');
-            $table->foreign('test_id')->references('id')->on('test');
             $table->string('query');
             $table->boolean('re_assign')->default(0);
             $table->timestamps();

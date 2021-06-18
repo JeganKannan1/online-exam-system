@@ -15,13 +15,16 @@ class CreateTableMarks extends Migration
     {
         Schema::create('table_marks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('admin')->onDelete('cascade');
+            $table->unsignedBigInteger('test_title');
             $table->string('score');
             $table->string('total');
-            $table->string('skiped');
+            $table->string('skipped');
             $table->unsignedBigInteger('team_id');
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,5 +37,7 @@ class CreateTableMarks extends Migration
     public function down()
     {
         Schema::dropIfExists('table_marks');
-    }
+        $table->dropForeign('table_marks_team_id_foreign');
+        $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+        }
 }

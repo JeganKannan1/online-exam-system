@@ -15,6 +15,7 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('test_name');
             $table->string('question');
             $table->string('option1');
             $table->string('option2');
@@ -22,9 +23,9 @@ class CreateQuestionsTable extends Migration
             $table->string('option4');
             $table->string('answer');
             $table->unsignedBigInteger('team_id');
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -37,5 +38,8 @@ class CreateQuestionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('questions');
+        $table->dropForeign('questions_team_id_foreign');
+        $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+
     }
 }

@@ -45,12 +45,11 @@ class ForgotPasswordController extends Controller
     public function sendMail(SendEmailRequest $request){
         try{
             $validated = $request->validated();
-            $user = $this->userreg->where('email',$request->email)->first();
-            // if($user->is_verified == 1){
-            //     $update = $this->userreg->where('email',$request->email)->update(['is_verified' => 0]);
-            // }
             $getId = $this->userreg->where('email',$request->email)->first();
             if($getId){
+                if($getId->is_verified == 1){
+                    $update = $this->userreg->where('email',$request->email)->update(['is_verified' => 0]);
+                }
                 $email=new ForgotPassword($getId);
                 dispatch($email);
                 toastr()->success('Mail sent successfully');
