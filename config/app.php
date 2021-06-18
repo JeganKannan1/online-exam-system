@@ -176,7 +176,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
-
     ],
 
     /*

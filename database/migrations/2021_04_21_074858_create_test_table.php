@@ -16,6 +16,8 @@ class CreateTestTable extends Migration
         Schema::create('test', function (Blueprint $table) {
             $table->increments('id');
             $table->string('test_title');
+            $table->unsignedBigInteger('team_id');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,5 +30,7 @@ class CreateTestTable extends Migration
     public function down()
     {
         Schema::dropIfExists('test');
+        $table->dropForeign('test_team_id_foreign');
+        $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');    
     }
 }

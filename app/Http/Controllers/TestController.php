@@ -98,7 +98,7 @@ class TestController extends Controller
                 $user->test_title = $title;
                 $user->score = $count;
                 $user->total = $skip;
-                $user->skiped = $skipped;
+                $user->skipped = $skipped;
                 $user->team_id = $teamId;
                 $user->role_id = 3;
             $user->save();
