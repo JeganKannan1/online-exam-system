@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\Test;
 use App\Models\Query;
 use App\Models\Question;
+use Illuminate\Support\Facades\Hash;
 
 use Mail;
 use DB;
@@ -48,7 +49,15 @@ class UserController extends Controller
             $validated = $request->validated();
             $getTeam = $this->userreg->where('username',$request->username)->first();
             if(empty($getTeam)){
-                $user = $this->userreg->create($request->all());
+                $user = new Admin;
+                $user->username = $request->username;
+                $user->password = Hash::make($request->password);
+                $user->name     = $request->name;
+                $user->email    = $request->email;
+                $user->phone    = $request->phone;
+                $user->team_id  = $request->team_id;
+                $user->role_id  = $request->role_id;
+                $user->save();
                 $details=new SendEmailJob($request->all());
                 dispatch($details);
                 toastr()->success('User created successfully');

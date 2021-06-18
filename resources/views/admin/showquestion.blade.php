@@ -36,13 +36,21 @@
                 <a href="{{route('change-question', $getTeam->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-right:20px;">edit</a>
                 <a href="{{route('delete-question', $getTeam->id)}}" class="btn btn-sm btn-outline-danger py-0" style="margin-right:20px;">delete</a>
             </td>
-           </tr>  
+           </tr>
           @endforeach
           @else
-          <tr class="text-center">
-<h3>No data found</h3>
-@endif  
-          </tr>
+            <div class="col-md-12" >
+                <div class="card dash-widget">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="{{asset('assets/img/no_data.jpg')}}">
+                            <h3>No Data Found</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </tr>
+          @endif
        </tbody>
       </table>
 </div>

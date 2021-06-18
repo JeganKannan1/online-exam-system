@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
     {
         DB::table('admin')->insert([
         'username' =>'aravindan',
-        'password' =>'sparkout',
+        'password' =>Hash::make('sparkout'),
         'name' =>'aravindan',
         'email' =>'aravindan@mailinator.com',
         'phone' =>'9876543210',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UserLoginRequest;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Admin;
 use App\Models\Team;
@@ -91,7 +92,9 @@ class AdminAuthController extends Controller
     public function adminLogin(UserLoginRequest $request){
         try{
             $validated = $request->validated();
-            $user = $this->user->where('username',$request->username)->where('password',$request->password)->first();
+            $user = $this->user->where('username',$request->username)->first();
+            if(($user)&&Hash::check($request->password,$user->password))
+            {
             if(isset($user))
             {
                 session_start();
@@ -112,7 +115,8 @@ class AdminAuthController extends Controller
                         default:
                         return redirect()->route('dashboard');
                     }
-            }else{
+            }
+        }else{
                 toastr()->error('Username/Password is incorrect');
                 return back();
             }
@@ -126,12 +130,9 @@ class AdminAuthController extends Controller
      * return view 
      */
     public function logout(){
-        session_start();
-        session_destroy();
-        if(session_destroy()){
+        Session::flush();
         toastr()->success('Logout Successfully');
         return redirect()->route('login');
-        }
     }
     /**
      * view reports page 
